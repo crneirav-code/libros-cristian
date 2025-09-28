@@ -6,39 +6,25 @@
   <title>Cristian Neira V. — Autor</title>
   <style>
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f1218;
-      color: #f5f7fa;
-      line-height: 1.5;
+      margin: 0; font-family: Arial, sans-serif;
+      background: #0f1218; color: #f5f7fa; line-height: 1.5;
     }
 
     /* ======= Header & Nav ======= */
     .site-header {
       position: sticky; top: 0; z-index: 10;
-      background: #14161b;
-      border-bottom: 1px solid #232833;
+      background: #14161b; border-bottom: 1px solid #232833;
     }
-    .nav {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 16px; padding: 12px 16px;
-    }
-    .brand-title {
-      color: #f5f7fa; text-decoration: none; font-weight: 700;
-    }
-
-    .nav-links {
-      display: flex; align-items: center; gap: 12px;
-    }
+    .nav { display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 12px 16px; }
+    .brand-title { color: #f5f7fa; text-decoration: none; font-weight: 700; }
+    .nav-links { display: flex; align-items: center; gap: 12px; }
     .nav-links a {
       padding: 8px 12px; border: 1px solid #232833; border-radius: 8px;
       text-decoration: none; color: #f5f7fa; transition: .2s ease;
     }
-    .nav-links a:hover {
-      border-color: #ff6a00; box-shadow: 0 4px 10px #0008;
-    }
+    .nav-links a:hover { border-color: #ff6a00; box-shadow: 0 4px 10px #0008; }
 
-    /* Botón hamburguesa (oculto en desktop) */
     .nav-toggle {
       display: none; flex-direction: column; justify-content: center;
       width: 38px; height: 34px;
@@ -50,7 +36,6 @@
       background: #f5f7fa; margin: 3px auto;
     }
 
-    /* ======= Responsive ======= */
     @media (max-width: 720px) {
       .nav-links {
         position: absolute; left: 0; right: 0; top: 64px;
@@ -63,46 +48,30 @@
 
     /* ======= Texto ======= */
     section p { text-align: justify; }
+    .hero { padding: 32px 16px; text-align: center; }
+    .hero h1 { font-size: 26px; margin-bottom: 12px; }
+    .hero p { max-width: 800px; margin: auto; font-size: 16px; }
 
-    .hero {
-      padding: 32px 16px; text-align: center;
-    }
-    .hero h1 {
-      font-size: 26px; margin-bottom: 12px;
-    }
-    .hero p {
-      max-width: 800px; margin: auto; font-size: 16px;
-    }
-
-    /* ======= Cards de libros ======= */
+    /* ======= Cards ======= */
     .books {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      padding: 20px;
+      gap: 20px; padding: 20px;
     }
     .card {
       background: #14161b; border: 1px solid #232833;
       border-radius: 10px; overflow: hidden;
       display: flex; flex-direction: column;
     }
-    .cover {
-      height: 280px; display: flex; align-items: center; justify-content: center;
-      background: #0f1218; overflow: hidden;
-    }
+    .cover { height: 280px; display: flex; align-items: center; justify-content: center;
+      background: #0f1218; overflow: hidden; }
     .cover img {
-      max-height: 100%; max-width: 100%;
-      object-fit: contain; display: block; margin: auto;
+      max-height: 100%; max-width: 100%; object-fit: contain;
+      display: block; margin: auto;
     }
-    .card .meta {
-      padding: 12px; text-align: center;
-    }
-    .card .title {
-      font-weight: bold; font-size: 18px; margin-bottom: 6px;
-    }
-    .card .desc {
-      font-size: 14px; color: #c8d0da;
-    }
+    .card .meta { padding: 12px; text-align: center; }
+    .card .title { font-weight: bold; font-size: 18px; margin-bottom: 6px; }
+    .card .desc { font-size: 14px; color: #c8d0da; }
     .actions { margin-top: 10px; text-align: center; }
     .actions a {
       padding: 8px 12px; background: #0ec7a0; color: #081016;
@@ -110,12 +79,9 @@
     }
 
     /* ======= Sobre mí ======= */
-    #about {
-      padding: 40px 16px; text-align: center;
-    }
+    #about { padding: 40px 16px; text-align: center; }
     #about img {
-      display: block; margin: 20px auto;
-      border-radius: 10px; max-width: 200px;
+      display: block; margin: 20px auto; border-radius: 10px; max-width: 200px;
     }
 
     /* ======= Footer ======= */
@@ -126,14 +92,13 @@
   </style>
 </head>
 <body>
+  <!-- ======= Header ======= -->
   <header class="site-header">
     <div class="container nav">
       <a class="brand-title" href="#">Cristian Neira V. — Autor</a>
-
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menú">
         <span class="bar"></span><span class="bar"></span><span class="bar"></span>
       </button>
-
       <nav id="nav-links" class="nav-links" role="navigation">
         <a href="#libros">Libros</a>
         <a href="#about">Sobre mí</a>
@@ -142,6 +107,7 @@
     </div>
   </header>
 
+  <!-- ======= Hero ======= -->
   <section class="hero">
     <h1>Libros que sacuden certezas, ideas que transforman.</h1>
     <p>
@@ -151,36 +117,91 @@
     </p>
   </section>
 
+  <!-- ======= Libros ======= -->
   <section id="libros">
     <h2 style="text-align:center;">Libros</h2>
     <div class="books">
+
+      <!-- 1 Manual de Succión Ejecutiva -->
       <div class="card">
-        <div class="cover">
-          <img src="covers/manual-de-succion-ejecutiva.jpg" alt="Manual de Succión Ejecutiva">
-        </div>
+        <div class="cover"><img src="covers/manual-de-succion.jpg" alt="Manual de Succión Ejecutiva"></div>
         <div class="meta">
           <div class="title">Manual de Succión Ejecutiva</div>
           <div class="desc">Guía mordaz sobre las dinámicas ocultas del poder corporativo.</div>
-          <div class="actions"><a href="#">Comprar en Amazon</a></div>
+          <div class="actions"><a href="https://a.co/d/eDdrSF7" target="_blank">Comprar en Amazon</a></div>
         </div>
       </div>
 
-      <!-- Más libros... -->
+      <!-- 2 Convergencia Digital -->
+      <div class="card">
+        <div class="cover"><img src="covers/convergencia-digital.jpg" alt="Convergencia Digital"></div>
+        <div class="meta">
+          <div class="title">Convergencia Digital: Mentes y Mercado</div>
+          <div class="desc">Psicología del consumidor, neuromarketing e inteligencia artificial en la era digital.</div>
+          <div class="actions"><a href="https://a.co/d/5j8u0V3" target="_blank">Comprar en Amazon</a></div>
+        </div>
+      </div>
+
+      <!-- 3 Cosecha de Emociones -->
+      <div class="card">
+        <div class="cover"><img src="covers/cosecha-de-emociones.jpg" alt="Cosecha de Emociones"></div>
+        <div class="meta">
+          <div class="title">Cosecha de Emociones: La Energía Secreta</div>
+          <div class="desc">Thriller de ciencia ficción sobre Etherion y la energía de las emociones humanas.</div>
+          <div class="actions"><a href="https://a.co/d/h3DSJqm" target="_blank">Comprar en Amazon</a></div>
+        </div>
+      </div>
+
+      <!-- 4 Narrativas Cuánticas -->
+      <div class="card">
+        <div class="cover"><img src="covers/narrativas-cuanticas.jpg" alt="Narrativas Cuánticas"></div>
+        <div class="meta">
+          <div class="title">Narrativas Cuánticas: Reescribiendo tu Realidad</div>
+          <div class="desc">Un viaje de autodescubrimiento y transformación personal desde la física cuántica.</div>
+          <div class="actions"><a href="https://a.co/d/36JYeFn" target="_blank">Comprar en Amazon</a></div>
+        </div>
+      </div>
+
+      <!-- 5 El Último Líder Humano -->
+      <div class="card">
+        <div class="cover"><img src="covers/ultimo-lider-humano.jpg" alt="El Último Líder Humano"></div>
+        <div class="meta">
+          <div class="title">El Último Líder Humano</div>
+          <div class="desc">Reflexión sobre liderazgo en la era posthumana e inteligencias artificiales conscientes.</div>
+          <div class="actions"><a href="https://a.co/d/2lx2Z0t" target="_blank">Comprar en Amazon</a></div>
+        </div>
+      </div>
+
+      <!-- 6 El Tablero Invisible -->
+      <div class="card">
+        <div class="cover"><img src="covers/tablero-invisible.png" alt="El Tablero Invisible"></div>
+        <div class="meta">
+          <div class="title">El Tablero Invisible: Las 33 Leyes del Poder Corporativo</div>
+          <div class="desc">Manipulación, poder y supervivencia en la política real de la empresa moderna.</div>
+          <div class="actions"><a href="#" target="_blank">Disponible pronto</a></div>
+        </div>
+      </div>
+
     </div>
   </section>
 
+  <!-- ======= Sobre mí ======= -->
   <section id="about">
     <h2>Sobre el autor</h2>
     <p><b>Cristian Neira V.</b> es estratega, investigador y autor chileno. Su obra combina filosofía, 
     psicología, sociología y tecnología para explorar los dilemas del poder, el liderazgo y la transformación digital.</p>
-    <img src="covers/foto.jpg" alt="Cristian Neira V.">
+    <p>Con un estilo provocador y lúcido, Cristian escribe tanto ensayo como narrativa, moviéndose entre la crítica corporativa, 
+    la ficción especulativa y la reflexión sobre el futuro del trabajo y la sociedad.</p>
+    <img src="covers/foto-carne.jpg" alt="Cristian Neira V.">
   </section>
 
+  <!-- ======= Footer ======= -->
   <footer id="contacto">
     <p>Contacto: <a href="mailto:coneira@uc.cl" style="color:#0ec7a0;">coneira@uc.cl</a></p>
     <p>&copy; 2025 Cristian Neira V.</p>
   </footer>
 
+  <!-- ======= Script ======= -->
   <script>
   document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('.site-header');
