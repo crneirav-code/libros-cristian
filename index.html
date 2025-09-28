@@ -15,10 +15,20 @@
     .hero h2{margin:0;font-size:28px}
     .books .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
     .card{background:#14161b;border:1px solid #232833;border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
-    .card img {
-  width: 50%;
-  height: 280px;      /* tamaño fijo */
-  object-fit: cover;  /* asegura que no se deformen */
+    .cover{
+  height: 280px;                 /* alto uniforme para todas */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f1218;           /* “letterbox” elegante */
+  overflow: hidden;              /* por si alguna se pasa */
+}
+.cover img{
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;                   /* mantiene proporción */
+  height: auto;                  /* NO recorta */
+  object-fit: contain;           /* asegura imagen completa */
 }
     .card .meta{padding:12px}
     .card .title{font-weight:bold;font-size:18px;margin-bottom:6px}
