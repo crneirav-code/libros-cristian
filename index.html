@@ -1,0 +1,119 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Libros de Cristian Neira V. — Autor</title>
+  <style>
+    body{background:#0b0c10;color:#f5f7fa;font-family:system-ui;margin:0}
+    .container{max-width:1100px;margin:auto;padding:24px}
+    header{background:#14161b;position:sticky;top:0;padding:12px 24px;border-bottom:1px solid #232833}
+    header h1{margin:0;font-size:20px}
+    nav a{margin-left:12px;color:#f5f7fa;text-decoration:none;padding:6px 10px;border:1px solid #232833;border-radius:6px}
+    .hero{padding:36px 0}
+    .hero h2{margin:0;font-size:28px}
+    .books .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+    .card{background:#14161b;border:1px solid #232833;border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+    .card img{width:100%;height:auto}
+    .card .meta{padding:12px}
+    .card .title{font-weight:bold;font-size:18px;margin-bottom:6px}
+    .card .desc{font-size:14px;color:#c8d0da}
+    .actions{margin-top:10px}
+    .actions a{padding:8px 12px;display:inline-block;background:#0ec7a0;color:#081016;text-decoration:none;border-radius:6px}
+    .about{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;padding:36px 0}
+    .about img{border-radius:8px;max-width:100%}
+    footer{border-top:1px solid #232833;padding:20px;text-align:center;font-size:14px;color:#aab4c2}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Cristian Neira V. — Autor</h1>
+    <nav>
+      <a href="#libros">Libros</a>
+      <a href="#sobre">Sobre mí</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>Ideas afiladas, libros incómodos.</h2>
+      <p>Ensayo, estrategia, poder, ficción especulativa y reflexión sobre el futuro. Explora mis libros y accede a su compra en Amazon.</p>
+    </section>
+
+    <section id="libros" class="books">
+      <h2>Libros</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="covers/manual-de-succion-ejecutiva.jpg" alt="Manual de Succión Ejecutiva">
+          <div class="meta">
+            <div class="title">Manual de Succión Ejecutiva</div>
+            <div class="desc">Guía mordaz sobre las dinámicas ocultas del poder corporativo. Con ironía y filo, revela cómo funcionan la adulación, las lealtades estratégicas y la manipulación sutil.</div>
+            <div class="actions"><a href="https://a.co/d/eDdrSF7" target="_blank">Comprar en Amazon</a></div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="covers/convergencia-digital.jpg" alt="Convergencia Digital: Mentes y Mercado">
+          <div class="meta">
+            <div class="title">Convergencia Digital: Mentes y Mercado</div>
+            <div class="desc">Explora neuromarketing, IA, segmentación y análisis predictivo para entender la psicología del consumidor y el impacto de la tecnología en sus decisiones.</div>
+            <div class="actions"><a href="https://a.co/d/5j8u0V3" target="_blank">Comprar en Amazon</a></div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="covers/cosecha-de-emociones.jpg" alt="Cosecha de Emociones: La Energía Secreta">
+          <div class="meta">
+            <div class="title">Cosecha de Emociones: La Energía Secreta</div>
+            <div class="desc">Novela de ciencia ficción y misterio donde Etherion manipula la historia a partir de la energía emocional humana. Daniel, Sofía y Alex luchan por la libertad de la humanidad.</div>
+            <div class="actions"><a href="https://a.co/d/h3DSJqm" target="_blank">Comprar en Amazon</a></div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="covers/narrativas-cuanticas.jpg" alt="Narrativas Cuánticas: Reescribiendo tu Realidad">
+          <div class="meta">
+            <div class="title">Narrativas Cuánticas: Reescribiendo tu Realidad</div>
+            <div class="desc">Una brújula de autodescubrimiento y transformación personal a través de la física cuántica y las narrativas internas que moldean nuestra percepción.</div>
+            <div class="actions"><a href="https://a.co/d/36JYeFn" target="_blank">Comprar en Amazon</a></div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="covers/ultimo-lider-humano.jpg" alt="El Último Líder Humano">
+          <div class="meta">
+            <div class="title">El Último Líder Humano</div>
+            <div class="desc">Reflexión sobre el liderazgo en la era posthumana, donde la inteligencia artificial se convierte en compañera consciente y plantea dilemas éticos inéditos.</div>
+            <div class="actions"><a href="https://a.co/d/2lx2Z0t" target="_blank">Comprar en Amazon</a></div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="covers/tablero-invisible.png" alt="El Tablero Invisible: 33 leyes del poder corporativo">
+          <div class="meta">
+            <div class="title">El Tablero Invisible: 33 leyes del poder corporativo</div>
+            <div class="desc">Manual de supervivencia en la empresa moderna: 33 leyes que revelan cómo manipular, negociar y sobrevivir en los fractales de poder corporativo.</div>
+            <div class="actions"><a href="#" onclick="return false;">Próximamente</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre" class="about">
+      <div>
+        <h2>Sobre el autor</h2>
+        <p><strong>Cristian Neira V.</strong> es estratega, investigador y autor chileno. Su obra combina filosofía, psicología, sociología y tecnología para explorar los dilemas del poder, el liderazgo y la transformación digital.</p>
+        <p>Con un estilo provocador y lúcido, Cristian escribe tanto ensayo como narrativa, moviéndose entre la crítica corporativa, la ficción especulativa y la reflexión sobre el futuro del trabajo y la sociedad.</p>
+      </div>
+      <div><img src="autor.jpg" alt="Cristian Neira V."></div>
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p>📩 <a href="mailto:coneira@uc.cl">coneira@uc.cl</a></p>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Cristian Neira V. — Todos los derechos reservados.
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
