@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Libros de Cristian Neira V. — Filosofía, tecnología y poder">
   <title>Cristian Neira V. — Autor</title>
+  <link rel="icon" href="favicon.ico">
   <style>
     body {
       margin: 0; font-family: Arial, sans-serif;
@@ -15,6 +17,7 @@
       position: sticky; top: 0; z-index: 10;
       background: #14161b; border-bottom: 1px solid #232833;
     }
+    .container { max-width: 1200px; margin: 0 auto; }
     .nav { display: flex; align-items: center; justify-content: space-between;
       gap: 16px; padding: 12px 16px; }
     .brand-title { color: #f5f7fa; text-decoration: none; font-weight: 700; }
@@ -73,9 +76,17 @@
     .card .title { font-weight: bold; font-size: 18px; margin-bottom: 6px; }
     .card .desc { font-size: 14px; color: #c8d0da; }
     .actions { margin-top: 10px; text-align: center; }
+    .actions a, .actions .disabled {
+      padding: 8px 12px; border-radius: 6px; display: inline-block;
+    }
     .actions a {
-      padding: 8px 12px; background: #0ec7a0; color: #081016;
-      text-decoration: none; border-radius: 6px; display: inline-block;
+      background: #0ec7a0; color: #081016;
+      text-decoration: none;
+    }
+    .actions .disabled {
+      background: #666; color: #fff; cursor: not-allowed;
+      border: none;
+      pointer-events: none;
     }
 
     /* ======= Sobre mí ======= */
@@ -89,9 +100,21 @@
       text-align: center; padding: 20px; font-size: 14px;
       border-top: 1px solid #232833; margin-top: 40px;
     }
+
+    /* ======= Noscript ======= */
+    .no-js-warning {
+      background: #ffdccb; color: #6c2e00; text-align: center; padding: 10px;
+      margin-bottom: 0; font-size: 15px;
+    }
   </style>
 </head>
 <body>
+  <noscript>
+    <div class="no-js-warning">
+      ⚠️ Esta web requiere JavaScript para funcionar correctamente. Por favor, actívalo en tu navegador.
+    </div>
+  </noscript>
+
   <!-- ======= Header ======= -->
   <header class="site-header">
     <div class="container nav">
@@ -124,7 +147,7 @@
 
       <!-- 1 Manual de Succión Ejecutiva -->
       <div class="card">
-        <div class="cover"><img src="covers/manual-de-succion-ejecutiva.jpg" alt="Manual de Succión Ejecutiva"></div>
+        <div class="cover"><img src="covers/manual-de-succion-ejecutiva.jpg" alt="Portada del libro Manual de Succión Ejecutiva"></div>
         <div class="meta">
           <div class="title">Manual de Succión Ejecutiva</div>
           <div class="desc">Guía mordaz sobre las dinámicas ocultas del poder corporativo.</div>
@@ -134,7 +157,7 @@
 
       <!-- 2 Convergencia Digital -->
       <div class="card">
-        <div class="cover"><img src="covers/convergencia-digital.jpg" alt="Convergencia Digital"></div>
+        <div class="cover"><img src="covers/convergencia-digital.jpg" alt="Portada del libro Convergencia Digital: Mentes y Mercado"></div>
         <div class="meta">
           <div class="title">Convergencia Digital: Mentes y Mercado</div>
           <div class="desc">Psicología del consumidor, neuromarketing e inteligencia artificial en la era digital.</div>
@@ -144,7 +167,7 @@
 
       <!-- 3 Cosecha de Emociones -->
       <div class="card">
-        <div class="cover"><img src="covers/cosecha-de-emociones.jpg" alt="Cosecha de Emociones"></div>
+        <div class="cover"><img src="covers/cosecha-de-emociones.jpg" alt="Portada del libro Cosecha de Emociones: La Energía Secreta"></div>
         <div class="meta">
           <div class="title">Cosecha de Emociones: La Energía Secreta</div>
           <div class="desc">Thriller de ciencia ficción sobre Etherion y la energía de las emociones humanas.</div>
@@ -154,7 +177,7 @@
 
       <!-- 4 Narrativas Cuánticas -->
       <div class="card">
-        <div class="cover"><img src="covers/narrativas-cuanticas.jpg" alt="Narrativas Cuánticas"></div>
+        <div class="cover"><img src="covers/narrativas-cuanticas.jpg" alt="Portada del libro Narrativas Cuánticas: Reescribiendo tu Realidad"></div>
         <div class="meta">
           <div class="title">Narrativas Cuánticas: Reescribiendo tu Realidad</div>
           <div class="desc">Un viaje de autodescubrimiento y transformación personal desde la física cuántica.</div>
@@ -164,7 +187,7 @@
 
       <!-- 5 El Último Líder Humano -->
       <div class="card">
-        <div class="cover"><img src="covers/ultimo-lider-humano.jpg" alt="El Último Líder Humano"></div>
+        <div class="cover"><img src="covers/ultimo-lider-humano.jpg" alt="Portada del libro El Último Líder Humano"></div>
         <div class="meta">
           <div class="title">El Último Líder Humano</div>
           <div class="desc">Reflexión sobre liderazgo en la era posthumana e inteligencias artificiales conscientes.</div>
@@ -174,11 +197,11 @@
 
       <!-- 6 El Tablero Invisible -->
       <div class="card">
-        <div class="cover"><img src="covers/tablero-invisible.jpg" alt="El Tablero Invisible"></div>
+        <div class="cover"><img src="covers/tablero-invisible.jpg" alt="Portada del libro El Tablero Invisible: Las 33 Leyes del Poder Corporativo"></div>
         <div class="meta">
           <div class="title">El Tablero Invisible: Las 33 Leyes del Poder Corporativo</div>
           <div class="desc">Manipulación, poder y supervivencia en la política real de la empresa moderna.</div>
-          <div class="actions"><a href="#" target="_blank">Disponible pronto</a></div>
+          <div class="actions"><span class="disabled">Disponible pronto</span></div>
         </div>
       </div>
 
@@ -192,7 +215,7 @@
     psicología, sociología y tecnología para explorar los dilemas del poder, el liderazgo y la transformación digital.</p>
     <p>Con un estilo provocador y lúcido, Cristian escribe tanto ensayo como narrativa, moviéndose entre la crítica corporativa, 
     la ficción especulativa y la reflexión sobre el futuro del trabajo y la sociedad.</p>
-    <img src="autor.jpg" alt="Cristian Neira V.">
+    <img src="autor.jpg" alt="Foto de Cristian Neira V.">
   </section>
 
   <!-- ======= Footer ======= -->
@@ -203,6 +226,7 @@
 
   <!-- ======= Script ======= -->
   <script>
+  // Menú móvil accesible
   document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('.site-header');
     const btn = document.querySelector('.nav-toggle');
