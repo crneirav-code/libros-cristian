@@ -14,7 +14,6 @@
       background: #f7f7fa; /* blanco pastel */
       color: #222; line-height: 1.5;
     }
-    /* ======= Header & Nav ======= */
     .site-header {
       position: sticky; top: 0; z-index: 10;
       background: #f3f3f7; border-bottom: 1px solid #e2e2e2;
@@ -123,37 +122,23 @@
     /* ======= Cards ======= */
     .books {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 20px; padding: 20px;
     }
-    .card {
-      background: #fff; border: 1px solid #e2e2e2;
-      border-radius: 10px; overflow: hidden;
-      display: flex; flex-direction: column;
+    .book-cover {
+      background: #fff;
+      border: 1px solid #e2e2e2;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 280px;
       box-shadow: 0 2px 10px #0001;
     }
-    .cover { height: 280px; display: flex; align-items: center; justify-content: center;
-      background: #f7f7fa; overflow: hidden;
-    }
-    .cover img {
-      max-height: 100%; max-width: 100%; object-fit: contain;
+    .book-cover img {
+      max-height: 95%; max-width: 95%; object-fit: contain;
       display: block; margin: auto;
-    }
-    .card .meta { padding: 12px; text-align: center; }
-    .card .title { font-weight: bold; font-size: 18px; margin-bottom: 6px; }
-    .card .desc { font-size: 14px; color: #5d5d5d; }
-    .actions { margin-top: 10px; text-align: center; }
-    .actions a, .actions .disabled {
-      padding: 8px 12px; border-radius: 6px; display: inline-block;
-    }
-    .actions a {
-      background: #0ec7a0; color: #fff;
-      text-decoration: none;
-    }
-    .actions .disabled {
-      background: #ccc; color: #fff; cursor: not-allowed;
-      border: none;
-      pointer-events: none;
     }
     /* ======= Prólogos ======= */
     .prologos-section {
@@ -185,14 +170,30 @@
     }
     .prologo-thumb {
       flex: 0 0 120px;
-      display: flex; align-items: center; justify-content: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
       margin-left: 18px;
+      gap: 10px;
     }
     .prologo-thumb img {
       width: 90px; height: 130px; object-fit: cover;
       border-radius: 8px; box-shadow: 0 1px 8px #0002;
       background: #f7f7fa;
+      margin-bottom: 5px;
     }
+    .prologo-thumb a {
+      display: inline-block;
+      background: #0ec7a0;
+      color: #fff;
+      text-decoration: none;
+      padding: 7px 12px;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      box-shadow: 0 1px 8px #0001;
+      margin-top: 3px;
+      transition: background .2s;
+    }
+    .prologo-thumb a:hover { background: #10b38d; }
     .prologo-text {
       flex: 1;
       min-width: 0;
@@ -238,7 +239,6 @@
       border-top: 1px solid #e2e2e2; margin-top: 40px;
       background: #f3f3f7;
     }
-    /* ======= Noscript ======= */
     .no-js-warning {
       background: #ffdccb; color: #6c2e00; text-align: center; padding: 10px;
       margin-bottom: 0; font-size: 15px;
@@ -310,59 +310,23 @@
   <section id="libros">
     <h2 style="text-align:center;">Libros</h2>
     <div class="books">
-      <!-- 1 Manual de Succión Ejecutiva -->
-      <div class="card">
-        <div class="cover"><img src="covers/manual-de-succion-ejecutiva.jpg" alt="Portada del libro Manual de Succión Ejecutiva"></div>
-        <div class="meta">
-          <div class="title">Manual de Succión Ejecutiva</div>
-          <div class="desc">Guía mordaz sobre las dinámicas ocultas del poder corporativo.</div>
-          <div class="actions"><a href="https://a.co/d/eDdrSF7" target="_blank">Comprar en Amazon</a></div>
-        </div>
+      <div class="book-cover">
+        <img src="covers/manual-de-succion-ejecutiva.jpg" alt="Portada del libro Manual de Succión Ejecutiva">
       </div>
-      <!-- 2 Convergencia Digital -->
-      <div class="card">
-        <div class="cover"><img src="covers/convergencia-digital.jpg" alt="Portada del libro Convergencia Digital: Mentes y Mercado"></div>
-        <div class="meta">
-          <div class="title">Convergencia Digital: Mentes y Mercado</div>
-          <div class="desc">Psicología del consumidor, neuromarketing e inteligencia artificial en la era digital.</div>
-          <div class="actions"><a href="https://a.co/d/5j8u0V3" target="_blank">Comprar en Amazon</a></div>
-        </div>
+      <div class="book-cover">
+        <img src="covers/convergencia-digital.jpg" alt="Portada del libro Convergencia Digital: Mentes y Mercado">
       </div>
-      <!-- 3 Cosecha de Emociones -->
-      <div class="card">
-        <div class="cover"><img src="covers/cosecha-de-emociones.jpg" alt="Portada del libro Cosecha de Emociones: La Energía Secreta"></div>
-        <div class="meta">
-          <div class="title">Cosecha de Emociones: La Energía Secreta</div>
-          <div class="desc">Thriller de ciencia ficción sobre Etherion y la energía de las emociones humanas.</div>
-          <div class="actions"><a href="https://a.co/d/h3DSJqm" target="_blank">Comprar en Amazon</a></div>
-        </div>
+      <div class="book-cover">
+        <img src="covers/cosecha-de-emociones.jpg" alt="Portada del libro Cosecha de Emociones: La Energía Secreta">
       </div>
-      <!-- 4 Narrativas Cuánticas -->
-      <div class="card">
-        <div class="cover"><img src="covers/narrativas-cuanticas.jpg" alt="Portada del libro Narrativas Cuánticas: Reescribiendo tu Realidad"></div>
-        <div class="meta">
-          <div class="title">Narrativas Cuánticas: Reescribiendo tu Realidad</div>
-          <div class="desc">Un viaje de autodescubrimiento y transformación personal desde la física cuántica.</div>
-          <div class="actions"><a href="https://a.co/d/36JYeFn" target="_blank">Comprar en Amazon</a></div>
-        </div>
+      <div class="book-cover">
+        <img src="covers/narrativas-cuanticas.jpg" alt="Portada del libro Narrativas Cuánticas: Reescribiendo tu Realidad">
       </div>
-      <!-- 5 El Último Líder Humano -->
-      <div class="card">
-        <div class="cover"><img src="covers/ultimo-Lider-humano.jpg" alt="Portada del libro El Último Líder Humano"></div>
-        <div class="meta">
-          <div class="title">El Último Líder Humano</div>
-          <div class="desc">Reflexión sobre liderazgo en la era posthumana e inteligencias artificiales conscientes.</div>
-          <div class="actions"><a href="https://a.co/d/2lx2Z0t" target="_blank">Comprar en Amazon</a></div>
-        </div>
+      <div class="book-cover">
+        <img src="covers/ultimo-Lider-humano.jpg" alt="Portada del libro El Último Líder Humano">
       </div>
-      <!-- 6 El Tablero Invisible -->
-      <div class="card">
-        <div class="cover"><img src="covers/tablero-invisible.jpg" alt="Portada del libro El Tablero Invisible: Las 33 Leyes del Poder Corporativo"></div>
-        <div class="meta">
-          <div class="title">El Tablero Invisible: Las 33 Leyes del Poder Corporativo</div>
-          <div class="desc">Manipulación, poder y supervivencia en la política real de la empresa moderna.</div>
-          <div class="actions"><span class="disabled">Disponible pronto</span></div>
-        </div>
+      <div class="book-cover">
+        <img src="covers/tablero-invisible.jpg" alt="Portada del libro El Tablero Invisible: Las 33 Leyes del Poder Corporativo">
       </div>
     </div>
   </section>
@@ -374,33 +338,68 @@
       <div class="prologo-item">
         <div class="prologo-thumb">
           <img src="covers/manual-de-succion-ejecutiva.jpg" alt="Manual de Succión Ejecutiva">
+          <a href="https://a.co/d/eDdrSF7" target="_blank">Comprar en Amazon</a>
         </div>
         <div class="prologo-text">
           <h3>Manual de Succión Ejecutiva</h3>
-          <p><i>Aquí irá el prólogo de este libro. Puedes agregar una cita, anécdota o reflexión anticipando la temática del libro. Ejemplo: "En el corazón de cada organización, se desarrolla una batalla silenciosa por el poder. Este libro es una invitación a mirar sin filtros, a desnudar el teatro corporativo y sus reglas no escritas..."</i></p>
+          <p><i>En el corazón de cada organización, se desarrolla una batalla silenciosa por el poder. Este libro es una invitación a mirar sin filtros, a desnudar el teatro corporativo y sus reglas no escritas...</i></p>
         </div>
       </div>
       <!-- 2 Convergencia Digital -->
       <div class="prologo-item">
         <div class="prologo-thumb">
           <img src="covers/convergencia-digital.jpg" alt="Convergencia Digital">
+          <a href="https://a.co/d/5j8u0V3" target="_blank">Comprar en Amazon</a>
         </div>
         <div class="prologo-text">
           <h3>Convergencia Digital: Mentes y Mercado</h3>
-          <p><i>Aquí irá el prólogo de este libro. Ejemplo: "La convergencia entre mente y tecnología ha transformado la manera en que pensamos, sentimos y consumimos. Este libro explora la psicología detrás de la revolución digital..."</i></p>
+          <p><i>La convergencia entre mente y tecnología ha transformado la manera en que pensamos, sentimos y consumimos. Este libro explora la psicología detrás de la revolución digital...</i></p>
         </div>
       </div>
       <!-- 3 Cosecha de Emociones -->
       <div class="prologo-item">
         <div class="prologo-thumb">
           <img src="covers/cosecha-de-emociones.jpg" alt="Cosecha de Emociones">
+          <a href="https://a.co/d/h3DSJqm" target="_blank">Comprar en Amazon</a>
         </div>
         <div class="prologo-text">
           <h3>Cosecha de Emociones: La Energía Secreta</h3>
-          <p><i>Aquí irá el prólogo de este libro. Ejemplo: "En un mundo dominado por la ciencia y la especulación, las emociones se convierten en el recurso más valioso. Esta novela explora esa frontera difusa entre lo humano y lo energético..."</i></p>
+          <p><i>En un mundo dominado por la ciencia y la especulación, las emociones se convierten en el recurso más valioso. Esta novela explora esa frontera difusa entre lo humano y lo energético...</i></p>
         </div>
       </div>
-      <!-- Puedes agregar más prólogos siguiendo la misma estructura -->
+      <!-- 4 Narrativas Cuánticas -->
+      <div class="prologo-item">
+        <div class="prologo-thumb">
+          <img src="covers/narrativas-cuanticas.jpg" alt="Narrativas Cuánticas">
+          <a href="https://a.co/d/36JYeFn" target="_blank">Comprar en Amazon</a>
+        </div>
+        <div class="prologo-text">
+          <h3>Narrativas Cuánticas: Reescribiendo tu Realidad</h3>
+          <p><i>Un viaje de autodescubrimiento y transformación personal desde la física cuántica aplicada a la vida cotidiana. El poder de la mente para escribir su propia historia...</i></p>
+        </div>
+      </div>
+      <!-- 5 El Último Líder Humano -->
+      <div class="prologo-item">
+        <div class="prologo-thumb">
+          <img src="covers/ultimo-Lider-humano.jpg" alt="El Último Líder Humano">
+          <a href="https://a.co/d/2lx2Z0t" target="_blank">Comprar en Amazon</a>
+        </div>
+        <div class="prologo-text">
+          <h3>El Último Líder Humano</h3>
+          <p><i>En la era de las inteligencias artificiales conscientes, el liderazgo humano enfrenta su mayor desafío. Reflexiones sobre el sentido de guiar, inspirar y evolucionar en tiempos de cambio radical...</i></p>
+        </div>
+      </div>
+      <!-- 6 El Tablero Invisible -->
+      <div class="prologo-item">
+        <div class="prologo-thumb">
+          <img src="covers/tablero-invisible.jpg" alt="El Tablero Invisible">
+          <span class="actions disabled" style="background:#ccc;color:#fff;display:inline-block;padding:7px 12px;border-radius:6px;font-size:.95rem;">Disponible pronto</span>
+        </div>
+        <div class="prologo-text">
+          <h3>El Tablero Invisible: Las 33 Leyes del Poder Corporativo</h3>
+          <p><i>Manipulación, poder y supervivencia en la política real de la empresa moderna. Este libro revela las reglas ocultas que rigen el tablero donde se juega el destino profesional...</i></p>
+        </div>
+      </div>
     </div>
   </section>
   <!-- ======= Sobre mí ======= -->
