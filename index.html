@@ -74,7 +74,7 @@
       background: #f3f3f7;
       margin: 0 auto 24px auto;
       overflow: hidden; position: relative;
-      min-height: 320px;
+      min-height: 380px;
       box-shadow: 0 4px 32px #0001;
       display: flex; flex-direction: column; align-items: center;
     }
@@ -85,31 +85,35 @@
     }
     .carousel-slide {
       min-width: 100%;
-      display: flex; align-items: center; justify-content: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
       flex-shrink: 0;
-      padding: 32px 0;
+      padding: 38px 0 26px 0;
       background: #fff9f5;
       position: relative;
       box-sizing: border-box;
       width: 100%;
     }
     .carousel-slide img {
-      max-height: 260px; max-width: 180px; box-shadow: 0 6px 20px #0003;
+      max-height: 220px; max-width: 160px; box-shadow: 0 6px 20px #0003;
       border-radius: 12px;
       background: #fff;
-      width: 45vw;
-      min-width: 120px;
+      width: 30vw;
+      min-width: 100px;
       object-fit: contain;
+      margin-bottom: 18px;
+      display: block;
     }
     .carousel-caption {
-      margin-left: 36px; max-width: 600px;
+      text-align: center;
+      padding: 0 18px;
+      max-width: 420px;
     }
     .carousel-caption h3 {
-      font-size: 28px; margin-bottom: 8px; color: #c0392b;
+      font-size: 22px; margin-bottom: 6px; color: #c0392b;
       letter-spacing: 1px;
     }
     .carousel-caption p {
-      font-size: 18px; color: #222;
+      font-size: 15px; color: #222; margin-bottom: 0;
     }
     .carousel-arrow {
       position: absolute; top: 50%; transform: translateY(-50%);
@@ -124,54 +128,22 @@
     .carousel-arrow.right { right: 12px; }
     .carousel-arrow:hover { background: #ffe6cc; color: #ff6a00; }
     @media (max-width: 900px) {
-      .carousel-slide { flex-direction: column; padding: 20px 0; }
-      .carousel-slide img { margin-bottom: 12px; max-width: 65vw; }
-      .carousel-caption { margin-left: 0; margin-top: 10px; max-width: 96vw; text-align: center; }
+      .carousel-slide { padding: 20px 0 18px 0; }
+      .carousel-slide img { margin-bottom: 10px; max-width: 60vw; }
+      .carousel-caption { max-width: 96vw; }
     }
     @media (max-width: 600px) {
-      .carousel-slide img { max-width: 85vw; max-height: 160px; }
-      .carousel-caption h3 { font-size: 20px; }
-      .carousel-caption p { font-size: 15px; }
+      .carousel-slide img { max-width: 80vw; max-height: 110px; }
+      .carousel-caption h3 { font-size: 17px; }
+      .carousel-caption p { font-size: 13px; }
       .carousel-arrow { font-size: 26px; width: 36px; height: 36px; }
-      .carousel-container { min-height: 220px; }
+      .carousel-container { min-height: 180px; }
     }
     /* ======= Texto ======= */
     section p { text-align: justify; }
     .hero { padding: 32px 16px; text-align: center; }
     .hero h1 { font-size: 26px; margin-bottom: 12px; }
     .hero p { max-width: 800px; margin: auto; font-size: 16px; }
-    /* ======= Cards de Libros ======= */
-    .books {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px; padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .book-cover {
-      background: #fff;
-      border: 1px solid #e2e2e2;
-      border-radius: 10px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 280px;
-      box-shadow: 0 2px 10px #0001;
-      transition: box-shadow .2s;
-    }
-    .book-cover img {
-      max-height: 95%; max-width: 95%; object-fit: contain;
-      display: block; margin: auto;
-    }
-    @media (max-width: 900px) {
-      .books { grid-template-columns: repeat(2, 1fr); }
-      .book-cover { height: 200px; }
-    }
-    @media (max-width: 600px) {
-      .books { grid-template-columns: 1fr; gap: 12px; padding: 10px; }
-      .book-cover { height: 150px; }
-    }
     /* ======= Prólogos ======= */
     .prologos-section {
       background: #fcf6ee;
@@ -292,319 +264,4 @@
       #about .about-text { text-align: justify; }
       #about img { max-width: 160px; }
     }
-    /* ======= Footer ======= */
-    footer {
-      text-align: center; padding: 20px; font-size: 14px;
-      border-top: 1px solid #e2e2e2; margin-top: 40px;
-      background: #f3f3f7;
-    }
-    .no-js-warning {
-      background: #ffdccb; color: #6c2e00; text-align: center; padding: 10px;
-      margin-bottom: 0; font-size: 15px;
-    }
-  </style>
-</head>
-<body>
-  <noscript>
-    <div class="no-js-warning">
-      ⚠️ Esta web requiere JavaScript para funcionar correctamente. Por favor, actívalo en tu navegador.
-    </div>
-  </noscript>
-  <!-- ======= Header ======= -->
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand-title" href="#">Cristian Neira V. — Autor</a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menú">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-      </button>
-      <nav id="nav-links" class="nav-links" role="navigation">
-        <a href="#libros">Libros</a>
-        <a href="#about">Sobre mí</a>
-        <a href="#contacto">Contacto</a>
-        <span class="social-links">
-          <a href="https://www.linkedin.com/in/cristian-neirav/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="https://instagram.com/cneira_escritor" target="_blank" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        </span>
-      </nav>
-    </div>
-  </header>
-  <!-- ======= Carrusel ======= -->
-  <div class="carousel-container">
-    <div class="carousel" id="carousel">
-      <div class="carousel-slide">
-        <img src="carousel/slide1.jpg" alt="Libro destacado 1">
-        <div class="carousel-caption">
-          <h3>Manual de Succión Ejecutiva</h3>
-          <p>Descubre las dinámicas ocultas del poder corporativo en esta obra mordaz y provocadora.</p>
-        </div>
-      </div>
-      <div class="carousel-slide">
-        <img src="carousel/slide2.jpg" alt="Libro destacado 2">
-        <div class="carousel-caption">
-          <h3>Convergencia Digital</h3>
-          <p>Una mirada al futuro del mercado, la mente y la inteligencia artificial.</p>
-        </div>
-      </div>
-      <div class="carousel-slide">
-        <img src="carousel/slide3.jpg" alt="Libro destacado 3">
-        <div class="carousel-caption">
-          <h3>Cosecha de Emociones</h3>
-          <p>Thriller de ciencia ficción donde las emociones se convierten en la energía del mañana.</p>
-        </div>
-      </div>
-    </div>
-    <div class="carousel-arrow left" id="carousel-prev" aria-label="Anterior">&#10094;</div>
-    <div class="carousel-arrow right" id="carousel-next" aria-label="Siguiente">&#10095;</div>
-  </div>
-  <!-- ======= Hero ======= -->
-  <section class="hero">
-    <h1>Libros que sacuden certezas, ideas que transforman.</h1>
-    <p>
-      Del poder corporativo a la inteligencia artificial, de la ciencia ficción a la reinvención personal. 
-      Cada obra abre una puerta incómoda pero necesaria: entender el arte de la persuasión, cómo evoluciona 
-      el liderazgo y cómo nuestras emociones y narrativas moldean el futuro.
-    </p>
-  </section>
-  <!-- ======= Libros ======= -->
-  <section id="libros">
-    <h2 style="text-align:center;">Libros</h2>
-    <div class="books">
-      <div class="book-cover">
-        <img src="covers/manual-de-succion-ejecutiva.jpg" alt="Portada del libro Manual de Succión Ejecutiva">
-      </div>
-      <div class="book-cover">
-        <img src="covers/convergencia-digital.jpg" alt="Portada del libro Convergencia Digital: Mentes y Mercado">
-      </div>
-      <div class="book-cover">
-        <img src="covers/cosecha-de-emociones.jpg" alt="Portada del libro Cosecha de Emociones: La Energía Secreta">
-      </div>
-      <div class="book-cover">
-        <img src="covers/narrativas-cuanticas.jpg" alt="Portada del libro Narrativas Cuánticas: Reescribiendo tu Realidad">
-      </div>
-      <div class="book-cover">
-        <img src="covers/ultimo-Lider-humano.jpg" alt="Portada del libro El Último Líder Humano">
-      </div>
-      <div class="book-cover">
-        <img src="covers/tablero-invisible.jpg" alt="Portada del libro El Tablero Invisible: Las 33 Leyes del Poder Corporativo">
-      </div>
-    </div>
-  </section>
-  <!-- ======= Prólogos ======= -->
-  <section class="prologos-section">
-    <h2>Prólogos</h2>
-    <div class="prologo-list">
-      <!-- 1 Manual de Succión Ejecutiva -->
-      <div class="prologo-item">
-        <div class="prologo-thumb">
-          <img src="covers/manual-de-succion-ejecutiva.jpg" alt="Manual de Succión Ejecutiva">
-          <a href="https://a.co/d/eDdrSF7" target="_blank">Comprar en Amazon</a>
-        </div>
-        <div class="prologo-text">
-          <h3>Manual de Succión Ejecutiva</h3>
-          <p><i>En el mundo de la empresa moderna no siempre asciende el más capaz, sino el que mejor domina el arte milenario de.... la succión.
-Este Manual de Succión Ejecutiva es una guía mordaz y sin filtros sobre esas dinámicas ocultas que nadie enseña en la universidad, pero que todos hemos visto en acción en oficinas, pasillos y sal[...]
-
-Con un tono irónico y agudo, el autor desmonta los códigos invisibles del poder corporativo, revelando cómo funcionan realmente la adulación, las lealtades estratégicas y la manipulación sutil q[...]
-
-Un retrato lúcido, divertido y brutalmente honesto del ecosistema ejecutivo, escrito para quienes sospechan que en la empresa las reglas oficiales son solo una cortina de humo.
-
-📌 Advertencia: Este manual no enseña a liderar. Enseña a abrir los ojos....</i></p>
-        </div>
-      </div>
-      <!-- 2 Convergencia Digital -->
-      <div class="prologo-item">
-        <div class="prologo-thumb">
-          <img src="covers/convergencia-digital.jpg" alt="Convergencia Digital">
-          <a href="https://a.co/d/5j8u0V3" target="_blank">Comprar en Amazon</a>
-        </div>
-        <div class="prologo-text">
-          <h3>Convergencia Digital: Mentes y Mercado</h3>
-          <p><i>En la era de la transformación digital, "Estrategia Digital: Mentes y Mercados" emerge como una guía esencial para entender la psicología del consumidor y las estrategias de marketi[...]
-Explorando temas desde neuromarketing hasta IA en el análisis de datos, y desde segmentación de mercado hasta innovaciones disruptivas, cada capítulo proporciona insights valiosos y aplicables para[...]
-
-Descubre cómo la inteligencia artificial está remodelando las estrategias de marketing.
-Aprende sobre la importancia de la psicología del consumidor en la era digital
-Adquiere conocimientos sobre análisis predictivo y personalización en la industria de la banca, el retail y más...</i></p>
-        </div>
-      </div>
-      <!-- 3 Cosecha de Emociones -->
-      <div class="prologo-item">
-        <div class="prologo-thumb">
-          <img src="covers/cosecha-de-emociones.jpg" alt="Cosecha de Emociones">
-          <a href="https://a.co/d/h3DSJqm" target="_blank">Comprar en Amazon</a>
-        </div>
-        <div class="prologo-text">
-          <h3>Cosecha de Emociones: La Energía Secreta</h3>
-          <p><i>¡Sumérgete en una odisea trepidante!
-¿Y si nuestras emociones más íntimas fueran la fuente de un poder inimaginable?
-
-En un mundo donde la tecnología lo impregna todo, una entidad ancestral conocida como Etherion se alimenta de la energía emocional de la humanidad. Tejiendo una red invisible, manipula la historia y[...]
-
-Daniel, Sofía y Alex, tres jóvenes unidos por el destino, se embarcan en una aventura para desentrañar los secretos de Etherion. Su viaje los lleva por un laberinto de intrigas y peligros, donde ca[...]
-
-Cosecha de Emociones: La Energía Secreta es una novela que te atrapará desde la primera página. Una mezcla fascinante de ciencia ficción, misterio y thriller que te hará reflexionar sobre el pode[...]
-        </div>
-      </div>
-      <!-- 4 Narrativas Cuánticas -->
-      <div class="prologo-item">
-        <div class="prologo-thumb">
-          <img src="covers/narrativas-cuanticas.jpg" alt="Narrativas Cuánticas">
-          <a href="https://a.co/d/36JYeFn" target="_blank">Comprar en Amazon</a>
-        </div>
-        <div class="prologo-text">
-          <h3>Narrativas Cuánticas: Reescribiendo tu Realidad</h3>
-          <p><i>En el vasto océano de la existencia, cada alma navega su propio viaje, marcado por la luz estelar de sus aspiraciones y las sombras de sus dudas. "Narrativas cuánticas: Reescribiendo[...]
-
-A través de un análisis profundo de las narrativas personales y los misterios de la física cuántica, este libro explora cómo nuestros diálogos internos no solo configuran nuestra percepción de [...]
-        </div>
-      </div>
-      <!-- 5 El Último Líder Humano -->
-      <div class="prologo-item">
-        <div class="prologo-thumb">
-          <img src="covers/ultimo-Lider-humano.jpg" alt="El Último Líder Humano">
-          <a href="https://a.co/d/2lx2Z0t" target="_blank">Comprar en Amazon</a>
-        </div>
-        <div class="prologo-text">
-          <h3>El Último Líder Humano</h3>
-          <p><i>¡Descubre el futuro del liderazgo en la era posthumana! 🌌
-
-"El Último Líder Humano" te invita a un viaje fascinante hacia un mundo donde la inteligencia artificial es una herramienta y, a la vez, una compañera con conciencia propia. Este libro es una refle[...]
-
-Desde los dilemas éticos hasta la integración de la empatía artificial en las organizaciones, esta obra ofrece una visión audaz y realista sobre el liderazgo del futuro. Con ejemplos prácticos, c[...]
-
-¿Estás listo para cuestionar tus creencias sobre el poder, la autoridad y la esencia misma del liderazgo? Este libro es un desafío a pensar más allá de los límites de lo conocido. "El Último L�[...]
-        </div>
-      </div>
-      <!-- 6 El Tablero Invisible -->
-      <div class="prologo-item">
-        <div class="prologo-thumb">
-          <img src="covers/tablero-invisible.jpg" alt="El Tablero Invisible">
-          <span class="actions disabled" style="background:#ccc;color:#fff;display:inline-block;padding:7px 12px;border-radius:6px;font-size:.95rem;">Disponible pronto</span>
-        </div>
-        <div class="prologo-text">
-          <h3>El Tablero Invisible: Las 33 Leyes del Poder Corporativo</h3>
-          <p><i>Manipulación, poder y supervivencia en la política real de la empresa moderna. Este libro revela las reglas ocultas que rigen el tablero donde se juega el destino profesional...</i><[...]
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ======= Sobre mí ======= -->
-  <section id="about">
-    <div class="about-text">
-      <h2>Sobre el autor</h2>
-      <p><b>Cristian Neira V.</b> es estratega, investigador y autor chileno. Su obra combina filosofía, 
-      psicología, sociología y tecnología para explorar los dilemas del poder, el liderazgo y la transformación digital.</p>
-      <p>Con un estilo provocador y lúcido, Cristian escribe tanto ensayo como narrativa, moviéndose entre la crítica corporativa, 
-      la ficción especulativa y la reflexión sobre el futuro del trabajo y la sociedad.</p>
-    </div>
-    <img src="autor.jpg" alt="Foto de Cristian Neira V.">
-  </section>
-   <span class="social-links">
-          <a href="https://www.linkedin.com/in/cristian-neirav/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="https://instagram.com/cneira_escritor" target="_blank" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        </span>
-  <!-- ======= Footer ======= -->
-  <footer id="contacto">
-    <p>Contacto: <a href="mailto:coneira@uc.cl" style="color:#0ec7a0;">coneira@uc.cl</a></p>
-    <p>&copy; 2025 Cristian Neira V.</p>
-  </footer>
-  <!-- ======= Script ======= -->
-  <script>
-  // Carrusel funcional
-  document.addEventListener('DOMContentLoaded', () => {
-    const slides = document.querySelectorAll('.carousel-slide');
-    const carousel = document.getElementById('carousel');
-    const prev = document.getElementById('carousel-prev');
-    const next = document.getElementById('carousel-next');
-    let current = 0;
-    let interval = null;
-
-    function showSlide(idx) {
-      if (idx < 0) idx = slides.length - 1;
-      if (idx >= slides.length) idx = 0;
-      current = idx;
-      carousel.style.transform = `translateX(-${100 * current}%)`;
-    }
-    function nextSlide() { showSlide(current + 1); }
-    function prevSlide() { showSlide(current - 1); }
-    prev.addEventListener('click', prevSlide);
-    next.addEventListener('click', nextSlide);
-
-    function autoPlay() {
-      interval = setInterval(nextSlide, 7000);
-    }
-    function stopAutoPlay() {
-      clearInterval(interval);
-      interval = null;
-    }
-    carousel.addEventListener('mouseenter', stopAutoPlay);
-    carousel.addEventListener('mouseleave', autoPlay);
-
-    // Swipe para móviles
-    let startX = 0;
-    let isDragging = false;
-    carousel.addEventListener('touchstart', e => {
-      isDragging = true;
-      startX = e.touches[0].clientX;
-      stopAutoPlay();
-    });
-    carousel.addEventListener('touchmove', e => {
-      if (!isDragging) return;
-      let dx = e.touches[0].clientX - startX;
-      if (Math.abs(dx) > 60) {
-        isDragging = false;
-        if (dx > 0) prevSlide(); else nextSlide();
-      }
-    });
-    carousel.addEventListener('touchend', () => {
-      isDragging = false;
-      autoPlay();
-    });
-
-    showSlide(0);
-    autoPlay();
-  });
-
-  // Menú móvil accesible
-  document.addEventListener('DOMContentLoaded', () => {
-    const header = document.querySelector('.site-header');
-    const btn = document.querySelector('.nav-toggle');
-    const links = document.getElementById('nav-links');
-
-    if (!header || !btn || !links) return;
-
-    btn.setAttribute('aria-expanded', 'false');
-
-    const openMenu = () => {
-      header.classList.add('nav-open');
-      btn.setAttribute('aria-expanded', 'true');
-      links.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    };
-
-    const closeMenu = () => {
-      header.classList.remove('nav-open');
-      btn.setAttribute('aria-expanded', 'false');
-      links.style.display = '';
-      document.body.style.overflow = '';
-    };
-
-    btn.addEventListener('click', () => {
-      header.classList.contains('nav-open') ? closeMenu() : openMenu();
-    });
-
-    links.addEventListener('click', (e) => {
-      if (e.target.closest('a')) closeMenu();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMenu();
-    });
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 720) closeMenu();
-    });
-  });
-  </script>
-</body>
-</html>
+    /* =====
