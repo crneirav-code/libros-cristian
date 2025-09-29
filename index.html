@@ -173,17 +173,17 @@
       .book-cover { height: 150px; }
     }
     /* ======= Prólogos ======= */
-    .prologos-section {
+    .Libros-section {
       background: #fcf6ee;
       padding: 40px 0 28px 0;
     }
-    .prologos-section h2 {
+    .Libros-section h2 {
       text-align: center;
       margin-bottom: 32px;
       font-size: 2rem;
       color: #c0392b;
     }
-    .prologo-list {
+    .libros-list {
       display: flex;
       flex-direction: column;
       gap: 40px;
@@ -191,7 +191,7 @@
       margin: 0 auto;
       width: 98vw;
     }
-    .prologo-item {
+    .libros-item {
       display: flex;
       align-items: flex-start;
       background: #fff;
@@ -202,21 +202,21 @@
       flex-direction: row;
       min-width: 0;
     }
-    .prologo-thumb {
+    .libros-thumb {
       flex: 0 0 120px;
       display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
       margin-left: 18px;
       gap: 10px;
       min-width: 0;
     }
-    .prologo-thumb img {
+    .libros-thumb img {
       width: 90px; height: 130px; object-fit: cover;
       border-radius: 8px; box-shadow: 0 1px 8px #0002;
       background: #f7f7fa;
       margin-bottom: 5px;
       display: block;
     }
-    .prologo-thumb a, .prologo-thumb .actions {
+    .libros-thumb a, .prologo-thumb .actions {
       display: inline-block;
       background: #0ec7a0;
       color: #fff;
@@ -232,38 +232,38 @@
       min-width: 120px;
       word-break: break-word;
     }
-    .prologo-thumb a:hover { background: #10b38d; }
-    .prologo-thumb .actions.disabled {
+    .libros-thumb a:hover { background: #10b38d; }
+    .libros-thumb .actions.disabled {
       background: #ccc; color: #fff; cursor: not-allowed;
     }
-    .prologo-text {
+    .libros-text {
       flex: 1;
       min-width: 0;
       display: flex; flex-direction: column; justify-content: center;
     }
-    .prologo-text h3 {
+    .libros-text h3 {
       margin-top: 0; margin-bottom: 12px;
       color: #ff6a00; font-size: 1.25rem;
     }
-    .prologo-text p { color: #333; }
+    .libros-text p { color: #333; }
     @media (max-width: 900px) {
-      .prologo-list { gap: 20px; }
-      .prologo-item { gap: 16px; }
-      .prologo-thumb { margin-left: 8px; }
+      .libros-list { gap: 20px; }
+      .libros-item { gap: 16px; }
+      .libros-thumb { margin-left: 8px; }
     }
     @media (max-width: 720px) {
-      .prologo-item {
+      .libros-item {
         flex-direction: column; align-items: center; padding: 14px 8px; gap: 10px;
         text-align: center;
       }
-      .prologo-thumb { margin-left: 0; gap: 8px; }
-      .prologo-thumb img { width: 80px; height: 110px; }
-      .prologo-thumb a, .prologo-thumb .actions { min-width: 90px; font-size: 0.96rem; padding: 6px 10px;}
-      .prologo-text { text-align: center; }
+      .libros-thumb { margin-left: 0; gap: 8px; }
+      .libros-thumb img { width: 80px; height: 110px; }
+      .libros-thumb a, .prologo-thumb .actions { min-width: 90px; font-size: 0.96rem; padding: 6px 10px;}
+      .libros-text { text-align: center; }
     }
     @media (max-width: 480px) {
-      .prologo-list { padding: 0 1vw; }
-      .prologo-item { padding: 8px 2px; }
+      .libros-list { padding: 0 1vw; }
+      .libros-item { padding: 8px 2px; }
     }
     /* ======= Sobre mí ======= */
     #about {
@@ -388,7 +388,7 @@
   </section>
 
   <!-- ======= Libros ======= -->
-  <section class="prologos-section">
+  <section class="Libros-section">
     <h2>Prólogos</h2>
     <div class="prologo-list">
       <!-- 1 Manual de Succión Ejecutiva -->
