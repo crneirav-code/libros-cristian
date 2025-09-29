@@ -264,4 +264,115 @@
       #about .about-text { text-align: justify; }
       #about img { max-width: 160px; }
     }
-    /* =====
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="container nav">
+      <a class="brand-title" href="#">Cristian Neira V.</a>
+      <div class="nav-links">
+        <a href="#libros">Libros</a>
+        <a href="#prologos">Prólogos</a>
+        <a href="#about">Sobre mí</a>
+        <span class="social-links">
+          <a href="https://www.linkedin.com/in/cristianneira" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.instagram.com/cristianneira.v" class="instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </span>
+      </div>
+      <button class="nav-toggle" aria-label="Abrir menú">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </nav>
+  </header>
+
+  <section class="carousel-container" id="libros">
+    <div class="carousel" id="carouselLibros">
+      <!-- Ejemplo de slides, reemplaza por tus libros reales -->
+      <div class="carousel-slide">
+        <img src="portadas/libro1.jpg" alt="Portada de Libro 1">
+        <div class="carousel-caption">
+          <h3>Libro 1</h3>
+          <p>Descripción breve de Libro 1. Puedes tomar el inicio del prólogo o una sinopsis corta.</p>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <img src="portadas/libro2.jpg" alt="Portada de Libro 2">
+        <div class="carousel-caption">
+          <h3>Libro 2</h3>
+          <p>Descripción breve de Libro 2. Puedes tomar el inicio del prólogo o una sinopsis corta.</p>
+        </div>
+      </div>
+      <!-- Agrega aquí más slides según tus libros -->
+    </div>
+    <button class="carousel-arrow left" onclick="moveCarousel(-1)"><i class="fas fa-chevron-left"></i></button>
+    <button class="carousel-arrow right" onclick="moveCarousel(1)"><i class="fas fa-chevron-right"></i></button>
+  </section>
+
+  <section class="hero">
+    <h1>Bienvenido a la página de Cristian Neira V.</h1>
+    <p>Filosofía, tecnología y poder. Descubre mis libros, prólogos y reflexiones.</p>
+  </section>
+
+  <section class="prologos-section" id="prologos">
+    <h2>Prólogos de mis libros</h2>
+    <div class="prologo-list">
+      <!-- Ejemplo de prólogo, reemplaza por los de tus libros -->
+      <div class="prologo-item">
+        <div class="prologo-thumb">
+          <img src="portadas/libro1.jpg" alt="Portada de Libro 1">
+          <a href="enlace_descarga_libro1.pdf" target="_blank">Descargar</a>
+        </div>
+        <div class="prologo-text">
+          <h3>Libro 1</h3>
+          <p>Primeros párrafos del prólogo de Libro 1...</p>
+        </div>
+      </div>
+      <div class="prologo-item">
+        <div class="prologo-thumb">
+          <img src="portadas/libro2.jpg" alt="Portada de Libro 2">
+          <a href="enlace_descarga_libro2.pdf" target="_blank">Descargar</a>
+        </div>
+        <div class="prologo-text">
+          <h3>Libro 2</h3>
+          <p>Primeros párrafos del prólogo de Libro 2...</p>
+        </div>
+      </div>
+      <!-- Agrega aquí más bloques según tus libros -->
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="about-text">
+      <h2>Sobre mí</h2>
+      <p>
+        Soy Cristian Neira V., autor y pensador dedicado a la exploración de la filosofía, la tecnología y el poder. Mi trabajo se centra en entender cómo la tecnología transforma nuestras sociedades y subjetividades.
+      </p>
+    </div>
+    <img src="cristian-neira.jpg" alt="Foto de Cristian Neira V.">
+  </section>
+
+  <script>
+    // Carrusel JS
+    let currentIndex = 0;
+    function showSlide(index) {
+      const slides = document.querySelectorAll('.carousel-slide');
+      const totalSlides = slides.length;
+      if (index < 0) index = totalSlides - 1;
+      if (index >= totalSlides) index = 0;
+      document.getElementById('carouselLibros').style.transform = `translateX(-${index * 100}%)`;
+      currentIndex = index;
+    }
+    function moveCarousel(dir) {
+      showSlide(currentIndex + dir);
+    }
+    // Responsive nav
+    document.querySelector('.nav-toggle').addEventListener('click', () => {
+      document.querySelector('.site-header').classList.toggle('nav-open');
+    });
+    // Iniciar carrusel
+    showSlide(0);
+  </script>
+</body>
+</html>
