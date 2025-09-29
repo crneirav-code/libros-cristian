@@ -172,9 +172,9 @@
       .books { grid-template-columns: 1fr; gap: 12px; padding: 10px; }
       .book-cover { height: 150px; }
     }
-    /* ======= Prólogos ======= */
+    /* ======= Libros ======= */
     .Libros-section {
-      background: #fcf6ee;
+      background: #fff;
       padding: 40px 0 28px 0;
     }
     .Libros-section h2 {
@@ -302,6 +302,65 @@
       background: #ffdccb; color: #6c2e00; text-align: center; padding: 10px;
       margin-bottom: 0; font-size: 15px;
     }
+/* ======= Books grid: miniaturas ======= */
+.books{
+  /* grid igual, pero las imágenes NO crecerán */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px; padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  /* control de tamaño de cada portada */
+  --thumb-w: 120px;              /* ancho miniatura */
+  --thumb-ratio: 180 / 260;      /* relación de la portada */
+  --card-pad: 12px;              /* padding interno de la card */
+}
+
+.book-cover{
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* altura automática (deja de forzar 280px) */
+  padding: var(--card-pad);
+  box-shadow: 0 2px 10px #0001;
+  transition: box-shadow .2s;
+}
+
+.book-cover img{
+  /* miniatura exacta con proporción 180:260 */
+  width: var(--thumb-w);
+  aspect-ratio: var(--thumb-ratio);
+  height: auto;
+
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+  background: transparent;
+}
+
+/* Hover opcional */
+.book-cover:hover{ box-shadow: 0 6px 18px #0002; }
+
+/* ======= Responsivo ======= */
+@media (min-width: 1100px){
+  .books{ --thumb-w: 140px; }    /* un pelín más grande en desktop ancho */
+}
+@media (max-width: 900px){
+  .books{ grid-template-columns: repeat(2, 1fr); }
+  .books{ --thumb-w: 110px; }
+}
+@media (max-width: 600px){
+  .books{ grid-template-columns: 1fr; gap: 12px; padding: 10px; }
+  .books{ --thumb-w: 100px; }    /* más pequeño en móvil */
+}
+
   </style>
 </head>
 <body>
