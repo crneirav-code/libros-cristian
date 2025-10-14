@@ -547,8 +547,8 @@
     <p>Contacto: <a href="mailto:coneira@uc.cl" style="color:#0ec7a0;">coneira@uc.cl</a></p>
     <p>&copy; 2025 Cristian Neira V.</p>
   </footer>
-  <!-- ======= Script ======= -->
-  <script>
+ <!-- ======= Script ======= -->
+<script>
   // Carrusel funcional
   document.addEventListener('DOMContentLoaded', () => {
     const slides = document.querySelectorAll('.carousel-slide');
@@ -569,36 +569,20 @@
     prev.addEventListener('click', prevSlide);
     next.addEventListener('click', nextSlide);
 
-    function autoPlay() {
-      interval = setInterval(nextSlide, 7000);
-    }
-    function stopAutoPlay() {
-      clearInterval(interval);
-      interval = null;
-    }
+    function autoPlay() { interval = setInterval(nextSlide, 7000); }
+    function stopAutoPlay() { clearInterval(interval); interval = null; }
     carousel.addEventListener('mouseenter', stopAutoPlay);
     carousel.addEventListener('mouseleave', autoPlay);
 
-    // Swipe para móviles
-    let startX = 0;
-    let isDragging = false;
-    carousel.addEventListener('touchstart', e => {
-      isDragging = true;
-      startX = e.touches[0].clientX;
-      stopAutoPlay();
-    });
+    // Swipe móviles
+    let startX = 0, isDragging = false;
+    carousel.addEventListener('touchstart', e => { isDragging = true; startX = e.touches[0].clientX; stopAutoPlay(); });
     carousel.addEventListener('touchmove', e => {
       if (!isDragging) return;
-      let dx = e.touches[0].clientX - startX;
-      if (Math.abs(dx) > 60) {
-        isDragging = false;
-        if (dx > 0) prevSlide(); else nextSlide();
-      }
+      const dx = e.touches[0].clientX - startX;
+      if (Math.abs(dx) > 60) { isDragging = false; dx > 0 ? prevSlide() : nextSlide(); }
     });
-    carousel.addEventListener('touchend', () => {
-      isDragging = false;
-      autoPlay();
-    });
+    carousel.addEventListener('touchend', () => { isDragging = false; autoPlay(); });
 
     showSlide(0);
     autoPlay();
@@ -609,7 +593,6 @@
     const header = document.querySelector('.site-header');
     const btn = document.querySelector('.nav-toggle');
     const links = document.getElementById('nav-links');
-
     if (!header || !btn || !links) return;
 
     btn.setAttribute('aria-expanded', 'false');
@@ -620,7 +603,6 @@
       links.style.display = 'flex';
       document.body.style.overflow = 'hidden';
     };
-
     const closeMenu = () => {
       header.classList.remove('nav-open');
       btn.setAttribute('aria-expanded', 'false');
@@ -628,36 +610,43 @@
       document.body.style.overflow = '';
     };
 
-    btn.addEventListener('click', () => {
-      header.classList.contains('nav-open') ? closeMenu() : openMenu();
-    });
-
-    links.addEventListener('click', (e) => {
-      if (e.target.closest('a')) closeMenu();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMenu();
-    });
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 720) closeMenu();
-    });
+    btn.addEventListener('click', () => header.classList.contains('nav-open') ? closeMenu() : openMenu());
+    links.addEventListener('click', (e) => { if (e.target.closest('a')) closeMenu(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 720) closeMenu(); });
   });
-  </script>
- // ==== Modal lector PDF ====
+
+  // ==== Modal lector PDF ====
   document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('pdf-modal');
+    const modal  = document.getElementById('pdf-modal');
     const closeBtn = document.getElementById('pdf-modal-close');
     const iframe = document.getElementById('pdf-modal-iframe');
     const muestraBtns = document.querySelectorAll('.leer-muestra-btn');
 
-    function openModal(pdfUrl) {
-      iframe.src = pdfUrl;
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      iframe.focus();
+    // Si algún ID no existe, salimos sin romper
+    if (!modal || !closeBtn || !iframe || !muestraBtns.length) return;
+
+    function canEmbedPDF() {
+      // Heurística básica: algunos navegadores móviles no embeben PDF
+      const ua = navigator.userAgent.toLowerCase();
+      const isIOS = /iphone|ipad|ipod/.test(ua);
+      const isAndroid = /android/.test(ua);
+      // iOS Safari no embebe PDFs en iframe de forma confiable
+      return !(isIOS || isAndroid);
     }
+
+    function openModal(pdfUrl) {
+      if (canEmbedPDF()) {
+        iframe.src = pdfUrl;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        try { iframe.focus(); } catch(e){}
+      } else {
+        // Fallback: abrir en nueva pestaña
+        window.open(pdfUrl, '_blank', 'noopener,noreferrer');
+      }
+    }
+
     function closeModal() {
       iframe.src = '';
       modal.classList.remove('active');
@@ -665,25 +654,15 @@
     }
 
     muestraBtns.forEach(btn => {
+      btn.setAttribute('type', 'button'); // por si algún día están en un <form>
       btn.addEventListener('click', () => {
         const pdf = btn.getAttribute('data-pdf');
-        openModal(pdf);
+        if (pdf) openModal(pdf);
       });
     });
 
     closeBtn.addEventListener('click', closeModal);
-
-    document.addEventListener('keydown', (e) => {
-      if (modal.classList.contains('active') && e.key === 'Escape') {
-        closeModal();
-      }
-    });
-
-    // Cerrar modal al hacer click fuera del contenido
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
-    });
+    document.addEventListener('keydown', (e) => { if (modal.classList.contains('active') && e.key === 'Escape') closeModal(); });
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
   });
-  </script>
-</body>
-</html>
+</script>
