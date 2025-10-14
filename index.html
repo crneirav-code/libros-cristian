@@ -241,6 +241,44 @@
       .Libros-list { padding: 0 1vw; }
       .Libros-item { padding: 7px 1px; }
     }
+    /* ===== Botón "Leer muestra" refinado ===== */
+.leer-muestra-btn {
+  align-self: flex-start;         /* no se estira al ancho del contenedor */
+  width: auto;                    /* ocupa solo lo necesario */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1.5px solid #a8d5ff;    /* borde suave celeste */
+  background: #e6f3ff;            /* fondo celeste pastel */
+  color: #094f7c;                 /* texto azul grisáceo */
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 1px 6px #0001;
+  transition: background .25s, box-shadow .25s, transform .05s, color .25s, border-color .25s;
+}
+.leer-muestra-btn:hover {
+  background: #d8ecff;
+  border-color: #5bb6ff;
+  box-shadow: 0 3px 12px #0002;
+  color: #083e62;
+}
+.leer-muestra-btn:active {
+  transform: translateY(1px);
+}
+.leer-muestra-btn i {
+  color: inherit;
+  font-size: 1rem;
+}
+
+/* Centrado automático del botón en pantallas pequeñas */
+@media (max-width: 720px) {
+  .Libros-text { align-items: center; }
+  .leer-muestra-btn { align-self: center; }
+}
+
     /* ======= Sobre el autor ======= */
     #about {
       padding: 40px 16px;
@@ -423,7 +461,10 @@
             para que decidas si entrar en la farsa o atravesarla con dignidad. Un retrato lúcido, divertido y brutalmente honesto para quienes sospechan 
             que las reglas oficiales son solo humo.</i></p>
           <!-- MUESTRA PDF -->
-          <button class="leer-muestra-btn" data-pdf="samples/manual-de-succion-ejecutiva-muestra.pdf">Leer muestra</button>
+          <!-- MUESTRA PDF -->
+<button class="leer-muestra-btn" data-pdf="samples/manual-de-succion-ejecutiva-muestra.pdf">
+  <i class="fa-solid fa-file-pdf"></i> Leer muestra
+</button>
         </div>
       </div>
       <!-- 2 Convergencia Digital -->
@@ -457,7 +498,9 @@
             Cosecha de Emociones: La Energía Secreta combina ciencia ficción, thriller y reflexión en una historia 
             que atrapa desde la primera página y revela el poder oculto de nuestras emociones.</i></p>
           <!-- MUESTRA PDF -->
-          <button class="leer-muestra-btn" data-pdf="samples/Cosecha-de-Emociones-muestra.pdf">Leer muestra</button>
+          <button class="leer-muestra-btn" data-pdf="samples/Cosecha-de-Emociones-muestra.pdf">
+  <i class="fa-solid fa-file-pdf"></i> Leer muestra
+</button>
         </div>
       </div>
       <!-- 4 Narrativas Cuánticas -->
@@ -474,7 +517,9 @@
             diálogos internos moldean la realidad y te anima a transformarlos. A través de ejemplos inspiradores 
              y profundas preguntas, se convierte en brújula y espejo: un camino para redescubrir tu verdadero ser y abrir la puerta a nuevas posibilidades.</i></p>
           <!-- MUESTRA PDF -->
-          <button class="leer-muestra-btn" data-pdf="samples/narrativas-cuanticas-muestra.pdf">Leer muestra</button>
+          <button class="leer-muestra-btn" data-pdf="samples/narrativas-cuanticas-muestra.pdf">
+  <i class="fa-solid fa-file-pdf"></i> Leer muestra
+</button>
         </div>
       </div>
       <!-- 5 El Último Líder Humano -->
@@ -488,7 +533,10 @@
           <p><i>El Último Líder Humano es un viaje provocador hacia la frontera donde lo biológico y lo tecnológico se entrelazan. En un mundo donde la inteligencia artificial ya no solo asiste, s[...]
             este libro invita a cuestionar nuestras certezas y a prepararnos para liderar en una era donde humanos y máquinas comparten el mismo tablero.</i></p>
           <!-- MUESTRA PDF -->
-          <button class="leer-muestra-btn" data-pdf="samples/el-ultimo-lider-humano-muestra.pdf">Leer muestra</button>
+          <button class="leer-muestra-btn" data-pdf="samples/el-ultimo-lider-humano-muestra.pdf">
+  <i class="fa-solid fa-file-pdf"></i> Leer muestra
+</button>
+
         </div>
       </div>
       <!-- 6 El Tablero Invisible (no tiene muestra) -->
