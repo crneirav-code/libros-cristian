@@ -272,6 +272,17 @@
   color: #5a3b1c;
   font-weight: 700;
 }
+/* Botones extra y fila de compartir */
+.modal-cta, .modal-share{ margin-top:16px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+.btn-ghost{ background:transparent; border:1px dashed #b28b6b; color:#7a4c29; padding:10px 16px; border-radius:6px; text-decoration:none; }
+.btn-ghost:hover{ background:#f4ede6; }
+.share-btn{
+  display:inline-flex; align-items:center; gap:8px;
+  background:#fff; border:1px solid #e6d8ca; padding:8px 12px; border-radius:8px; cursor:pointer;
+  color:#5a3b1c; text-decoration:none;
+}
+.share-btn:hover{ background:#f6efe7; }
+.modal-share small{ align-self:center; color:#7a5b42; margin-right:4px; }
 
   </style>
 </head>
@@ -526,10 +537,26 @@
         <a id="modalSample" class="btn-outline" target="_blank" rel="noopener">Leer muestra en Amazon</a>
         <a id="modalAmazon" class="btn" target="_blank" rel="noopener">Ver en Amazon</a>
       </div>
+      <!-- CTA extra -->
+<div class="modal-cta">
+  <a id="modalFollowAmazon" class="btn" target="_blank" rel="noopener">Seguir a Cristian en Amazon</a>
+  <a class="btn-ghost" href="#contacto">Recibir novedades por email</a>
+</div>
+
+<!-- Compartir -->
+<div class="modal-share" aria-label="Compartir este libro">
+  <small>Compartir:</small>
+  <button type="button" class="share-btn" id="shareNative"><i class="fa fa-share-alt"></i> Sistema</button>
+  <a class="share-btn" id="shareWhatsapp" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  <a class="share-btn" id="shareX" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i> X</a>
+  <a class="share-btn" id="shareLinkedin" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
+  <button type="button" class="share-btn" id="shareCopy"><i class="fa fa-link"></i> Copiar enlace</button>
+</div>
+
     </div>
   </div>
 </div>
-<script>
+  <script>
 (function(){
   const overlay = document.getElementById('bookModal');
   const modalImg = document.getElementById('modalImg');
@@ -540,8 +567,19 @@
   const modalSample = document.getElementById('modalSample');
   const closeBtn = document.getElementById('modalClose');
 
+  // NUEVO: elementos de compartir/CTA
+  const followAmazon = document.getElementById('modalFollowAmazon');
+  const shareNative = document.getElementById('shareNative');
+  const shareWhatsapp = document.getElementById('shareWhatsapp');
+  const shareX = document.getElementById('shareX');
+  const shareLinkedin = document.getElementById('shareLinkedin');
+  const shareCopy = document.getElementById('shareCopy');
+
+  const AUTHOR_PAGE = "https://www.amazon.com/stores/author/B0CVNMLSNZ"; // seguir autor
+
   let modalOpen = false;
   let pushedState = false;
+  let currentShare = { title: '', url: '' };
 
   function lockScroll(lock){
     document.documentElement.style.overflow = lock ? 'hidden' : '';
@@ -555,15 +593,27 @@
     modalImg.alt = data.title || '';
     modalMeta.textContent = data.meta || '';
     modalDesc.textContent = data.desc || '';
+
     modalAmazon.href = data.url || '#';
     modalSample.href = data.sample || data.url || '#';
+
+    // CTA seguir autor
+    followAmazon.href = AUTHOR_PAGE;
+
+    // Construye enlaces para compartir
+    currentShare = { title: data.title || 'Libro', url: data.url || location.href };
+    const t = encodeURIComponent(currentShare.title + ' — de Cristian Neira');
+    const u = encodeURIComponent(currentShare.url);
+
+    shareWhatsapp.href = `https://wa.me/?text=${t}%20${u}`;
+    shareX.href = `https://twitter.com/intent/tweet?text=${t}&url=${u}`;
+    shareLinkedin.href = `https://www.linkedin.com/sharing/share-offsite/?url=${u}`;
 
     overlay.classList.add('active');
     overlay.setAttribute('aria-hidden', 'false');
     lockScroll(true);
     modalOpen = true;
 
-    // Manejo de botón Atrás en móvil
     if (!pushedState) {
       history.pushState({ modal: true }, '');
       pushedState = true;
@@ -579,18 +629,16 @@
   }
 
   function closeModalFromUI(){
-    // Cierra y además “retrocede” solo si empujamos estado
     if (pushedState) {
       pushedState = false;
       reallyCloseModal();
-      // Llamamos a back para consumir el estado sin salir del sitio
       if (history.state && history.state.modal) history.back();
       return;
     }
     reallyCloseModal();
   }
 
-  // Abrir desde cualquier botón .js-detail
+  // Open from any .js-detail button
   document.addEventListener('click', function(e){
     const btn = e.target.closest('.js-detail');
     if (btn) {
@@ -610,7 +658,7 @@
     }
   });
 
-  // ESC para cerrar
+  // ESC to close
   document.addEventListener('keydown', function(e){
     if (e.key === 'Escape' && modalOpen) {
       e.preventDefault();
@@ -618,15 +666,42 @@
     }
   });
 
-  // Si el usuario pulsa Atrás en el teléfono, cerramos el modal en vez de salir
+  // Back button on mobile closes modal
   window.addEventListener('popstate', function(){
     if (modalOpen) {
-      pushedState = false;           // ya consumimos el estado
+      pushedState = false;
       reallyCloseModal();
     }
   });
+
+  // ===== COMPARTIR =====
+  if (shareNative) {
+    shareNative.addEventListener('click', async function(){
+      try{
+        if (navigator.share) {
+          await navigator.share({ title: currentShare.title, url: currentShare.url });
+        } else {
+          // fallback: copiar
+          await navigator.clipboard.writeText(currentShare.url);
+          shareNative.textContent = 'Enlace copiado';
+          setTimeout(()=> shareNative.innerHTML = '<i class="fa fa-share-alt"></i> Sistema', 1400);
+        }
+      }catch(_){} // usuario canceló
+    });
+  }
+
+  if (shareCopy) {
+    shareCopy.addEventListener('click', async function(){
+      try{
+        await navigator.clipboard.writeText(currentShare.url);
+        shareCopy.textContent = 'Copiado ✔';
+        setTimeout(()=> shareCopy.innerHTML = '<i class="fa fa-link"></i> Copiar enlace', 1400);
+      }catch(_){}
+    });
+  }
 })();
 </script>
+
 
 </body>
 <div class="modal-overlay" id="bookModal" aria-hidden="true">
