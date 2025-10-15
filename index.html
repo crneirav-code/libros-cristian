@@ -467,109 +467,27 @@
   </footer>
 <script>
 (function(){
-  const overlay = document.getElementById('bookModal');
-  const modalImg = document.getElementById('modalImg');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalMeta = document.getElementById('modalMeta');
-  const modalDesc = document.getElementById('modalDesc');
-  const modalAmazon = document.getElementById('modalAmazon');
-  const modalSample = document.getElementById('modalSample');
-  const closeBtn = document.getElementById('modalClose');
+  const qs = s => document.querySelector(s);
+  const qid = id => document.getElementById(id);
 
-  function openModal(data){
-    modalTitle.textContent = data.title || '';
-    modalImg.src = data.img || '';
-    modalImg.alt = data.title || '';
-    modalMeta.textContent = data.meta || '';
-    modalDesc.textContent = data.desc || '';
+  const overlay = qid('bookModal');
+  const modalImg = qid('modalImg');
+  const modalTitle = qid('modalTitle');
+  const modalMeta = qid('modalMeta');
+  const modalDesc = qid('modalDesc');
+  const modalAmazon = qid('modalAmazon');
+  const modalSample = qid('modalSample');
+  const closeBtn = qid('modalClose');
 
-    modalAmazon.href = data.url || '#';
-    modalSample.href = data.sample || data.url || '#';
+  // Opcionales (pueden no existir)
+  const followAmazon = qid('modalFollowAmazon');
+  const shareNative = qid('shareNative');
+  const shareWhatsapp = qid('shareWhatsapp');
+  const shareX = qid('shareX');
+  const shareLinkedin = qid('shareLinkedin');
+  const shareCopy = qid('shareCopy');
 
-    overlay.classList.add('active');
-    overlay.setAttribute('aria-hidden', 'false');
-    closeBtn.focus();
-  }
-
-  function closeModal(){
-    overlay.classList.remove('active');
-    overlay.setAttribute('aria-hidden', 'true');
-  }
-
-  document.addEventListener('click', function(e){
-    const btn = e.target.closest('.js-detail');
-    if(btn){
-      const data = {
-        title: btn.dataset.title,
-        img: btn.dataset.img,
-        url: btn.dataset.url,
-        sample: btn.dataset.sample,
-        meta: btn.dataset.meta,
-        desc: btn.dataset.desc
-      };
-      openModal(data);
-    }
-    if(e.target.id === 'modalClose' || e.target === overlay){
-      closeModal();
-    }
-  });
-
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape'){ closeModal(); }
-  });
-})();
-</script>
-<div class="modal-overlay" id="bookModal" aria-hidden="true">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-header">
-      <h3 id="modalTitle">Título del libro</h3>
-      <button class="modal-close" aria-label="Cerrar" id="modalClose">&times;</button>
-    </div>
-
-    <div class="modal-left">
-      <img id="modalImg" src="" alt="">
-    </div>
-
-    <div class="modal-right">
-      <div class="modal-meta" id="modalMeta"></div>
-      <p class="desc" id="modalDesc"></p>
-      <div class="modal-actions">
-        <a id="modalSample" class="btn-outline" target="_blank" rel="noopener">Leer muestra en Amazon</a>
-        </div>
-      <!-- CTA extra -->
-
-<!-- Compartir -->
-<div class="modal-share" aria-label="Compartir este libro">
-  <button type="button" class="share-btn" id="shareNative"><i class="fa fa-share-alt"></i> Compartir</button>
-  <a class="share-btn" id="shareWhatsapp" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-  <a class="share-btn" id="shareX" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i> X</a>
-  <a class="share-btn" id="shareLinkedin" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
-  <button type="button" class="share-btn" id="shareCopy"><i class="fa fa-link"></i> Copiar enlace</button>
-</div>
-
-    </div>
-  </div>
-</div>
-  <script>
-(function(){
-  const overlay = document.getElementById('bookModal');
-  const modalImg = document.getElementById('modalImg');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalMeta = document.getElementById('modalMeta');
-  const modalDesc = document.getElementById('modalDesc');
-  const modalAmazon = document.getElementById('modalAmazon');
-  const modalSample = document.getElementById('modalSample');
-  const closeBtn = document.getElementById('modalClose');
-
-  // NUEVO: elementos de compartir/CTA
-  const followAmazon = document.getElementById('modalFollowAmazon');
-  const shareNative = document.getElementById('shareNative');
-  const shareWhatsapp = document.getElementById('shareWhatsapp');
-  const shareX = document.getElementById('shareX');
-  const shareLinkedin = document.getElementById('shareLinkedin');
-  const shareCopy = document.getElementById('shareCopy');
-
-  const AUTHOR_PAGE = "https://www.amazon.com/stores/author/B0CVNMLSNZ"; // seguir autor
+  const AUTHOR_PAGE = "https://www.amazon.com/stores/author/B0CVNMLSNZ";
 
   let modalOpen = false;
   let pushedState = false;
@@ -582,26 +500,29 @@
   }
 
   function openModal(data){
-    modalTitle.textContent = data.title || '';
-    modalImg.src = data.img || '';
-    modalImg.alt = data.title || '';
-    modalMeta.textContent = data.meta || '';
-    modalDesc.textContent = data.desc || '';
+    if (!overlay) return; // si falta el modal, salimos silenciosamente
 
-    modalAmazon.href = data.url || '#';
-    modalSample.href = data.sample || data.url || '#';
+    modalTitle && (modalTitle.textContent = data.title || '');
+    if (modalImg){
+      modalImg.src = data.img || '';
+      modalImg.alt = data.title || '';
+    }
+    modalMeta && (modalMeta.textContent = data.meta || '');
+    modalDesc && (modalDesc.textContent = data.desc || '');
 
-    // CTA seguir autor
-    followAmazon.href = AUTHOR_PAGE;
+    if (modalAmazon) modalAmazon.href = data.url || '#';
+    if (modalSample) modalSample.href = data.sample || data.url || '#';
 
-    // Construye enlaces para compartir
+    // CTA seguir autor (opcional)
+    if (followAmazon) followAmazon.href = AUTHOR_PAGE;
+
+    // Compartir (opcional)
     currentShare = { title: data.title || 'Libro', url: data.url || location.href };
     const t = encodeURIComponent(currentShare.title + ' — de Cristian Neira');
     const u = encodeURIComponent(currentShare.url);
-
-    shareWhatsapp.href = `https://wa.me/?text=${t}%20${u}`;
-    shareX.href = `https://twitter.com/intent/tweet?text=${t}&url=${u}`;
-    shareLinkedin.href = `https://www.linkedin.com/sharing/share-offsite/?url=${u}`;
+    if (shareWhatsapp) shareWhatsapp.href = `https://wa.me/?text=${t}%20${u}`;
+    if (shareX)        shareX.href        = `https://twitter.com/intent/tweet?text=${t}&url=${u}`;
+    if (shareLinkedin) shareLinkedin.href = `https://www.linkedin.com/sharing/share-offsite/?url=${u}`;
 
     overlay.classList.add('active');
     overlay.setAttribute('aria-hidden', 'false');
@@ -612,10 +533,11 @@
       history.pushState({ modal: true }, '');
       pushedState = true;
     }
-    closeBtn.focus();
+    closeBtn && closeBtn.focus();
   }
 
   function reallyCloseModal(){
+    if (!overlay) return;
     overlay.classList.remove('active');
     overlay.setAttribute('aria-hidden', 'true');
     lockScroll(false);
@@ -632,27 +554,27 @@
     reallyCloseModal();
   }
 
-  // Open from any .js-detail button
+  // Abrir desde cualquier .js-detail
   document.addEventListener('click', function(e){
     const btn = e.target.closest('.js-detail');
     if (btn) {
       e.preventDefault();
       openModal({
-        title: btn.dataset.title,
-        img: btn.dataset.img,
-        url: btn.dataset.url,
+        title:  btn.dataset.title,
+        img:    btn.dataset.img,
+        url:    btn.dataset.url,
         sample: btn.dataset.sample,
-        meta: btn.dataset.meta,
-        desc: btn.dataset.desc
+        meta:   btn.dataset.meta,
+        desc:   btn.dataset.desc
       });
     }
-    if (e.target.id === 'modalClose' || e.target === overlay) {
+    if (e.target && (e.target.id === 'modalClose' || e.target === overlay)) {
       e.preventDefault();
       closeModalFromUI();
     }
   });
 
-  // ESC to close
+  // ESC
   document.addEventListener('keydown', function(e){
     if (e.key === 'Escape' && modalOpen) {
       e.preventDefault();
@@ -660,7 +582,7 @@
     }
   });
 
-  // Back button on mobile closes modal
+  // Atrás en móvil
   window.addEventListener('popstate', function(){
     if (modalOpen) {
       pushedState = false;
@@ -668,22 +590,20 @@
     }
   });
 
-  // ===== COMPARTIR =====
+  // Compartir (opcionales)
   if (shareNative) {
     shareNative.addEventListener('click', async function(){
       try{
         if (navigator.share) {
           await navigator.share({ title: currentShare.title, url: currentShare.url });
-        } else {
-          // fallback: copiar
+        } else if (navigator.clipboard) {
           await navigator.clipboard.writeText(currentShare.url);
           shareNative.textContent = 'Enlace copiado';
           setTimeout(()=> shareNative.innerHTML = '<i class="fa fa-share-alt"></i> Sistema', 1400);
         }
-      }catch(_){} // usuario canceló
+      }catch(_){}
     });
   }
-
   if (shareCopy) {
     shareCopy.addEventListener('click', async function(){
       try{
@@ -695,8 +615,6 @@
   }
 })();
 </script>
-
-
 </body>
 <div class="modal-overlay" id="bookModal" aria-hidden="true">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
