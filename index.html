@@ -3,773 +3,163 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Libros de Cristian Neira V. — Filosofía, tecnología y poder">
+  <meta name="description" content="Cristian Neira V. — Autor, estratega y filósofo del poder moderno.">
   <title>Cristian Neira V. — Autor</title>
+
   <link rel="icon" href="favicon.ico">
-  <!-- Font Awesome para iconos de redes sociales -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
-    html, body {
-      margin: 0; padding: 0; box-sizing: border-box;
-      width: 100%; overflow-x: hidden;
-    }
+    /* === ESTILO GENERAL === */
     body {
-      font-family: Arial, sans-serif;
-      background: #fff; /* FONDO BLANCO */
-      color: #222; line-height: 1.5;
-      min-width: 0;
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background-color: #f8f5f1;
+      color: #2c2c2c;
+      line-height: 1.6;
     }
-    .site-header {
-      position: sticky; top: 0; z-index: 10;
-      background: #f3f3f7; border-bottom: 1px solid #e2e2e2;
-    }
-    .container { max-width: 1200px; margin: 0 auto; }
-    .nav { display: flex; align-items: center; justify-content: space-between;
-      gap: 16px; padding: 12px 16px; }
-    .brand-title { color: #222; text-decoration: none; font-weight: 700; }
-    .nav-links { display: flex; align-items: center; gap: 12px; }
-    .nav-links a {
-      padding: 8px 12px; border: 1px solid #e2e2e2; border-radius: 8px;
-      text-decoration: none; color: #222; transition: .2s ease;
-      background: transparent;
-    }
-    .nav-links a:hover { border-color: #ff6a00; box-shadow: 0 4px 10px #0001; }
-    .social-links {
-      display: flex; align-items: center; gap: 10px;
-      margin-left: 10px;
-    }
-    .social-links a {
-      color: #0e76a8; /* LinkedIn color */
-      font-size: 20px;
-      transition: color .2s;
-      padding: 4px;
-      border-radius: 50%;
-      background: #eaf1fb;
-    }
-    .social-links a.instagram { color: #e1306c; background: #fbeaf4; }
-    .social-links a:hover { color: #ff6a00; background: #ffe6cc; }
-    .nav-toggle {
-      display: none; flex-direction: column; justify-content: center;
-      width: 38px; height: 34px;
-      border: 1px solid #e2e2e2; border-radius: 6px;
-      background: #f3f3f7; cursor: pointer;
-    }
-    .nav-toggle .bar {
-      display: block; width: 20px; height: 2px;
-      background: #222; margin: 3px auto;
-    }
-    @media (max-width: 720px) {
-      .nav-links {
-        position: absolute; left: 0; right: 0; top: 64px;
-        background: #f3f3f7; border-top: 1px solid #e2e2e2;
-        display: none; flex-direction: column; gap: 10px; padding: 12px 16px;
-      }
-      .site-header.nav-open .nav-links { display: flex; }
-      .nav-toggle { display: flex; }
-      .social-links { justify-content: center; margin-left: 0; }
-    }
-    /* ======= Carrusel ======= */
-    .carousel-container {
-      width: 100vw; max-width: 100%;
-      background: #fff; /* FONDO BLANCO */
-      margin: 0 auto 24px auto;
-      overflow: hidden; position: relative;
-      min-height: 320px;
-      box-shadow: 0 4px 32px #0001;
-      display: flex; flex-direction: column; align-items: center;
-    }
-    .carousel {
-      display: flex; transition: transform 0.5s cubic-bezier(.53,.43,.19,.94);
-      will-change: transform;
-      width: 100%;
-    }
-    .carousel-slide {
-      min-width: 100%;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      padding: 32px 0;
-      background: #fff; /* FONDO BLANCO */
-      position: relative;
-      box-sizing: border-box;
-      width: 100%;
-    }
-    .carousel-slide img {
-      max-height: 260px; max-width: 180px; box-shadow: 0 6px 20px #0003;
-      border-radius: 12px;
-      background: #fff;
-      width: 45vw;
-      min-width: 120px;
-      object-fit: contain;
-    }
-    .carousel-caption {
-      margin-left: 36px; max-width: 600px;
-    }
-    .carousel-caption h3 {
-      font-size: 28px; margin-bottom: 8px; color: #c0392b;
-      letter-spacing: 1px;
-    }
-    .carousel-caption p {
-      font-size: 18px; color: #222;
-    }
-    .carousel-arrow {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      font-size: 32px; background: #fffefecc;
-      border: 1px solid #e2e2e2; border-radius: 50%; width: 46px; height: 46px;
-      display: flex; align-items: center; justify-content: center; cursor: pointer;
-      transition: background .2s;
-      z-index: 2;
-      box-shadow: 0 2px 12px #0002;
-    }
-    .carousel-arrow.left { left: 12px; }
-    .carousel-arrow.right { right: 12px; }
-    .carousel-arrow:hover { background: #ffe6cc; color: #ff6a00; }
-    @media (max-width: 900px) {
-      .carousel-slide { flex-direction: column; padding: 20px 0; }
-      .carousel-slide img { margin-bottom: 12px; max-width: 65vw; }
-      .carousel-caption { margin-left: 0; margin-top: 10px; max-width: 96vw; text-align: center; }
-    }
-    @media (max-width: 600px) {
-      .carousel-slide img { max-width: 85vw; max-height: 160px; }
-      .carousel-caption h3 { font-size: 20px; }
-      .carousel-caption p { font-size: 15px; }
-      .carousel-arrow { font-size: 26px; width: 36px; height: 36px; }
-      .carousel-container { min-height: 220px; }
-    }
-    /* ======= Texto ======= */
-    section p { text-align: justify; }
-    .hero { padding: 32px 16px; text-align: center; }
-    .hero h1 { font-size: 26px; margin-bottom: 12px; }
-    .hero p { max-width: 800px; margin: auto; font-size: 16px; }
-    /* ======= Libros (Cards de Libros Rediseñados) ======= */
-    .Libros-section {
-      background: #fff;
-      padding: 40px 0 28px 0;
-    }
-    .Libros-section h2 {
-      text-align: center;
-      margin-bottom: 32px;
-      font-size: 2rem;
-      color: #c0392b;
-    }
-    .Libros-list {
+
+    a { color: #7a4c29; text-decoration: none; }
+    a:hover { color: #b26e41; }
+
+    section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
+
+    /* === HEADER === */
+    header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(248,245,241,0.98);
       display: flex;
-      flex-direction: column;
-      gap: 32px;
-      max-width: 950px;
-      margin: 0 auto;
-      width: 98vw;
-    }
-    .Libros-item {
-      display: flex;
-      align-items: stretch;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px #0001;
-      padding: 15px 18px;
-      gap: 28px;
-      min-width: 0;
-      flex-direction: row;
-    }
-    .Libros-thumb {
-      flex: 0 0 120px;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 12px;
-      min-width: 0;
-      padding: 10px 0;
-    }
-    .Libros-thumb img {
-      width: 90px; height: 130px; object-fit: contain;
-      border-radius: 8px; box-shadow: 0 1px 8px #0002;
-      background: #fafafa;
-      margin-bottom: 5px;
-      display: block;
-      transition: box-shadow .18s;
-    }
-    .Libros-thumb img:hover { box-shadow: 0 4px 18px #0002; }
-    .Libros-thumb a,
-    .Libros-thumb .actions {
-      display: inline-block;
-      background: #0ec7a0;
-      color: #fff;
-      text-decoration: none;
-      padding: 7px 14px;
-      border-radius: 6px;
-      font-size: 0.99rem;
-      font-weight: 600;
-      box-shadow: 0 1px 8px #0001;
-      margin-top: 4px;
-      transition: background .22s, color .22s;
-      text-align: center;
-      min-width: 120px;
-      word-break: break-word;
-      border: none;
-      outline: none;
-      cursor: pointer;
-    }
-    .Libros-thumb a:hover { background: #10b38d; color: #ffe6cc; }
-    .Libros-thumb .actions.disabled {
-      background: #ccc; color: #fff; cursor: not-allowed;
-    }
-    .Libros-text {
-      flex: 1 1 0;
-      min-width: 0;
-      display: flex; flex-direction: column; justify-content: center;
-    }
-    .Libros-text h3 {
-      margin-top: 0; margin-bottom: 12px;
-      color: #ff6a00; font-size: 1.22rem;
-    }
-    .Libros-text p { color: #333; margin: 0; }
-    @media (max-width: 900px) {
-      .Libros-list { gap: 20px; }
-      .Libros-item { gap: 16px; padding: 10px 4px;}
-      .Libros-thumb { margin-left: 0; }
-      .Libros-thumb img { width: 80px; height: 110px;}
-      .Libros-thumb a, .Libros-thumb .actions { min-width: 90px; font-size: 0.96rem; padding: 6px 10px;}
-    }
-    @media (max-width: 720px) {
-      .Libros-item {
-        flex-direction: column; align-items: center; padding: 12px 2vw; gap: 8px;
-        text-align: center;
-      }
-      .Libros-thumb { margin-left: 0; gap: 8px; }
-      .Libros-thumb img { width: 75px; height: 106px; }
-      .Libros-thumb a, .Libros-thumb .actions { min-width: 90px; }
-      .Libros-text { text-align: center; }
-    }
-    @media (max-width: 480px) {
-      .Libros-list { padding: 0 1vw; }
-      .Libros-item { padding: 7px 1px; }
-    }
-    /* ===== Botón "Leer muestra" refinado ===== */
-.leer-muestra-btn {
-  align-self: flex-start;         /* no se estira al ancho del contenedor */
-  width: auto;                    /* ocupa solo lo necesario */
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: 1.5px solid #a8d5ff;    /* borde suave celeste */
-  background: #e6f3ff;            /* fondo celeste pastel */
-  color: #094f7c;                 /* texto azul grisáceo */
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 1px 6px #0001;
-  transition: background .25s, box-shadow .25s, transform .05s, color .25s, border-color .25s;
-}
-.leer-muestra-btn:hover {
-  background: #d8ecff;
-  border-color: #5bb6ff;
-  box-shadow: 0 3px 12px #0002;
-  color: #083e62;
-}
-.leer-muestra-btn:active {
-  transform: translateY(1px);
-}
-.leer-muestra-btn i {
-  color: inherit;
-  font-size: 1rem;
-}
-/* ====== Bloque de acciones de libros ====== */
-.Libros-actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 10px;
-}
-
-/* Botón Comprar en Amazon */
-.comprar-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: 8px;
-  text-decoration: none;
-  background: #ff9900;           /* Naranja Amazon */
-  color: #fff;
-  font-weight: 600;
-  box-shadow: 0 1px 6px #0002;
-  border: 1px solid #e58b00;
-  transition: background .25s, transform .05s, box-shadow .2s;
-}
-.comprar-btn:hover {
-  background: #e58b00;
-  box-shadow: 0 3px 10px #0002;
-}
-.comprar-btn:active {
-  transform: translateY(1px);
-}
-.comprar-btn i {
-  color: inherit;
-  font-size: 1rem;
-}
-
-/* Ajustes responsivos */
-@media (max-width: 720px) {
-  .Libros-actions { justify-content: center; }
-}
-
-/* Centrado automático del botón en pantallas pequeñas */
-@media (max-width: 720px) {
-  .Libros-text { align-items: center; }
-  .leer-muestra-btn { align-self: center; }
-}
-
-    /* ======= Sobre el autor ======= */
-    #about {
-      padding: 40px 16px;
-      display: flex; align-items: center; justify-content: center;
-      gap: 40px;
-      background: #f7f7fa;
-      max-width: 100vw;
-      min-width: 0;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 40px;
+      border-bottom: 1px solid #e0d8cf;
+      z-index: 100;
       flex-wrap: wrap;
     }
-    #about .about-text {
-      flex: 1 1 0;
-      text-align: justify;
-      font-size: 1.15rem;
-      color: #222;
-      min-width: 0;
+
+    header h1 {
+      font-size: 1.6em;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
-    #about img {
-      flex: 0 0 220px;
-      display: block; margin: 0 auto; border-radius: 10px; max-width: 220px;
-      box-shadow: 0 1px 10px #0002;
+
+    nav a {
+      margin: 0 10px;
+      font-weight: 500;
+      font-family: 'Arial', sans-serif;
     }
-    @media (max-width: 900px) {
-      #about { flex-direction: column-reverse; gap: 20px; text-align: center; }
-      #about .about-text { text-align: justify; }
-      #about img { max-width: 160px; }
+
+    .social a {
+      margin-left: 12px;
+      font-size: 1.3em;
+      color: #7a4c29;
     }
-    /* ======= Footer ======= */
+
+    /* === SECCIONES === */
+    #amazon iframe {
+      width: 100%;
+      height: 1200px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1.8em;
+      margin-bottom: 30px;
+      color: #5a3b1c;
+    }
+
+    .bio, .noticias, .contacto {
+      background-color: #fffdf9;
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-top: 30px;
+    }
+
+    .contacto p, .noticias p { text-align: center; }
+
     footer {
-      text-align: center; padding: 20px; font-size: 14px;
-      border-top: 1px solid #e2e2e2; margin-top: 40px;
-      background: #f3f3f7;
+      background: #eae4dc;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #4a3b2a;
     }
-    .no-js-warning {
-      background: #ffdccb; color: #6c2e00; text-align: center; padding: 10px;
-      margin-bottom: 0; font-size: 15px;
-    }
-     .pdf-modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0; top: 0;
-      width: 100vw; height: 100vh;
-      background: #000c;
-      align-items: center; justify-content: center;
-      transition: opacity 0.3s;
-    }
-    .pdf-modal.active { display: flex; }
-    .pdf-modal-content {
-      position: relative;
-      background: #222;
-      border-radius: 16px;
-      box-shadow: 0 8px 32px #0006;
-      width: 96vw; max-width: 820px; height: 90vh;
-      display: flex; flex-direction: column;
-      align-items: stretch;
-      overflow: hidden;
-    }
-    .pdf-modal-close {
-      position: absolute; top: 12px; right: 18px;
-      background: #c0392b; color: #fff;
-      border: none; border-radius: 50%;
-      width: 34px; height: 34px;
-      font-size: 22px; cursor: pointer; z-index: 2;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 2px 8px #0004;
-      transition: background 0.2s;
-    }
-    .pdf-modal-close:hover { background: #ff6a00; }
-    .pdf-modal-iframe {
-      flex: 1 1 0; width: 100%; border: none;
-      background: #fff;
-    }
-    @media (max-width: 900px) {
-      .pdf-modal-content { max-width: 98vw; height: 90vh; }
-    }
-    @media (max-width: 600px) {
-      .pdf-modal-content { max-width: 100vw; height: 85vh; border-radius: 0; }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 700px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+      }
+      nav { margin-top: 6px; }
     }
   </style>
 </head>
+
 <body>
-  <noscript>
-    <div class="no-js-warning">
-      ⚠️ Esta web requiere JavaScript para funcionar correctamente. Por favor, actívalo en tu navegador.
-    </div>
-  </noscript>
-  <!-- ======= Header ======= -->
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand-title" href="#">Cristian Neira V. — Autor</a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menú">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-      </button>
-      <nav id="nav-links" class="nav-links" role="navigation">
-        <a href="#libros">Libros</a>
-        <a href="#about">Sobre mí</a>
-        <a href="#contacto">Contacto</a>
-        <span class="social-links">
-          <a href="https://www.linkedin.com/in/cristian-neirav/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="https://instagram.com/cneira_escritor" target="_blank" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        </span>
-      </nav>
+
+  <!-- HEADER -->
+  <header>
+    <h1>Cristian Neira V.</h1>
+    <nav>
+      <a href="#amazon">Libros</a>
+      <a href="#sobre">Sobre el autor</a>
+      <a href="#noticias">Noticias</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="social">
+      <a href="https://www.linkedin.com/in/crneirav" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/crneirav" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.amazon.com/stores/author/B0CVNMLSNZ" target="_blank"><i class="fab fa-amazon"></i></a>
     </div>
   </header>
-  <!-- ======= Carrusel ======= -->
-  <div class="carousel-container">
-    <div class="carousel" id="carousel">
-      <div class="carousel-slide">
-        <img src="covers/manual-de-succion-ejecutiva.png" alt="Libro destacado">
-        <div class="carousel-caption">
-          <h3>Manual de Succión Ejecutiva</h3>
-          <p>Descubre las dinámicas ocultas de las relaciones laborales en esta obra mordaz y provocadora.</p>
-        </div>
-      </div>
-      <div class="carousel-slide">
-        <img src="covers/convergencia-digital.jpg" alt="Libro destacado">
-        <div class="carousel-caption">
-          <h3>Convergencia Digital</h3>
-          <p>Una mirada al futuro del mercado, la mente y la inteligencia artificial.</p>
-        </div>
-      </div>
-      <div class="carousel-slide">
-        <img src="covers/cosecha-de-emociones.jpg" alt="Libro destacado">
-        <div class="carousel-caption">
-          <h3>Cosecha de Emociones</h3>
-          <p>Thriller de ciencia ficción donde las emociones son energía que alimenta a un ser ancestral.</p>
-        </div>
-           </div>
-      <div class="carousel-slide">
-        <img src="covers/narrativas-cuanticas.jpg" alt="Libro destacado">
-        <div class="carousel-caption">
-          <h3>Narrativas Cuánticas</h3>
-          <p>Tus historias definen tu presente, quieres cambiar tu futuro?, cambia tus narrativas</p>
-        </div>
-        </div>
-      <div class="carousel-slide">
-        <img src="covers/tablero-invisible.jpg" alt="Libro destacado">
-        <div class="carousel-caption">
-          <h3>El Tablero Invisible</h3>
-          <p>Creíste que te contrataron y entraste a una familia.  La verdad es que te pusieron en un tablero. Descubre las reglas para ser un buen jugador.</p>
-        </div>
-</div>
-      <div class="carousel-slide">
-        <img src="covers/ultimo-Lider-humano.jpg" alt="Libro destacado">
-        <div class="carousel-caption">
-          <h3>El Último Líder Humano</h3>
-          <p>Cuando el liderazgo cambia por completo y te encuentras en tu equipo con humanos aumentados por IA y máquinas autónomas.</p>
-        </div>
-      </div>
-    </div>
-    <div class="carousel-arrow left" id="carousel-prev" aria-label="Anterior">&#10094;</div>
-    <div class="carousel-arrow right" id="carousel-next" aria-label="Siguiente">&#10095;</div>
-  </div>
-  <!-- ======= Hero ======= -->
-  <section class="hero">
-    <h1>Libros que sacuden certezas, ideas que transforman.</h1>
-    <p>
-      Del poder corporativo a la inteligencia artificial, de la ciencia ficción a la reinvención personal. 
-      Cada obra abre una puerta incómoda pero necesaria: entender el arte de la persuasión, cómo evoluciona 
-      el liderazgo y cómo nuestras emociones y narrativas moldean el futuro.
-    </p>
+
+  <!-- AMAZON -->
+  <section id="amazon">
+    <h2>Mis Libros en Amazon</h2>
+    <iframe src="https://www.amazon.com/stores/author/B0CVNMLSNZ/allbooks?ingress=0&visitId=1a3e4d11-505b-41a7-a0ec-5973b058cb15&ref_=ap_rdr&ccs_id=256cc828-c363-4119-9f36-b5c8dad41d35"
+      sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
   </section>
 
-  <!-- ======= Libros ======= -->
-   <section class="Libros-section" id="libros">
-    <h2>Libros</h2>
-    <div class="Libros-list">
-      <!-- 1 Manual de Succión Ejecutiva -->
-      <div class="Libros-item">
-        <div class="Libros-thumb">
-          <img src="covers/manual-de-succion-ejecutiva.png" alt="Manual de Succión Ejecutiva">
-          
-        </div>
-        <div class="Libros-text">
-          <h3>Manual de Succión Ejecutiva</h3>
-          <p><i>En la empresa moderna no asciende siempre el más capaz, sino quien perfecciona el antiguo arte de......la succión. 
-            Este manual, ácido y sin anestesia, desnuda los códigos invisibles del verdadero arte de "crecer en la empresa", 
-            halagos calculados y maniobras sutiles que moldean carreras. Con ironía quirúrgica, revela aquello que no enseñan en la universidad 
-            para que decidas si entrar en la farsa o atravesarla con dignidad. Un retrato lúcido, divertido y brutalmente honesto para quienes sospechan 
-            que las reglas oficiales son solo humo.</i></p>
-          <div class="Libros-actions">
-   <button class="leer-muestra-btn" data-pdf="samples/manual-de-succion-ejecutiva-muestra.pdf">
-    <i class="fa-solid fa-file-pdf"></i> Leer muestra
-  </button>
-             <a href="https://a.co/d/eDdrSF7" target="_blank" rel="noopener" class="comprar-btn">
-    <i class="fa-brands fa-amazon"></i> Comprar en Amazon
-  </a>
-</div>
-       </div>
-      </div>
-      <!-- 2 Convergencia Digital -->
-      <div class="Libros-item">
-        <div class="Libros-thumb">
-          <img src="covers/convergencia-digital.jpg" alt="Convergencia Digital">
-          </div>
-        <div class="Libros-text">
-          <h3>Convergencia Digital: Mentes y Mercado</h3>
-          <p><i>Estrategia Digital: Mentes y Mercados es una guía clave para comprender cómo la tecnología
-            y la psicología del consumidor están transformando el marketing moderno. Desde neuromarketing
-            hasta inteligencia artificial aplicada al análisis de datos, cada capítulo ofrece ideas prácticas 
-            sobre segmentación, personalización y tendencias disruptivas en industrias como la banca o el retail. 
-            Más que un libro, es una hoja de ruta para profesionales y emprendedores que buscan prosperar en la era digital y
-            anticiparse al futuro del mercado.</i></p>
-          <div class="Libros-actions">
-   <button class="leer-muestra-btn" data-pdf="samples/convergencia-digital.pdf">
-    <i class="fa-solid fa-file-pdf"></i> Leer muestra
-  </button>
-        <a href="https://a.co/d/5j8u0V3" target="_blank" rel="noopener" class="comprar-btn">
-    <i class="fa-brands fa-amazon"></i> Comprar en Amazon
-  </a>
-</div>
-       </div>
-      </div>
-      <!-- 3 Cosecha de Emociones -->
-      <div class="Libros-item">
-        <div class="Libros-thumb">
-          <img src="covers/cosecha-de-emociones.jpg" alt="Cosecha de Emociones">
-          </div>
-        <div class="Libros-text">
-          <h3>Cosecha de Emociones: La Energía Secreta</h3>
-          <p><i>En un futuro donde la tecnología invade cada rincón, una fuerza ancestral llamada Etherion
-            se alimenta de las emociones humanas y teje en secreto el destino de la humanidad. Daniel,
-            Sofía y Alex se ven arrastrados a una aventura vertiginosa de misterio y peligro, 
-            donde descubrirán que la verdadera batalla no es solo contra Etherion, sino por la libertad misma. 
-            Cosecha de Emociones: La Energía Secreta combina ciencia ficción, thriller y reflexión en una historia 
-            que atrapa desde la primera página y revela el poder oculto de nuestras emociones.</i></p>
-          <div class="Libros-actions">
-    <button class="leer-muestra-btn" data-pdf="samples/Cosecha-de-Emociones-muestra.pdf">
-  <i class="fa-solid fa-file-pdf"></i> Leer muestra
-</button>
-        <a href="https://a.co/d/h3DSJqm" target="_blank" rel="noopener" class="comprar-btn">
-    <i class="fa-brands fa-amazon"></i> Comprar en Amazon
-  </a>
-</div>
-       </div>
-      </div>
-      <!-- 4 Narrativas Cuánticas -->
-      <div class="Libros-item">
-        <div class="Libros-thumb">
-          <img src="covers/narrativas-cuanticas.jpg" alt="Narrativas Cuánticas">
-         </div>
-        <div class="Libros-text">
-          <h3>Narrativas Cuánticas: Reescribiendo tu Realidad</h3>
-          <p><i>Narrativas Cuánticas: Reescribiendo tu realidad es una invitación a desafiar 
-            las historias que te limitan y crear un relato personal más auténtico y poderoso. 
-            Con una mezcla de reflexión, física cuántica y ejercicios prácticos, este libro te muestra cómo tus
-            diálogos internos moldean la realidad y te anima a transformarlos. A través de ejemplos inspiradores 
-             y profundas preguntas, se convierte en brújula y espejo: un camino para redescubrir tu verdadero ser y abrir la puerta a nuevas posibilidades.</i></p>
-          <div class="Libros-actions">
-      <!-- MUESTRA PDF -->
-          <button class="leer-muestra-btn" data-pdf="samples/narrativas-cuanticas-muestra.pdf">
-  <i class="fa-solid fa-file-pdf"></i> Leer muestra
-</button>
-          <a href="https://a.co/d/36JYeFn" target="_blank" rel="noopener" class="comprar-btn">
-    <i class="fa-brands fa-amazon"></i> Comprar en Amazon
-  </a>
-</div>
-       </div>
-      </div>
-      <!-- 5 El Último Líder Humano -->
-      <div class="Libros-item">
-        <div class="Libros-thumb">
-          <img src="covers/ultimo-Lider-humano.jpg" alt="El Último Líder Humano">
-          </div>
-        <div class="Libros-text">
-          <h3>El Último Líder Humano</h3>
-          <p><i>El Último Líder Humano es un viaje provocador hacia la frontera donde lo biológico y lo tecnológico se entrelazan. En un mundo donde la inteligencia artificial ya no solo asiste, s[...]
-            este libro invita a cuestionar nuestras certezas y a prepararnos para liderar en una era donde humanos y máquinas comparten el mismo tablero.</i></p>
-          <div class="Libros-actions">
-   <!-- MUESTRA PDF -->
-          <button class="leer-muestra-btn" data-pdf="samples/el-ultimo-lider-humano-muestra.pdf">
-  <i class="fa-solid fa-file-pdf"></i> Leer muestra
-</button>
-          <a href="https://a.co/d/2lx2Z0t" target="_blank" rel="noopener" class="comprar-btn">
-    <i class="fa-brands fa-amazon"></i> Comprar en Amazon
-  </a>
-</div>
-       </div>
-      </div>
-      <!-- 6 El Tablero Invisible (no tiene muestra) -->
-      <div class="Libros-item">
-        <div class="Libros-thumb">
-          <img src="covers/tablero-invisible.jpg" alt="El Tablero Invisible">
-          <span class="actions disabled" style="background:#ccc;color:#fff;display:inline-block;padding:7px 12px;border-radius:6px;font-size:.95rem;">Disponible pronto</span>
-        </div>
-        <div class="Libros-text">
-          <h3>El Tablero Invisible: Las 33 Leyes del Poder Corporativo</h3>
-          <p><i>El Tablero Invisible: Las 33 Leyes del Poder Corporativo desnuda las reglas ocultas que realmente 
-            mueven a las organizaciones. Más allá de discursos inspiradores y manuales de liderazgo vacíos,
-            este libro revela cómo la manipulación, las alianzas estratégicas y los silencios calculados definen quién
-            avanza y quién queda fuera del juego. Con un tono lúcido, irónico y brutalmente honesto, es una guía para reconocer 
-            el tablero donde trabajas, entender las dinámicas de poder que se repiten en cada nivel y aprender a moverte en él sin ser solo una ficha más.</i></p>        
-        </div>
-      </div>
+  <!-- SOBRE EL AUTOR -->
+  <section id="sobre">
+    <h2>Sobre el Autor</h2>
+    <div class="bio">
+      <p><b>Cristian Neira V.</b> es estratega, investigador y autor chileno con más de dos décadas de experiencia en el mundo corporativo y académico. Su obra literaria combina filosofía, psicología, sociología y tecnología para explorar los dilemas del poder, el liderazgo y la transformación digital. Con un estilo provocador e irónico, escribe tanto ensayo como narrativa, moviéndose entre la crítica corporativa, la ficción especulativa y la reflexión sobre el futuro del trabajo y la sociedad.</p>
     </div>
   </section>
-  <!-- ======= Modal lector PDF ======= -->
-  <div class="pdf-modal" id="pdf-modal">
-    <div class="pdf-modal-content">
-      <button class="pdf-modal-close" id="pdf-modal-close" aria-label="Cerrar">&times;</button>
-      <iframe class="pdf-modal-iframe" id="pdf-modal-iframe" allow="fullscreen"></iframe>
-    </div>
-  </div>
-  <!-- ======= Sobre mí ======= -->
-  <section id="about">
-    <div class="about-text">
-      <h2>Sobre el autor</h2>
-     <p>
-  <b>Cristian Neira V.</b> es estratega, investigador y autor chileno con más de dos décadas de experiencia en 
-  el mundo corporativo y académico. Su trayectoria profesional se ha desarrollado en áreas de estrategia, 
-  clientes, tecnología y transformación digital en las principales instituciones financieras del país, donde ha liderado proyectos de alto impacto 
-  vinculados a innovación, analítica avanzada y modelos de negocio. En el ámbito <b>académico</b>, es profesor y
-  conferencista en programas de postgrado y formación ejecutiva, aportando desde su doble especialización en
-  <b>MBA</b> y <b>Magíster en Desarrollo Organizacional y Recursos Humanos</b>, además de su constante investigación en 
-  temas de liderazgo, tecnología, comportamiento del consumidor y comportamiento organizacional.
-</p>
 
-<p>
-  Su obra literaria combina filosofía, psicología, sociología y tecnología para explorar los dilemas del poder, 
-  el liderazgo y la transformación digital. Con un estilo provocador y lúcido, escribe tanto ensayo como narrativa, 
-  moviéndose entre la crítica corporativa, la ficción especulativa y la reflexión sobre el futuro del trabajo y la sociedad.
-</p>
-
+  <!-- NOTICIAS -->
+  <section id="noticias">
+    <h2>Noticias y Publicaciones</h2>
+    <div class="noticias">
+      <p>Próximamente encontrarás aquí artículos, reflexiones y publicaciones de Cristian en torno al poder, la cultura organizacional y la transformación humana.</p>
     </div>
-    <img src="autor.jpg" alt="Foto de Cristian Neira V.">
   </section>
-   <span class="social-links">
-       <p>Sígueme en</p>   <a href="https://www.linkedin.com/in/cristian-neirav/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="https://instagram.com/cneira_escritor" target="_blank" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        </span>
-  <!-- ======= Footer ======= -->
-  <footer id="contacto">
-    <p>Contacto: <a href="mailto:coneira@uc.cl" style="color:#0ec7a0;">coneira@uc.cl</a></p>
-    <p>&copy; 2025 Cristian Neira V.</p>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <div class="contacto">
+      <p>📧 Escríbele a: <a href="mailto:contacto@cneirav.cl">contacto@cneirav.cl</a></p>
+      <p>🌐 Síguelo en redes sociales:  
+        <a href="https://www.linkedin.com/in/crneirav" target="_blank">LinkedIn</a> · 
+        <a href="https://www.instagram.com/crneirav" target="_blank">Instagram</a> · 
+        <a href="https://www.amazon.com/stores/author/B0CVNMLSNZ" target="_blank">Amazon</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 Cristian Neira V. — Todos los derechos reservados.
   </footer>
- <!-- ======= Script ======= -->
-<script>
-  // Carrusel funcional
-  document.addEventListener('DOMContentLoaded', () => {
-    const slides = document.querySelectorAll('.carousel-slide');
-    const carousel = document.getElementById('carousel');
-    const prev = document.getElementById('carousel-prev');
-    const next = document.getElementById('carousel-next');
-    let current = 0;
-    let interval = null;
 
-    function showSlide(idx) {
-      if (idx < 0) idx = slides.length - 1;
-      if (idx >= slides.length) idx = 0;
-      current = idx;
-      carousel.style.transform = `translateX(-${100 * current}%)`;
-    }
-    function nextSlide() { showSlide(current + 1); }
-    function prevSlide() { showSlide(current - 1); }
-    prev.addEventListener('click', prevSlide);
-    next.addEventListener('click', nextSlide);
-
-    function autoPlay() { interval = setInterval(nextSlide, 7000); }
-    function stopAutoPlay() { clearInterval(interval); interval = null; }
-    carousel.addEventListener('mouseenter', stopAutoPlay);
-    carousel.addEventListener('mouseleave', autoPlay);
-
-    // Swipe móviles
-    let startX = 0, isDragging = false;
-    carousel.addEventListener('touchstart', e => { isDragging = true; startX = e.touches[0].clientX; stopAutoPlay(); });
-    carousel.addEventListener('touchmove', e => {
-      if (!isDragging) return;
-      const dx = e.touches[0].clientX - startX;
-      if (Math.abs(dx) > 60) { isDragging = false; dx > 0 ? prevSlide() : nextSlide(); }
-    });
-    carousel.addEventListener('touchend', () => { isDragging = false; autoPlay(); });
-
-    showSlide(0);
-    autoPlay();
-  });
-
-  // Menú móvil accesible
-  document.addEventListener('DOMContentLoaded', () => {
-    const header = document.querySelector('.site-header');
-    const btn = document.querySelector('.nav-toggle');
-    const links = document.getElementById('nav-links');
-    if (!header || !btn || !links) return;
-
-    btn.setAttribute('aria-expanded', 'false');
-
-    const openMenu = () => {
-      header.classList.add('nav-open');
-      btn.setAttribute('aria-expanded', 'true');
-      links.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    };
-    const closeMenu = () => {
-      header.classList.remove('nav-open');
-      btn.setAttribute('aria-expanded', 'false');
-      links.style.display = '';
-      document.body.style.overflow = '';
-    };
-
-    btn.addEventListener('click', () => header.classList.contains('nav-open') ? closeMenu() : openMenu());
-    links.addEventListener('click', (e) => { if (e.target.closest('a')) closeMenu(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
-    window.addEventListener('resize', () => { if (window.innerWidth > 720) closeMenu(); });
-  });
-
-  // ==== Modal lector PDF ====
-  document.addEventListener('DOMContentLoaded', () => {
-    const modal  = document.getElementById('pdf-modal');
-    const closeBtn = document.getElementById('pdf-modal-close');
-    const iframe = document.getElementById('pdf-modal-iframe');
-    const muestraBtns = document.querySelectorAll('.leer-muestra-btn');
-
-    // Si algún ID no existe, salimos sin romper
-    if (!modal || !closeBtn || !iframe || !muestraBtns.length) return;
-
-    function canEmbedPDF() {
-      // Heurística básica: algunos navegadores móviles no embeben PDF
-      const ua = navigator.userAgent.toLowerCase();
-      const isIOS = /iphone|ipad|ipod/.test(ua);
-      const isAndroid = /android/.test(ua);
-      // iOS Safari no embebe PDFs en iframe de forma confiable
-      return !(isIOS || isAndroid);
-    }
-
-    function openModal(pdfUrl) {
-      if (canEmbedPDF()) {
-        iframe.src = pdfUrl;
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        try { iframe.focus(); } catch(e){}
-      } else {
-        // Fallback: abrir en nueva pestaña
-        window.open(pdfUrl, '_blank', 'noopener,noreferrer');
-      }
-    }
-
-    function closeModal() {
-      iframe.src = '';
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    muestraBtns.forEach(btn => {
-      btn.setAttribute('type', 'button'); // por si algún día están en un <form>
-      btn.addEventListener('click', () => {
-        const pdf = btn.getAttribute('data-pdf');
-        if (pdf) openModal(pdf);
-      });
-    });
-
-    closeBtn.addEventListener('click', closeModal);
-    document.addEventListener('keydown', (e) => { if (modal.classList.contains('active') && e.key === 'Escape') closeModal(); });
-    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-  });
-</script>
+</body>
+</html>
