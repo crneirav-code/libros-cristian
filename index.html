@@ -60,15 +60,6 @@
   margin-bottom:50px;  /* separación antes del botón inferior */
 }
 
-.book-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:36px 24px;       /* más separación vertical y horizontal */
-  align-items:stretch;
-  margin-top:30px;
-  margin-bottom:50px;  /* separación antes del botón inferior */
-}
-
 .center-btn{
   text-align:center;
   margin-top:40px;     /* separa aún más del grid */
@@ -214,6 +205,23 @@
       }
       nav { margin-top: 6px; }
     }
+    /* ==== MODAL DETALLE LIBRO ==== */
+.modal-overlay{ position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; z-index:999; }
+.modal-overlay.active{ display:flex; }
+.modal{ background:#fffdf9; color:#2c2c2c; border-radius:14px; max-width:900px; width:92%; box-shadow:0 20px 60px rgba(0,0,0,.25); overflow:hidden; display:grid; grid-template-columns:320px 1fr; }
+.modal-header{ grid-column:1 / -1; display:flex; justify-content:space-between; align-items:center; padding:14px 18px; background:#f4ede6; border-bottom:1px solid #eadfce; }
+.modal-header h3{ margin:0; font-size:1.2rem; color:#5a3b1c; }
+.modal-close{ background:transparent; border:none; font-size:1.4rem; cursor:pointer; color:#7a4c29; }
+.modal-left{ padding:18px; display:flex; align-items:flex-start; justify-content:center; background:#fffaf3; }
+.modal-left img{ width:100%; max-width:280px; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,.1); }
+.modal-right{ padding:18px 22px; }
+.modal-right .desc{ margin:8px 0 16px; color:#3e2c1e; line-height:1.55; }
+.modal-meta{ font-size:.92rem; color:#7a5b42; margin-bottom:14px; }
+.modal-actions{ display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; }
+.btn-outline{ background:transparent; border:1px solid #7a4c29; color:#7a4c29; padding:10px 16px; border-radius:6px; text-decoration:none; display:inline-block; }
+.btn-outline:hover{ background:#7a4c29; color:#fff; }
+@media (max-width:820px){ .modal{ grid-template-columns:1fr; } .modal-left{ justify-content:center; } }
+
   </style>
 </head>
 
@@ -320,7 +328,7 @@
       </div>
     </div>
 
-    <!-- Convergencia Digital: Mentes y Mercado -->
+    <!-- Convergencia Digital -->
     <div class="book-card">
       <a class="book-cover" href="https://www.amazon.com/s?k=Convergencia+Digital+Cristian+Neira" target="_blank" rel="noopener">
         <img src="covers/convergencia-digital.jpg" alt="Convergencia Digital: Mentes y Mercado">
@@ -450,6 +458,79 @@
     }
   });
 
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ closeModal(); }
+  });
+})();
+</script>
+<div class="modal-overlay" id="bookModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-header">
+      <h3 id="modalTitle">Título del libro</h3>
+      <button class="modal-close" aria-label="Cerrar" id="modalClose">&times;</button>
+    </div>
+
+    <div class="modal-left">
+      <img id="modalImg" src="" alt="">
+    </div>
+
+    <div class="modal-right">
+      <div class="modal-meta" id="modalMeta"></div>
+      <p class="desc" id="modalDesc"></p>
+      <div class="modal-actions">
+        <a id="modalSample" class="btn-outline" target="_blank" rel="noopener">Leer muestra en Amazon</a>
+        <a id="modalAmazon" class="btn" target="_blank" rel="noopener">Ver en Amazon</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  const overlay = document.getElementById('bookModal');
+  const modalImg = document.getElementById('modalImg');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalMeta = document.getElementById('modalMeta');
+  const modalDesc = document.getElementById('modalDesc');
+  const modalAmazon = document.getElementById('modalAmazon');
+  const modalSample = document.getElementById('modalSample');
+  const closeBtn = document.getElementById('modalClose');
+
+  function openModal(data){
+    modalTitle.textContent = data.title || '';
+    modalImg.src = data.img || '';
+    modalImg.alt = data.title || '';
+    modalMeta.textContent = data.meta || '';
+    modalDesc.textContent = data.desc || '';
+    modalAmazon.href = data.url || '#';
+    modalSample.href = data.sample || data.url || '#';
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+    closeBtn.focus();
+  }
+
+  function closeModal(){
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+  }
+
+  // Open from any .js-detail button
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('.js-detail');
+    if(btn){
+      e.preventDefault();
+      openModal({
+        title: btn.dataset.title,
+        img: btn.dataset.img,
+        url: btn.dataset.url,
+        sample: btn.dataset.sample,
+        meta: btn.dataset.meta,
+        desc: btn.dataset.desc
+      });
+    }
+    if(e.target.id === 'modalClose' || e.target === overlay){ closeModal(); }
+  });
+
+  // ESC to close
   document.addEventListener('keydown', function(e){
     if(e.key === 'Escape'){ closeModal(); }
   });
