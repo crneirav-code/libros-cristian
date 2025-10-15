@@ -10,6 +10,27 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
+    /* === GALERÍA AMAZON (sin iframe) === */
+.book-grid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:24px; align-items:start; margin-top:30px;
+}
+.book-card{
+  display:flex; flex-direction:column; align-items:center;
+  background:#fff; border-radius:10px; padding:16px;
+  box-shadow:0 2px 10px rgba(0,0,0,.06);
+  transition:transform .2s ease, box-shadow .2s ease; text-decoration:none;
+}
+.book-card:hover{ transform:translateY(-4px); box-shadow:0 6px 18px rgba(0,0,0,.10);}
+.book-card img{ width:100%; max-width:220px; border-radius:8px; display:block;}
+.book-card span{ margin-top:12px; font-family:Arial, sans-serif; font-size:.95rem; color:#5a3b1c; text-align:center;}
+.center-btn{ text-align:center; margin-top:28px;}
+.btn{
+  background:#7a4c29; color:#fff; padding:12px 24px; border-radius:6px;
+  display:inline-block; text-decoration:none;
+}
+.btn:hover{ background:#8f5a34; }
+
     /* === ESTILO GENERAL === */
     body {
       margin: 0;
@@ -121,11 +142,53 @@
   </header>
 
   <!-- AMAZON -->
-  <section id="amazon">
-    <h2>Mis Libros en Amazon</h2>
-    <iframe src="https://www.amazon.com/stores/author/B0CVNMLSNZ/allbooks?ingress=0&visitId=1a3e4d11-505b-41a7-a0ec-5973b058cb15&ref_=ap_rdr&ccs_id=256cc828-c363-4119-9f36-b5c8dad41d35"
-      sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
-  </section>
+<section id="amazon">
+  <h2>Mis Libros en Amazon</h2>
+
+  <div class="book-grid">
+    <!-- Manual de Succión Ejecutiva -->
+    <a class="book-card" href="https://www.amazon.com/dp/B0CWXZPXJ6" target="_blank" rel="noopener">
+      <img src="covers/manual-de-succion-ejecutiva.jpg" alt="Manual de Succión Ejecutiva">
+      <span>Manual de Succión Ejecutiva</span>
+    </a>
+
+    <!-- Cosecha de Emociones -->
+    <a class="book-card" href="https://www.amazon.com/dp/B0CYJ94YFY" target="_blank" rel="noopener">
+      <img src="covers/cosecha-de-emociones.jpg" alt="Cosecha de Emociones: La Energía Secreta">
+      <span>Cosecha de Emociones: La Energía Secreta</span>
+    </a>
+
+    <!-- El Último Líder Humano -->
+    <a class="book-card" href="https://www.amazon.com/dp/B0D1Z96H1V" target="_blank" rel="noopener">
+      <img src="covers/ultimo-Lider-humano.jpg" alt="El Último Líder Humano">
+      <span>El Último Líder Humano</span>
+    </a>
+
+    <!-- Narrativas Cuánticas (búsqueda directa) -->
+    <a class="book-card" href="https://www.amazon.com/s?k=Narrativas+Cu%C3%A1nticas+Cristian+Neira" target="_blank" rel="noopener">
+      <img src="covers/narrativas-cuanticas.jpg" alt="Narrativas Cuánticas: Reescribiendo tu Realidad">
+      <span>Narrativas Cuánticas</span>
+    </a>
+
+    <!-- Convergencia Digital (búsqueda) -->
+    <a class="book-card" href="https://www.amazon.com/s?k=Convergencia+Digital+Cristian+Neira" target="_blank" rel="noopener">
+      <img src="covers/convergencia-digital.jpg" alt="Convergencia Digital">
+      <span>Convergencia Digital</span>
+    </a>
+
+    <!-- El Tablero Invisible (búsqueda / proyecto) -->
+    <a class="book-card" href="https://www.amazon.com/s?k=El+Tablero+Invisible+Cristian+Neira" target="_blank" rel="noopener">
+      <img src="covers/tablero-invisible.jpg" alt="El Tablero Invisible">
+      <span>El Tablero Invisible</span>
+    </a>
+  </div>
+
+  <p class="center-btn">
+    <a class="btn" href="https://www.amazon.com/stores/author/B0CVNMLSNZ/allbooks" target="_blank" rel="noopener">
+      Ver todos en Amazon
+    </a>
+  </p>
+</section>
 
   <!-- SOBRE EL AUTOR -->
   <section id="sobre">
