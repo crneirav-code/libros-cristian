@@ -10,7 +10,47 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-/* === GALERÍA AMAZON (sin iframe) === */
+/* ==== MODAL DETALLE LIBRO ==== */
+.modal-overlay{
+  position:fixed; inset:0; background:rgba(0,0,0,.45);
+  display:none; align-items:center; justify-content:center; z-index:999;
+}
+.modal-overlay.active{ display:flex; }
+
+.modal{
+  background:#fffdf9; color:#2c2c2c; border-radius:14px; max-width:900px; width:92%;
+  box-shadow:0 20px 60px rgba(0,0,0,.25); overflow:hidden; display:grid; grid-template-columns: 320px 1fr;
+}
+.modal-header{
+  grid-column:1 / -1; display:flex; justify-content:space-between; align-items:center;
+  padding:14px 18px; background:#f4ede6; border-bottom:1px solid #eadfce;
+}
+.modal-header h3{ margin:0; font-size:1.2rem; color:#5a3b1c; }
+.modal-close{
+  background:transparent; border:none; font-size:1.4rem; cursor:pointer; color:#7a4c29;
+}
+
+.modal-left{ padding:18px; display:flex; align-items:flex-start; justify-content:center; background:#fffaf3; }
+.modal-left img{ width:100%; max-width:280px; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,.1); }
+
+.modal-right{ padding:18px 22px; }
+.modal-right .desc{ margin:8px 0 16px; color:#3e2c1e; line-height:1.55; }
+.modal-meta{ font-size:.92rem; color:#7a5b42; margin-bottom:14px; }
+
+.modal-actions{ display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; }
+.btn-outline{
+  background:transparent; border:1px solid #7a4c29; color:#7a4c29; padding:10px 16px; border-radius:6px;
+  text-decoration:none; display:inline-block;
+}
+.btn-outline:hover{ background:#7a4c29; color:#fff; }
+
+@media (max-width: 820px){
+  .modal{ grid-template-columns:1fr; }
+  .modal-left{ justify-content:center; }
+}
+
+    
+    /* === GALERÍA AMAZON (sin iframe) === */
 .book-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
@@ -207,18 +247,36 @@
       </a>
       <div class="book-title">Manual de Succión Ejecutiva</div>
       <div class="book-actions">
-        <a class="btn" href="https://www.amazon.com/dp/B0CWXZPXJ6" target="_blank" rel="noopener">Ver detalle</a>
+        <button
+          class="btn js-detail"
+          data-title="Manual de Succión Ejecutiva"
+          data-img="covers/manual-de-succion-ejecutiva.jpg"
+          data-url="https://www.amazon.com/dp/B0CWXZPXJ6"
+          data-sample="https://www.amazon.com/dp/B0CWXZPXJ6#LookInside"
+          data-meta="Edición Kindle y tapa blanda"
+          data-desc="Sátira incisiva sobre el poder y la política real en la empresa moderna: tácticas, manipulaciones y leyes no escritas para sobrevivir.">
+          Ver detalle
+        </button>
       </div>
     </div>
 
-    <!-- Cosecha de Emociones -->
+    <!-- Cosecha de Emociones: La Energía Secreta -->
     <div class="book-card">
       <a class="book-cover" href="https://www.amazon.com/dp/B0CYJ94YFY" target="_blank" rel="noopener">
         <img src="covers/cosecha-de-emociones.jpg" alt="Cosecha de Emociones: La Energía Secreta">
       </a>
       <div class="book-title">Cosecha de Emociones: La Energía Secreta</div>
       <div class="book-actions">
-        <a class="btn" href="https://www.amazon.com/dp/B0CYJ94YFY" target="_blank" rel="noopener">Ver detalle</a>
+        <button
+          class="btn js-detail"
+          data-title="Cosecha de Emociones: La Energía Secreta"
+          data-img="covers/cosecha-de-emociones.jpg"
+          data-url="https://www.amazon.com/dp/B0CYJ94YFY"
+          data-sample="https://www.amazon.com/dp/B0CYJ94YFY#LookInside"
+          data-meta="Edición Kindle"
+          data-desc="Thriller de ciencia ficción donde una entidad ancestral manipula la historia a través de la energía emocional humana.">
+          Ver detalle
+        </button>
       </div>
     </div>
 
@@ -229,40 +287,76 @@
       </a>
       <div class="book-title">El Último Líder Humano</div>
       <div class="book-actions">
-        <a class="btn" href="https://www.amazon.com/dp/B0D1Z96H1V" target="_blank" rel="noopener">Ver detalle</a>
+        <button
+          class="btn js-detail"
+          data-title="El Último Líder Humano"
+          data-img="covers/ultimo-Lider-humano.jpg"
+          data-url="https://www.amazon.com/dp/B0D1Z96H1V"
+          data-sample="https://www.amazon.com/dp/B0D1Z96H1V#LookInside"
+          data-meta="IA, humanos aumentados y robótica"
+          data-desc="Ensayo provocador sobre el liderazgo en la era de la IA y los equipos aumentados.">
+          Ver detalle
+        </button>
       </div>
     </div>
 
-    <!-- Narrativas Cuánticas (búsqueda directa) -->
+    <!-- Narrativas Cuánticas -->
     <div class="book-card">
       <a class="book-cover" href="https://www.amazon.com/s?k=Narrativas+Cu%C3%A1nticas+Cristian+Neira" target="_blank" rel="noopener">
         <img src="covers/narrativas-cuanticas.jpg" alt="Narrativas Cuánticas: Reescribiendo tu Realidad">
       </a>
       <div class="book-title">Narrativas Cuánticas</div>
       <div class="book-actions">
-        <a class="btn" href="https://www.amazon.com/s?k=Narrativas+Cu%C3%A1nticas+Cristian+Neira" target="_blank" rel="noopener">Ver detalle</a>
+        <button
+          class="btn js-detail"
+          data-title="Narrativas Cuánticas"
+          data-img="covers/narrativas-cuanticas.jpg"
+          data-url="https://www.amazon.com/s?k=Narrativas+Cu%C3%A1nticas+Cristian+Neira"
+          data-sample="https://www.amazon.com/s?k=Narrativas+Cu%C3%A1nticas+Cristian+Neira"
+          data-meta="Crecimiento personal y ciencia"
+          data-desc="Cómo reescribir tu realidad integrando ciencia, psicología y narrativa personal.">
+          Ver detalle
+        </button>
       </div>
     </div>
 
-    <!-- Convergencia Digital (búsqueda) -->
+    <!-- Convergencia Digital: Mentes y Mercado -->
     <div class="book-card">
       <a class="book-cover" href="https://www.amazon.com/s?k=Convergencia+Digital+Cristian+Neira" target="_blank" rel="noopener">
-        <img src="covers/convergencia-digital.jpg" alt="Convergencia Digital">
+        <img src="covers/convergencia-digital.jpg" alt="Convergencia Digital: Mentes y Mercado">
       </a>
       <div class="book-title">Convergencia Digital</div>
       <div class="book-actions">
-        <a class="btn" href="https://www.amazon.com/s?k=Convergencia+Digital+Cristian+Neira" target="_blank" rel="noopener">Ver detalle</a>
+        <button
+          class="btn js-detail"
+          data-title="Convergencia Digital: Mentes y Mercado"
+          data-img="covers/convergencia-digital.jpg"
+          data-url="https://www.amazon.com/s?k=Convergencia+Digital+Cristian+Neira"
+          data-sample="https://www.amazon.com/s?k=Convergencia+Digital+Cristian+Neira"
+          data-meta="Estrategia y tecnología"
+          data-desc="Estrategia digital, comportamiento del consumidor y captura de valor en mercados hiperconectados.">
+          Ver detalle
+        </button>
       </div>
     </div>
 
-    <!-- El Tablero Invisible (búsqueda / proyecto) -->
+    <!-- El Tablero Invisible -->
     <div class="book-card">
       <a class="book-cover" href="https://www.amazon.com/s?k=El+Tablero+Invisible+Cristian+Neira" target="_blank" rel="noopener">
         <img src="covers/tablero-invisible.jpg" alt="El Tablero Invisible">
       </a>
       <div class="book-title">El Tablero Invisible</div>
       <div class="book-actions">
-        <a class="btn" href="https://www.amazon.com/s?k=El+Tablero+Invisible+Cristian+Neira" target="_blank" rel="noopener">Ver detalle</a>
+        <button
+          class="btn js-detail"
+          data-title="El Tablero Invisible"
+          data-img="covers/tablero-invisible.jpg"
+          data-url="https://www.amazon.com/s?k=El+Tablero+Invisible+Cristian+Neira"
+          data-sample="https://www.amazon.com/s?k=El+Tablero+Invisible+Cristian+Neira"
+          data-meta="Política real de la empresa"
+          data-desc="Manual de supervivencia para navegar el poder oculto y los fractales políticos de las organizaciones.">
+          Ver detalle
+        </button>
       </div>
     </div>
   </div>
@@ -307,6 +401,83 @@
   <footer>
     © 2025 Cristian Neira V. — Todos los derechos reservados.
   </footer>
+<script>
+(function(){
+  const overlay = document.getElementById('bookModal');
+  const modalImg = document.getElementById('modalImg');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalMeta = document.getElementById('modalMeta');
+  const modalDesc = document.getElementById('modalDesc');
+  const modalAmazon = document.getElementById('modalAmazon');
+  const modalSample = document.getElementById('modalSample');
+  const closeBtn = document.getElementById('modalClose');
+
+  function openModal(data){
+    modalTitle.textContent = data.title || '';
+    modalImg.src = data.img || '';
+    modalImg.alt = data.title || '';
+    modalMeta.textContent = data.meta || '';
+    modalDesc.textContent = data.desc || '';
+
+    modalAmazon.href = data.url || '#';
+    modalSample.href = data.sample || data.url || '#';
+
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+    closeBtn.focus();
+  }
+
+  function closeModal(){
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+  }
+
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('.js-detail');
+    if(btn){
+      const data = {
+        title: btn.dataset.title,
+        img: btn.dataset.img,
+        url: btn.dataset.url,
+        sample: btn.dataset.sample,
+        meta: btn.dataset.meta,
+        desc: btn.dataset.desc
+      };
+      openModal(data);
+    }
+    if(e.target.id === 'modalClose' || e.target === overlay){
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ closeModal(); }
+  });
+})();
+</script>
 
 </body>
+<div class="modal-overlay" id="bookModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-header">
+      <h3 id="modalTitle">Título del libro</h3>
+      <button class="modal-close" aria-label="Cerrar" id="modalClose">&times;</button>
+    </div>
+
+    <div class="modal-left">
+      <img id="modalImg" src="" alt="">
+    </div>
+
+    <div class="modal-right">
+      <div class="modal-meta" id="modalMeta"></div>
+      <p class="desc" id="modalDesc"></p>
+
+      <div class="modal-actions">
+        <a id="modalSample" class="btn-outline" target="_blank" rel="noopener">Leer muestra en Amazon</a>
+        <a id="modalAmazon" class="btn" target="_blank" rel="noopener">Ver en Amazon</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 </html>
