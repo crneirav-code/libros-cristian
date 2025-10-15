@@ -10,26 +10,64 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    /* === GALERÍA AMAZON (sin iframe) === */
+/* === GALERÍA AMAZON (sin iframe) === */
 .book-grid{
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:24px; align-items:start; margin-top:30px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:24px;
+  align-items:stretch;
+  margin-top:30px;
 }
+
 .book-card{
-  display:flex; flex-direction:column; align-items:center;
-  background:#fff; border-radius:10px; padding:16px;
+  background:#fff;
+  border-radius:12px;
+  padding:16px;
   box-shadow:0 2px 10px rgba(0,0,0,.06);
-  transition:transform .2s ease, box-shadow .2s ease; text-decoration:none;
+  transition:transform .2s ease, box-shadow .2s ease;
+  display:flex;              /* clave: flex para igualar alturas */
+  flex-direction:column;     /* imagen -> título -> botón */
+  height:100%;
 }
-.book-card:hover{ transform:translateY(-4px); box-shadow:0 6px 18px rgba(0,0,0,.10);}
-.book-card img{ width:100%; max-width:220px; border-radius:8px; display:block;}
-.book-card span{ margin-top:12px; font-family:Arial, sans-serif; font-size:.95rem; color:#5a3b1c; text-align:center;}
-.center-btn{ text-align:center; margin-top:28px;}
+
+.book-card:hover{ transform:translateY(-4px); box-shadow:0 6px 18px rgba(0,0,0,.10); }
+
+/* Contenedor de portada con altura fija responsive */
+.book-cover{
+  display:flex; align-items:center; justify-content:center;
+  height:260px;               /* igual para todas las tarjetas */
+}
+.book-cover img{
+  max-height:100%; max-width:100%; width:auto; border-radius:8px; display:block;
+}
+
+/* Bloque de título con altura mínima uniforme */
+.book-title{
+  margin:12px 0;
+  font-family:Arial, sans-serif; font-size:.95rem; color:#5a3b1c;
+  text-align:center;
+  min-height:48px;            /* asegura misma altura de texto */
+  display:flex; align-items:center; justify-content:center;
+}
+
+/* Botón abajo, siempre alineado */
+.book-actions{ margin-top:auto; text-align:center; }
 .btn{
-  background:#7a4c29; color:#fff; padding:12px 24px; border-radius:6px;
-  display:inline-block; text-decoration:none;
+  background:#7a4c29; color:#fff; padding:10px 16px; border-radius:6px;
+  display:inline-block; text-decoration:none; font-family:Arial, sans-serif; font-size:.95rem;
 }
 .btn:hover{ background:#8f5a34; }
+.btn:focus{ outline:2px solid #c9a78d; outline-offset:2px; }
+
+/* Responsivo: portadas un poco más bajas en móviles */
+@media (max-width: 700px){
+  .book-cover{ height:220px; }
+}
+@media (max-width: 420px){
+  .book-grid{ grid-template-columns:repeat(2, 1fr); }
+  .book-cover{ height:200px; }
+}
+
 
     /* === ESTILO GENERAL === */
     body {
@@ -147,40 +185,70 @@
 
   <div class="book-grid">
     <!-- Manual de Succión Ejecutiva -->
-    <a class="book-card" href="https://www.amazon.com/dp/B0CWXZPXJ6" target="_blank" rel="noopener">
-      <img src="covers/manual-de-succion-ejecutiva.jpg" alt="Manual de Succión Ejecutiva">
-      <span>Manual de Succión Ejecutiva</span>
-    </a>
+    <div class="book-card">
+      <a class="book-cover" href="https://www.amazon.com/dp/B0CWXZPXJ6" target="_blank" rel="noopener">
+        <img src="covers/manual-de-succion-ejecutiva.jpg" alt="Manual de Succión Ejecutiva">
+      </a>
+      <div class="book-title">Manual de Succión Ejecutiva</div>
+      <div class="book-actions">
+        <a class="btn" href="https://www.amazon.com/dp/B0CWXZPXJ6" target="_blank" rel="noopener">Ver detalle</a>
+      </div>
+    </div>
 
     <!-- Cosecha de Emociones -->
-    <a class="book-card" href="https://www.amazon.com/dp/B0CYJ94YFY" target="_blank" rel="noopener">
-      <img src="covers/cosecha-de-emociones.jpg" alt="Cosecha de Emociones: La Energía Secreta">
-      <span>Cosecha de Emociones: La Energía Secreta</span>
-    </a>
+    <div class="book-card">
+      <a class="book-cover" href="https://www.amazon.com/dp/B0CYJ94YFY" target="_blank" rel="noopener">
+        <img src="covers/cosecha-de-emociones.jpg" alt="Cosecha de Emociones: La Energía Secreta">
+      </a>
+      <div class="book-title">Cosecha de Emociones: La Energía Secreta</div>
+      <div class="book-actions">
+        <a class="btn" href="https://www.amazon.com/dp/B0CYJ94YFY" target="_blank" rel="noopener">Ver detalle</a>
+      </div>
+    </div>
 
     <!-- El Último Líder Humano -->
-    <a class="book-card" href="https://www.amazon.com/dp/B0D1Z96H1V" target="_blank" rel="noopener">
-      <img src="covers/ultimo-Lider-humano.jpg" alt="El Último Líder Humano">
-      <span>El Último Líder Humano</span>
-    </a>
+    <div class="book-card">
+      <a class="book-cover" href="https://www.amazon.com/dp/B0D1Z96H1V" target="_blank" rel="noopener">
+        <img src="covers/ultimo-Lider-humano.jpg" alt="El Último Líder Humano">
+      </a>
+      <div class="book-title">El Último Líder Humano</div>
+      <div class="book-actions">
+        <a class="btn" href="https://www.amazon.com/dp/B0D1Z96H1V" target="_blank" rel="noopener">Ver detalle</a>
+      </div>
+    </div>
 
     <!-- Narrativas Cuánticas (búsqueda directa) -->
-    <a class="book-card" href="https://www.amazon.com/s?k=Narrativas+Cu%C3%A1nticas+Cristian+Neira" target="_blank" rel="noopener">
-      <img src="covers/narrativas-cuanticas.jpg" alt="Narrativas Cuánticas: Reescribiendo tu Realidad">
-      <span>Narrativas Cuánticas</span>
-    </a>
+    <div class="book-card">
+      <a class="book-cover" href="https://www.amazon.com/s?k=Narrativas+Cu%C3%A1nticas+Cristian+Neira" target="_blank" rel="noopener">
+        <img src="covers/narrativas-cuanticas.jpg" alt="Narrativas Cuánticas: Reescribiendo tu Realidad">
+      </a>
+      <div class="book-title">Narrativas Cuánticas</div>
+      <div class="book-actions">
+        <a class="btn" href="https://www.amazon.com/s?k=Narrativas+Cu%C3%A1nticas+Cristian+Neira" target="_blank" rel="noopener">Ver detalle</a>
+      </div>
+    </div>
 
     <!-- Convergencia Digital (búsqueda) -->
-    <a class="book-card" href="https://www.amazon.com/s?k=Convergencia+Digital+Cristian+Neira" target="_blank" rel="noopener">
-      <img src="covers/convergencia-digital.jpg" alt="Convergencia Digital">
-      <span>Convergencia Digital</span>
-    </a>
+    <div class="book-card">
+      <a class="book-cover" href="https://www.amazon.com/s?k=Convergencia+Digital+Cristian+Neira" target="_blank" rel="noopener">
+        <img src="covers/convergencia-digital.jpg" alt="Convergencia Digital">
+      </a>
+      <div class="book-title">Convergencia Digital</div>
+      <div class="book-actions">
+        <a class="btn" href="https://www.amazon.com/s?k=Convergencia+Digital+Cristian+Neira" target="_blank" rel="noopener">Ver detalle</a>
+      </div>
+    </div>
 
     <!-- El Tablero Invisible (búsqueda / proyecto) -->
-    <a class="book-card" href="https://www.amazon.com/s?k=El+Tablero+Invisible+Cristian+Neira" target="_blank" rel="noopener">
-      <img src="covers/tablero-invisible.jpg" alt="El Tablero Invisible">
-      <span>El Tablero Invisible</span>
-    </a>
+    <div class="book-card">
+      <a class="book-cover" href="https://www.amazon.com/s?k=El+Tablero+Invisible+Cristian+Neira" target="_blank" rel="noopener">
+        <img src="covers/tablero-invisible.jpg" alt="El Tablero Invisible">
+      </a>
+      <div class="book-title">El Tablero Invisible</div>
+      <div class="book-actions">
+        <a class="btn" href="https://www.amazon.com/s?k=El+Tablero+Invisible+Cristian+Neira" target="_blank" rel="noopener">Ver detalle</a>
+      </div>
+    </div>
   </div>
 
   <p class="center-btn">
