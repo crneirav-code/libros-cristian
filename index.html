@@ -519,6 +519,15 @@
   const modalSample = document.getElementById('modalSample');
   const closeBtn = document.getElementById('modalClose');
 
+  let modalOpen = false;
+  let pushedState = false;
+
+  function lockScroll(lock){
+    document.documentElement.style.overflow = lock ? 'hidden' : '';
+    document.body.style.overflow = lock ? 'hidden' : '';
+    document.body.style.touchAction = lock ? 'none' : '';
+  }
+
   function openModal(data){
     modalTitle.textContent = data.title || '';
     modalImg.src = data.img || '';
@@ -527,20 +536,43 @@
     modalDesc.textContent = data.desc || '';
     modalAmazon.href = data.url || '#';
     modalSample.href = data.sample || data.url || '#';
+
     overlay.classList.add('active');
     overlay.setAttribute('aria-hidden', 'false');
+    lockScroll(true);
+    modalOpen = true;
+
+    // Manejo de botón Atrás en móvil
+    if (!pushedState) {
+      history.pushState({ modal: true }, '');
+      pushedState = true;
+    }
     closeBtn.focus();
   }
 
-  function closeModal(){
+  function reallyCloseModal(){
     overlay.classList.remove('active');
     overlay.setAttribute('aria-hidden', 'true');
+    lockScroll(false);
+    modalOpen = false;
   }
 
-  // Open from any .js-detail button
+  function closeModalFromUI(){
+    // Cierra y además “retrocede” solo si empujamos estado
+    if (pushedState) {
+      pushedState = false;
+      reallyCloseModal();
+      // Llamamos a back para consumir el estado sin salir del sitio
+      if (history.state && history.state.modal) history.back();
+      return;
+    }
+    reallyCloseModal();
+  }
+
+  // Abrir desde cualquier botón .js-detail
   document.addEventListener('click', function(e){
     const btn = e.target.closest('.js-detail');
-    if(btn){
+    if (btn) {
       e.preventDefault();
       openModal({
         title: btn.dataset.title,
@@ -551,12 +583,26 @@
         desc: btn.dataset.desc
       });
     }
-    if(e.target.id === 'modalClose' || e.target === overlay){ closeModal(); }
+    if (e.target.id === 'modalClose' || e.target === overlay) {
+      e.preventDefault();
+      closeModalFromUI();
+    }
   });
 
-  // ESC to close
+  // ESC para cerrar
   document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape'){ closeModal(); }
+    if (e.key === 'Escape' && modalOpen) {
+      e.preventDefault();
+      closeModalFromUI();
+    }
+  });
+
+  // Si el usuario pulsa Atrás en el teléfono, cerramos el modal en vez de salir
+  window.addEventListener('popstate', function(){
+    if (modalOpen) {
+      pushedState = false;           // ya consumimos el estado
+      reallyCloseModal();
+    }
   });
 })();
 </script>
