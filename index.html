@@ -14,10 +14,26 @@
 .book-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:24px;
+  gap:36px 24px;       /* más separación vertical y horizontal */
   align-items:stretch;
   margin-top:30px;
+  margin-bottom:50px;  /* separación antes del botón inferior */
 }
+
+.book-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:36px 24px;       /* más separación vertical y horizontal */
+  align-items:stretch;
+  margin-top:30px;
+  margin-bottom:50px;  /* separación antes del botón inferior */
+}
+
+.center-btn{
+  text-align:center;
+  margin-top:40px;     /* separa aún más del grid */
+}
+
 
 .book-card{
   background:#fff;
