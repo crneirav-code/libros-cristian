@@ -11,6 +11,7 @@
 
   <style>
 /* ==== MODAL DETALLE LIBRO (Móvil friendly) ==== */
+/* ==== MODAL DETALLE LIBRO (móvil, botones centrados) ==== */
 .modal-overlay{
   position:fixed; inset:0; background:rgba(0,0,0,.45);
   display:none; align-items:center; justify-content:center; z-index:9999;
@@ -20,7 +21,8 @@
 .modal{
   background:#fffdf9; color:#2c2c2c; border-radius:14px;
   max-width:900px; width:92%;
-  max-height:90vh; overflow:auto;   /* permite scroll interno en desktop */
+  max-height:calc(100dvh - 24px);        /* altura real del viewport */
+  overflow:auto;                         /* scroll interno si hace falta */
   box-shadow:0 20px 60px rgba(0,0,0,.25);
   display:grid; grid-template-columns:320px 1fr;
 }
@@ -29,45 +31,48 @@
   padding:14px 18px; background:#f4ede6; border-bottom:1px solid #eadfce;
 }
 .modal-header h3{ margin:0; font-size:1.2rem; color:#5a3b1c; }
-.modal-close{
-  background:transparent; border:none; font-size:1.6rem; cursor:pointer; color:#7a4c29;
-}
+.modal-close{ background:transparent; border:none; font-size:1.6rem; cursor:pointer; color:#7a4c29; }
 
 .modal-left{ padding:18px; display:flex; align-items:flex-start; justify-content:center; background:#fffaf3; }
 .modal-left img{ width:100%; max-width:280px; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,.1); }
 
-.modal-right{ padding:18px 22px; }
-.modal-right .desc{ margin:8px 0 16px; color:#3e2c1e; line-height:1.55; }
-.modal-meta{ font-size:.92rem; color:#7a5b42; margin-bottom:14px; }
+.modal-right{ padding:18px 22px 28px; }   /* más aire abajo */
+.modal-right .desc{ margin:8px 0 16px; color:#3e2c1e; line-height:1.55; text-align:left; }
+.modal-meta{ font-size:.92rem; color:#7a5b42; margin-bottom:14px; text-align:left; }
 
-.modal-actions{ display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; }
+.modal-actions{
+  display:flex; gap:12px; flex-wrap:wrap; margin-top:14px;
+  justify-content:center;                 /* centra los botones */
+  padding-bottom:max(16px, env(safe-area-inset-bottom)); /* no se cortan abajo */
+}
 .btn-outline{
   background:transparent; border:1px solid #7a4c29; color:#7a4c29;
   padding:10px 16px; border-radius:6px; text-decoration:none; display:inline-block;
 }
 .btn-outline:hover{ background:#7a4c29; color:#fff; }
 
-/* ====== MÓVIL ====== */
+/* ===== MÓVIL ===== */
 @media (max-width: 820px){
   .modal{
     grid-template-columns:1fr;
-    width:100vw; height:100vh; max-width:none; max-height:none; border-radius:0;
-    overflow:auto;                            /* scrolla el contenido del modal */
-    padding-bottom: env(safe-area-inset-bottom, 0);
+    width:100svw; height:100dvh; max-width:none; max-height:100dvh; border-radius:0;
   }
   .modal-header{
-    position:sticky; top:0; z-index:1;        /* header fijo y siempre visible */
-    padding-left: max(18px, env(safe-area-inset-left, 0));
-    padding-right: max(18px, env(safe-area-inset-right, 0));
+    position:sticky; top:0; z-index:1;       /* X siempre visible */
+    padding-left:max(18px, env(safe-area-inset-left));
+    padding-right:max(18px, env(safe-area-inset-right));
   }
   .modal-left{ justify-content:center; }
   .modal-left img{ max-height:48vh; object-fit:contain; }
-
-  /* Centrado del contenido en móvil */
   .modal-right, .modal-right .desc, .modal-meta{ text-align:center; }
+}
 
-  /* Botón de cerrar más visible en móvil */
-  .modal-close{ font-size:2rem; line-height:1; padding:4px 8px; }
+/* En pantallas muy angostas apilamos botones, centrados y del mismo ancho */
+@media (max-width: 480px){
+  .modal-actions{ flex-direction:column; align-items:center; }
+  .modal-actions .btn, .modal-actions .btn-outline{
+    width:min(420px, 92%); text-align:center;
+  }
 }
 
     
