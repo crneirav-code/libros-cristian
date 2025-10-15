@@ -465,6 +465,29 @@
   <footer>
     © 2025 Cristian Neira V. — Todos los derechos reservados.
   </footer>
+   <!-- MODAL: colócalo ANTES del script y DENTRO del body -->
+  <div class="modal-overlay" id="bookModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h3 id="modalTitle">Título del libro</h3>
+        <button class="modal-close" aria-label="Cerrar" id="modalClose">&times;</button>
+      </div>
+
+      <div class="modal-left">
+        <img id="modalImg" src="" alt="">
+      </div>
+
+      <div class="modal-right">
+        <div class="modal-meta" id="modalMeta"></div>
+        <p class="desc" id="modalDesc"></p>
+
+        <div class="modal-actions">
+          <a id="modalSample" class="btn-outline" target="_blank" rel="noopener">Leer muestra en Amazon</a>
+          <a id="modalAmazon" class="btn" target="_blank" rel="noopener">Ver en Amazon</a>
+        </div>
+      </div>
+    </div>
+  </div>
 <script>
 (function(){
   const qs = s => document.querySelector(s);
@@ -616,27 +639,5 @@
 })();
 </script>
 </body>
-<div class="modal-overlay" id="bookModal" aria-hidden="true">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-header">
-      <h3 id="modalTitle">Título del libro</h3>
-      <button class="modal-close" aria-label="Cerrar" id="modalClose">&times;</button>
-    </div>
-
-    <div class="modal-left">
-      <img id="modalImg" src="" alt="">
-    </div>
-
-    <div class="modal-right">
-      <div class="modal-meta" id="modalMeta"></div>
-      <p class="desc" id="modalDesc"></p>
-
-      <div class="modal-actions">
-        <a id="modalSample" class="btn-outline" target="_blank" rel="noopener">Leer muestra en Amazon</a>
-        <a id="modalAmazon" class="btn" target="_blank" rel="noopener">Ver en Amazon</a>
-      </div>
-    </div>
-  </div>
-</div>
 
 </html>
