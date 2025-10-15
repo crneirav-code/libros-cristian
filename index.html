@@ -1,5 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
+/* Header responsivo */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: #f7f7fb;
+}
+.site-header .container {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 12px 16px; flex-wrap: wrap;
+}
+
+/* Marca */
+.brand {
+  font-weight: 800;
+  font-size: clamp(18px, 3.5vw, 28px);
+  line-height: 1.1; color: #0b2239; text-decoration: none;
+}
+
+/* Acciones */
+.header-actions { display: flex; align-items: center; gap: 10px; }
+
+/* Botón Amazon */
+.btn.amazon {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #bfe0ff;         /* celeste pastel */
+  color: #0b2239; font-weight: 700;
+  white-space: nowrap;          /* evita salto de línea */
+  max-width: 100%;
+  text-decoration: none;
+  line-height: 1;
+  font-size: clamp(14px, 2.8vw, 16px);
+}
+.btn.amazon i { font-size: clamp(14px, 2.8vw, 18px); }
+
+/* Toggle menú (si lo usas) */
+.menu-toggle {
+  width: 40px; height: 40px; border-radius: 10px;
+  border: 1px solid #e1e5ee; background: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+
+/* Mobile: que el botón se centre y no se corte */
+@media (max-width: 480px) {
+  .header-actions { width: 100%; justify-content: space-between; }
+  .btn.amazon { flex: 1; justify-content: center; padding: 10px 12px; }
+}
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -412,19 +460,27 @@
   <!-- ======= Header ======= -->
   <header class="site-header">
     <div class="container nav">
-      <div class="brand-wrapper" style="display:inline-flex; align-items:center; gap:10px;">
+   <div class="brand-wrapper" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; width:100%;">
+
   <span class="brand-title" style="font-weight:bold; font-size:1.2em; color:#111;">
     Cristian Neira V.
   </span>
 
-  <a href="https://www.amazon.com/author/cneirav" target="_blank" rel="noopener noreferrer"
-     style="background-color:#A7D8FF; color:#003366; color:#003366;
-; color:white; padding:6px 14px; border-radius:20px; text-decoration:none; font-weight:bold; font-size:0.85em; display:inline-flex; align-items:center; gap:6px;">
-     <i class="fab fa-amazon"></i> Ver en Amazon
+  <a href="https://www.amazon.com/author/cneirav" 
+     target="_blank" rel="noopener noreferrer"
+     style="display:inline-flex; align-items:center; justify-content:center; gap:8px;
+            padding:8px 16px; border-radius:999px;
+            background:#bfe0ff; color:#003366; font-weight:bold; 
+            text-decoration:none; white-space:nowrap; 
+            font-size:clamp(0.85em, 2.8vw, 1em); line-height:1;">
+    <i class="fab fa-amazon" style="font-size:clamp(0.9em, 2.8vw, 1.1em);"></i>
+    <span>Ver&nbsp;en&nbsp;Amazon</span>
   </a>
+
 </div>
 
-
+  </a>
+</div>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menú">
         <span class="bar"></span><span class="bar"></span><span class="bar"></span>
       </button>
