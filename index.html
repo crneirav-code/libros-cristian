@@ -243,6 +243,32 @@
 .btn-outline:hover{ background:#7a4c29; color:#fff; }
 @media (max-width:820px){ .modal{ grid-template-columns:1fr; } .modal-left{ justify-content:center; } }
 
+    /* === SOBRE EL AUTOR (centrado y responsivo) === */
+#sobre { padding-top: 70px; padding-bottom: 60px; }
+#sobre h2 { text-align:center; margin-bottom: 26px; }
+
+#sobre .bio{
+  max-width: 760px;           /* controla el ancho de lectura */
+  margin: 0 auto;             /* centra el bloque */
+  text-align: center;         /* centra el texto */
+  background: #fffdf9;
+  border-radius: 12px;
+  padding: clamp(20px, 4vw, 36px);
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);
+}
+
+#sobre .bio p{
+  margin: 0;
+  font-size: clamp(1rem, 2.2vw, 1.08rem);
+  line-height: 1.7;
+  color: #3a2b1e;
+}
+
+#sobre .bio b{
+  color: #5a3b1c;
+  font-weight: 700;
+}
+
   </style>
 </head>
 
@@ -401,11 +427,11 @@
 
   <!-- SOBRE EL AUTOR -->
   <section id="sobre">
-    <h2>Sobre el Autor</h2>
-    <div class="bio">
-      <p><b>Cristian Neira V.</b> es estratega, investigador y autor chileno con más de dos décadas de experiencia en el mundo corporativo y académico. Su obra literaria combina filosofía, psicología, sociología y tecnología para explorar los dilemas del poder, el liderazgo y la transformación digital. Con un estilo provocador e irónico, escribe tanto ensayo como narrativa, moviéndose entre la crítica corporativa, la ficción especulativa y la reflexión sobre el futuro del trabajo y la sociedad.</p>
-    </div>
-  </section>
+  <h2>Sobre el Autor</h2>
+  <div class="bio">
+    <p><b>Cristian Neira V.</b> es estratega, investigador y autor chileno con más de dos décadas de experiencia en el mundo corporativo y académico. Su obra literaria combina filosofía, psicología, sociología y tecnología para explorar los dilemas del poder, el liderazgo y la transformación digital. Con un estilo provocador e irónico, escribe tanto ensayo como narrativa, moviéndose entre la crítica corporativa, la ficción especulativa y la reflexión sobre el futuro del trabajo y la sociedad.</p>
+  </div>
+</section>
 
   <!-- CONTACTO -->
   <section id="contacto">
