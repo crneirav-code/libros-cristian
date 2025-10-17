@@ -431,7 +431,7 @@
           class="btn js-detail"
           data-title="Convergencia Digital: Mentes y Mercado"
           data-img="covers/convergencia-digital.jpg"
-          data-url="https://www.amazon.com/s?k=Convergencia+Digital+Cristian+Neira"
+          data-url="https://a.co/d/8GCDqsy"
           data-sample="https://www.amazon.com/s?k=Convergencia+Digital+Cristian+Neira"
           data-meta="Edición Kindle y tapa blanda"
           data-desc="Estrategia digital, comportamiento del consumidor y captura de valor en mercados hiperconectados.">
@@ -619,8 +619,19 @@ function slugFromTitle(title){
     .replace(/[^a-z0-9]+/g, '_')   // reemplaza espacios y signos por _
     .replace(/^_+|_+$/g, '');       // elimina _ iniciales o finales
 }
-  
+  // === UTIL: convierte el título en un slug compatible con el JSON (usa _)
+function slugFromTitle(title){
+  return (title || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '');
+}
+
+// (si no lo tienes aún) URL del Worker
+const WORKER_URL = 'https://interacciones-libros.modomayorcl.workers.dev';
   function openModal(data){
+   const BOOK_SLUG = slugFromTitle(data.title || 'libro');
+
     // Genera un identificador (slug) único para este libro
 const BOOK_SLUG = slugFromTitle(data.title || 'libro');
 
@@ -637,6 +648,27 @@ const BOOK_SLUG = slugFromTitle(data.title || 'libro');
     if (modalAmazon) modalAmazon.href = data.url || '#';
     if (modalSample) modalSample.href = data.sample || data.url || '#';
 
+// Cargar stats reales desde el Worker
+async function fetchStatsReal(){
+  try{
+    const r = await fetch(`${WORKER_URL}/stats?book=${encodeURIComponent(BOOK_SLUG)}`);
+    const s = await r.json();
+    const likes = s.likes ?? 0;
+    const avg   = s.rating_count ? (s.rating_sum / s.rating_count) : 0;
+
+    const likesEl  = document.getElementById('realLikes');
+    const ratingEl = document.getElementById('realRating');
+    if(likesEl)  likesEl.textContent  = `❤️ ${likes} Me gusta`;
+    if(ratingEl) ratingEl.textContent = `⭐ Promedio: ${avg.toFixed(1)}`;
+
+    // si tienes contador visual y estrellas locales:
+    if (typeof likeCount !== 'undefined' && likeCount) likeCount.textContent = String(likes);
+    if (typeof paintStars === 'function') paintStars(Math.round(avg));
+  } catch(e){ console.warn('No se pudo cargar stats reales', e); }
+}
+fetchStatsReal(); // dispara lectura al abrir el modal
+
+    
     // --- ESTADO POR LIBRO ---
     const STORE_KEY = keyFor(data.title || 'libro');
     let state = loadState(STORE_KEY);
@@ -668,12 +700,34 @@ const BOOK_SLUG = slugFromTitle(data.title || 'libro');
     paintStars(state.stars);
     starNodes().forEach(st => {
       st.onclick = function(){
-        const val = parseInt(this.dataset.score, 10) || 0;
-        state.stars = val;
-        saveStars(STORE_KEY, state.stars);
-        paintStars(state.stars);
-      };
-    });
+   st.onclick = function(){
+  const val = parseInt(this.dataset.score, 10) || 0;
+  const previous = state.stars || 0; // ⭐ guarda el valor anterior
+  state.stars = val;
+
+  // Guarda localmente
+  saveStars(STORE_KEY, state.stars);
+  paintStars(state.stars);
+
+  // 🔗 Envía al Worker (GitHub)
+  fetch(`${WORKER_URL}/event`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      type: 'rate',
+      book: BOOK_SLUG,
+      newRating: val,
+      oldRating: previous
+    })
+  })
+  .then(() => setTimeout(fetchStatsReal, 800)) // refresca los datos reales
+  .catch(()=>{});
+};
+//pon los datos reales//
+    <div id="realStats" style="text-align:center; margin-top:6px; color:#5a3b1c; font-family:Arial, sans-serif; font-size:0.9rem;">
+  <span id="realLikes">❤️ 0 Me gusta</span> &nbsp;|&nbsp;
+  <span id="realRating">⭐ Promedio: 0.0</span>
+</div>
 
     
     // CTA seguir autor (opcional)
