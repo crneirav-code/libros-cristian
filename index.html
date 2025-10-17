@@ -646,122 +646,94 @@ async function fetchStatsReal(slug){
 
 // (si no lo tienes aún) URL del Worker
 const WORKER_URL = 'https://interacciones-libros.modomayorcl.workers.dev';
-  function openModal(data){
-  // 1) slug para este libro
+ function openModal(data){
+  // --- slug para el Worker/GitHub ---
   const BOOK_SLUG = slugFromTitle(data.title || 'libro');
 
-    
-    // --- ESTADO POR LIBRO ---
-    const STORE_KEY = keyFor(data.title || 'libro');
-    let state = loadState(STORE_KEY);
+  // --- Pinta el contenido del modal (tus nombres de campos) ---
+  if (modalImg)    modalImg.src = data.img || '';
+  if (modalTitle)  modalTitle.textContent = data.title || '';
+  if (modalMeta)   modalMeta.textContent  = data.meta  || '';
+  if (modalDesc)   modalDesc.textContent  = data.desc  || '';
+  if (modalAmazon) modalAmazon.href       = data.url   || '#';
+  if (modalSample) modalSample.href       = data.sample || data.url || '#';
 
-    // Inicializa UI de likes
-    if (likeCount) likeCount.textContent = String(state.likes);
-    if (likeBtn){
+  // --- Share links si ya los tienes definidos (opcional, deja igual o quita) ---
+  if (typeof buildShareUrls === 'function') buildShareUrls(data);
+
+  // --- Estado local por libro (ya existe en tu script) ---
+  const STORE_KEY = keyFor(data.title || 'libro');
+  let state = loadState(STORE_KEY);
+
+  // --- Inicializa UI de likes ---
+  if (likeCount) likeCount.textContent = String(state.likes || 0);
+  if (likeBtn){
+    likeBtn.classList.toggle('liked', !!state.liked);
+    if (likeText) likeText.textContent = state.liked ? 'Te gusta' : 'Me gusta';
+
+    likeBtn.onclick = function(){
+      state = loadState(STORE_KEY);
+      if (state.liked){
+        state.liked = false;
+        state.likes = Math.max(0, (state.likes || 0) - 1);
+      } else {
+        state.liked = true;
+        state.likes = (state.likes || 0) + 1;
+      }
+      saveLiked(STORE_KEY, state.liked);
+      saveLikes(STORE_KEY, state.likes);
+
       likeBtn.classList.toggle('liked', state.liked);
-      likeText && (likeText.textContent = state.liked ? 'Te gusta' : 'Me gusta');
+      if (likeCount) likeCount.textContent = String(state.likes);
+      if (likeText)  likeText.textContent  = state.liked ? 'Te gusta' : 'Me gusta';
 
-     likeBtn.onclick = function(){
-  state = loadState(STORE_KEY);
-
-  // toggle local
-  if (state.liked){
-    state.liked = false;
-    state.likes = Math.max(0, state.likes - 1);
-  } else {
-    state.liked = true;
-    state.likes = state.likes + 1;
-  }
-  saveLiked(STORE_KEY, state.liked);
-  saveLikes(STORE_KEY, state.likes);
-  likeBtn.classList.toggle('liked', state.liked);
-  if (likeCount) likeCount.textContent = String(state.likes);
-  if (likeText)  likeText.textContent  = state.liked ? 'Te gusta' : 'Me gusta';
-
-  // delta: +1 si quedó en "liked", -1 si se quitó
-  const delta = state.liked ? +1 : -1;
-  fetch(`${WORKER_URL}/event`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ type: 'like', book: BOOK_SLUG, delta })
-  })
-  .then(() => setTimeout(() => fetchStatsReal(BOOK_SLUG), 800))
-
-  .catch(()=>{});
-};
-
-    }
-
-    // Inicializa UI de estrellas
-    paintStars(state.stars);
-    starNodes().forEach(st => {
-  st.onclick = function(){
-    const val = parseInt(this.dataset.score, 10) || 0;
-    const previous = state.stars || 0; // valor anterior
-    state.stars = val;
-
-    // Guarda local/local UI
-    saveStars(STORE_KEY, state.stars);
-    paintStars(state.stars);
-
-    // Enviar al backend (GitHub vía Worker)
-    fetch(`${WORKER_URL}/event`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        type: 'rate',
-        book: BOOK_SLUG,
-        newRating: val,
-        oldRating: previous
+      // Enviar al Worker
+      const delta = state.liked ? +1 : -1;
+      fetch(`${WORKER_URL}/event`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'like', book: BOOK_SLUG, delta })
       })
-    })
-    .then(() => setTimeout(fetchStatsReal, 800))
-    .catch(()=>{});
-  };
-});
-
-  // Guarda localmente
-  saveStars(STORE_KEY, state.stars);
-  paintStars(state.stars);
-
-  // 🔗 Envía al Worker (GitHub)
-  fetch(`${WORKER_URL}/event`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      type: 'rate',
-      book: BOOK_SLUG,
-      newRating: val,
-      oldRating: previous
-    })
-  })
-  .then(() => setTimeout(fetchStatsReal, 800)) // refresca los datos reales
-  .catch(()=>{});
-};
-
-    
-    // CTA seguir autor (opcional)
-    if (followAmazon) followAmazon.href = AUTHOR_PAGE;
-
-    // Compartir (opcional)
-    currentShare = { title: data.title || 'Libro', url: data.url || location.href };
-    const t = encodeURIComponent(currentShare.title + ' — de Cristian Neira');
-    const u = encodeURIComponent(currentShare.url);
-    if (shareWhatsapp) shareWhatsapp.href = `https://wa.me/?text=${t}%20${u}`;
-    if (shareX)        shareX.href        = `https://twitter.com/intent/tweet?text=${t}&url=${u}`;
-    if (shareLinkedin) shareLinkedin.href = `https://www.linkedin.com/sharing/share-offsite/?url=${u}`;
-
-    overlay.classList.add('active');
-    overlay.setAttribute('aria-hidden', 'false');
-    lockScroll(true);
-    modalOpen = true;
-
-    if (!pushedState) {
-      history.pushState({ modal: true }, '');
-      pushedState = true;
-    }
-    closeBtn && closeBtn.focus();
+      .then(() => setTimeout(() => fetchStatsReal(BOOK_SLUG), 800))
+      .catch(()=>{});
+    };
   }
+
+  // --- Inicializa UI de estrellas ---
+  paintStars(state.stars || 0);
+  starNodes().forEach(st => {
+    st.onclick = function(){
+      const val = parseInt(this.dataset.score, 10) || 0;
+      const previous = state.stars || 0;
+      state.stars = val;
+
+      saveStars(STORE_KEY, state.stars);
+      paintStars(state.stars);
+
+      // Enviar al Worker
+      fetch(`${WORKER_URL}/event`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'rate',
+          book: BOOK_SLUG,
+          newRating: val,
+          oldRating: previous
+        })
+      })
+      .then(() => setTimeout(() => fetchStatsReal(BOOK_SLUG), 800))
+      .catch(()=>{});
+    };
+  });
+
+  // --- Lee los datos reales (likes y promedio) y los pinta ---
+  fetchStatsReal(BOOK_SLUG);
+
+  // --- Abre el modal (tu lógica existente) ---
+  overlay.classList.add('active');
+  modal.classList.add('active');
+  lockScroll();
+}
 
   function reallyCloseModal(){
     if (!overlay) return;
