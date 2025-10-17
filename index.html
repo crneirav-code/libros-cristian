@@ -310,6 +310,104 @@
   color:#5a3b1c; text-decoration:none; font-family:Arial, sans-serif;
 }
 .share-btn:hover{ background:#f6efe7; }
+/* ====== MOBILE TUNING (<= 768px) ====== */
+@media (max-width: 768px){
+
+  /* Estructura del modal en una sola columna */
+  .modal-content{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .modal-left{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding: 8px 0;
+  }
+  .modal-left img{
+    max-width: 65%;
+    height: auto;
+  }
+
+  .modal-right{
+    padding: 8px 16px 16px;
+    max-height: none;           /* evita recortes en móvil */
+    overflow: visible;
+  }
+
+  /* --- Botones de interacción visibles y cómodos --- */
+  .like-wrap{
+    display:flex !important;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 8px;
+  }
+  .like-btn{
+    width: 100%;
+    justify-content: center;
+    padding: 12px 14px;
+    font-size: 16px;
+  }
+  .rating{
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+  }
+  .rating .star{
+    font-size: 22px;          /* más grande para dedo */
+    padding: 6px;
+  }
+
+  /* Datos reales */
+  #realStats{
+    margin-top: 8px;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+
+  /* Compartir */
+  .modal-share{
+    display:flex !important;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .modal-share .share-btn{
+    width: 48%;                /* 2 por fila */
+    justify-content: center;
+    padding: 10px 12px;
+    font-size: 15px;
+  }
+
+  /* Botonera principal del modal */
+  .modal-actions{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  .modal-actions .btn,
+  .modal-actions .btn-outline{
+    width: 48%;
+    text-align:center;
+    padding: 12px 14px;
+    font-size: 16px;
+  }
+}
+
+/* Ajuste extra para pantallas muy chicas */
+@media (max-width: 420px){
+  .modal-share .share-btn,
+  .modal-actions .btn,
+  .modal-actions .btn-outline{
+    width: 100%;
+  }
+  .modal-left img{ max-width: 75%; }
+}
 
     
   </style>
