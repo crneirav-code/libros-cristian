@@ -513,6 +513,33 @@
           <a id="modalSample" class="btn-outline" target="_blank" rel="noopener">Leer muestra</a>
           <a id="modalAmazon" class="btn" target="_blank" rel="noopener">Comprar</a>
         </div>
+        <!-- INTERACCIÓN: Me gusta + Valoración -->
+<div class="like-wrap" style="margin-top:12px;">
+  <button id="likeBtn" class="like-btn" type="button" aria-label="Me gusta">
+    <i class="fa-regular fa-heart"></i>
+    <span id="likeText">Me gusta</span>
+    <span class="like-count" id="likeCount">0</span>
+  </button>
+
+  <div class="rating" aria-label="Valorar este libro">
+    <button class="star" data-score="1" aria-label="1 estrella">&#9733;</button>
+    <button class="star" data-score="2" aria-label="2 estrellas">&#9733;</button>
+    <button class="star" data-score="3" aria-label="3 estrellas">&#9733;</button>
+    <button class="star" data-score="4" aria-label="4 estrellas">&#9733;</button>
+    <button class="star" data-score="5" aria-label="5 estrellas">&#9733;</button>
+  </div>
+</div>
+
+<!-- COMPARTIR -->
+<div class="modal-share">
+  <small>Compartir:</small>
+  <a id="shareNative"   class="share-btn"><i class="fa fa-share-alt"></i> Sistema</a>
+  <a id="shareWhatsapp" class="share-btn" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  <a id="shareLinkedin" class="share-btn" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
+  <a id="shareX"        class="share-btn" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i> X</a>
+  <a id="shareCopy"     class="share-btn"><i class="fa fa-link"></i> Copiar enlace</a>
+</div>
+
       </div>
     </div>
   </div>
@@ -529,6 +556,12 @@
   const modalAmazon = qid('modalAmazon');
   const modalSample = qid('modalSample');
   const closeBtn = qid('modalClose');
+
+    // --- NUEVOS ELEMENTOS DE INTERACCIÓN ---
+  const likeBtn   = document.getElementById('likeBtn');
+  const likeCount = document.getElementById('likeCount');
+  const likeText  = document.getElementById('likeText');
+  const starNodes = () => Array.from(document.querySelectorAll('.modal-right .star')); // función por si re-render
 
   // Opcionales (pueden no existir)
   const followAmazon = qid('modalFollowAmazon');
@@ -549,7 +582,31 @@
     document.body.style.overflow = lock ? 'hidden' : '';
     document.body.style.touchAction = lock ? 'none' : '';
   }
+  // Normaliza clave por título
+  function keyFor(title){
+    return 'book_' + (title || '').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'');
+  }
 
+  function loadState(k){
+    return {
+      likes : parseInt(localStorage.getItem(k + '_likes')  || '0', 10),
+      liked : localStorage.getItem(k + '_liked') === '1',
+      stars : parseInt(localStorage.getItem(k + '_rating') || '0', 10)
+    };
+  }
+
+  function saveLikes(k, likes){ localStorage.setItem(k + '_likes', String(likes)); }
+  function saveLiked(k, liked){ localStorage.setItem(k + '_liked', liked ? '1' : '0'); }
+  function saveStars(k, stars){ localStorage.setItem(k + '_rating', String(stars)); }
+
+  function paintStars(n){
+    starNodes().forEach(st => {
+      const s = parseInt(st.dataset.score, 10);
+      st.classList.toggle('active', s <= n);
+    });
+  }
+
+  
   function openModal(data){
     if (!overlay) return; // si falta el modal, salimos silenciosamente
 
@@ -564,6 +621,45 @@
     if (modalAmazon) modalAmazon.href = data.url || '#';
     if (modalSample) modalSample.href = data.sample || data.url || '#';
 
+    // --- ESTADO POR LIBRO ---
+    const STORE_KEY = keyFor(data.title || 'libro');
+    let state = loadState(STORE_KEY);
+
+    // Inicializa UI de likes
+    if (likeCount) likeCount.textContent = String(state.likes);
+    if (likeBtn){
+      likeBtn.classList.toggle('liked', state.liked);
+      likeText && (likeText.textContent = state.liked ? 'Te gusta' : 'Me gusta');
+
+      likeBtn.onclick = function(){
+        state = loadState(STORE_KEY); // refresca por si algo cambió
+        if (state.liked){
+          state.liked = false;
+          state.likes = Math.max(0, state.likes - 1);
+        } else {
+          state.liked = true;
+          state.likes = state.likes + 1;
+        }
+        saveLiked(STORE_KEY, state.liked);
+        saveLikes(STORE_KEY, state.likes);
+        likeBtn.classList.toggle('liked', state.liked);
+        if (likeCount) likeCount.textContent = String(state.likes);
+        if (likeText)  likeText.textContent  = state.liked ? 'Te gusta' : 'Me gusta';
+      };
+    }
+
+    // Inicializa UI de estrellas
+    paintStars(state.stars);
+    starNodes().forEach(st => {
+      st.onclick = function(){
+        const val = parseInt(this.dataset.score, 10) || 0;
+        state.stars = val;
+        saveStars(STORE_KEY, state.stars);
+        paintStars(state.stars);
+      };
+    });
+
+    
     // CTA seguir autor (opcional)
     if (followAmazon) followAmazon.href = AUTHOR_PAGE;
 
