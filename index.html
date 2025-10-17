@@ -284,6 +284,34 @@
 .share-btn:hover{ background:#f6efe7; }
 .modal-share small{ align-self:center; color:#7a5b42; margin-right:4px; }
 
+    /* === INTERACCIÓN: like, rating y compartir === */
+.like-wrap{ display:flex; gap:14px; align-items:center; justify-content:center; flex-wrap:wrap; }
+.like-btn{
+  display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+  background:#fff; border:1px solid #e6d8ca; padding:8px 12px; border-radius:8px; 
+  color:#5a3b1c; font-family:Arial, sans-serif;
+}
+.like-btn:hover{ background:#f6efe7; }
+.like-btn.liked i{ color:#c25555; }
+.like-count{ font-weight:600; }
+
+.rating{ display:inline-flex; align-items:center; gap:6px; }
+.star{
+  font-size:1.28rem; line-height:1; cursor:pointer; border:none; background:transparent;
+  color:#c9a78d; padding:2px;
+}
+.star.active{ color:#f0b400; } /* estrellas encendidas */
+
+.modal-share{ margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+.modal-share small{ align-self:center; color:#7a5b42; margin-right:4px; }
+.share-btn{
+  display:inline-flex; align-items:center; gap:8px;
+  background:#fff; border:1px solid #e6d8ca; padding:8px 12px; border-radius:8px; cursor:pointer;
+  color:#5a3b1c; text-decoration:none; font-family:Arial, sans-serif;
+}
+.share-btn:hover{ background:#f6efe7; }
+
+    
   </style>
 </head>
 
