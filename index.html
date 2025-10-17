@@ -664,8 +664,6 @@ const WORKER_URL = 'https://interacciones-libros.modomayorcl.workers.dev';
       if (typeof paintStars === 'function') paintStars(Math.round(avg));
     }catch(e){ console.warn('No se pudo cargar stats reales', e); }
   }
-// Genera un identificador (slug) único para este libro
-    const BOOK_SLUG = slugFromTitle(data.title || 'libro');
 
     if (!overlay) return; // si falta el modal, salimos silenciosamente
 
