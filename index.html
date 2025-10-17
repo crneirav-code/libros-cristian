@@ -552,6 +552,27 @@
 
   // === Config global (arriba del script) ===
 const WORKER_URL = 'https://interacciones-libros.modomayorcl.workers.dev';
+// Lee stats reales desde el Worker y pinta el modal
+async function fetchStatsReal(slug){
+  try{
+    const r = await fetch(`${WORKER_URL}/stats?book=${encodeURIComponent(slug)}`);
+    const s = await r.json();
+
+    const likes = s.likes ?? 0;
+    const avg   = s.rating_count ? (s.rating_sum / s.rating_count) : 0;
+
+    const likesEl  = document.getElementById('realLikes');
+    const ratingEl = document.getElementById('realRating');
+    if(likesEl)  likesEl.textContent  = `❤️ ${likes} Me gusta`;
+    if(ratingEl) ratingEl.textContent = `⭐ Promedio: ${avg.toFixed(1)}`;
+
+    // Si tienes contador y pintado de estrellas local:
+    if (typeof likeCount !== 'undefined' && likeCount) likeCount.textContent = String(likes);
+    if (typeof paintStars === 'function') paintStars(Math.round(avg));
+  } catch(e){
+    console.warn('No se pudo cargar stats reales', e);
+  }
+}
 
 // Slug desde el título (coincide con el JSON)
 function slugFromTitle(title){
@@ -642,7 +663,6 @@ function slugFromTitle(title){
 
 // (si no lo tienes aún) URL del Worker
 const WORKER_URL = 'https://interacciones-libros.modomayorcl.workers.dev';
-  function openModal(data){
   function openModal(data){
   // 1) slug para este libro
   const BOOK_SLUG = slugFromTitle(data.title || 'libro');
