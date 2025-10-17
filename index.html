@@ -515,6 +515,12 @@
         </div>
         <!-- INTERACCIÓN: Me gusta + Valoración -->
 <div class="like-wrap" style="margin-top:12px;">
+  <!-- DATOS REALES -->
+<div id="realStats" style="text-align:center; margin-top:6px; color:#5a3b1c; font-family:Arial, sans-serif; font-size:0.9rem;">
+  <span id="realLikes">❤️ 0 Me gusta</span> &nbsp;|&nbsp;
+  <span id="realRating">⭐ Promedio: 0.0</span>
+</div>
+
   <button id="likeBtn" class="like-btn" type="button" aria-label="Me gusta">
     <i class="fa-regular fa-heart"></i>
     <span id="likeText">Me gusta</span>
@@ -606,8 +612,18 @@
     });
   }
 
+  // Convierte el título del libro en un "slug" compatible con el JSON
+function slugFromTitle(title){
+  return (title || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '_')   // reemplaza espacios y signos por _
+    .replace(/^_+|_+$/g, '');       // elimina _ iniciales o finales
+}
   
   function openModal(data){
+    // Genera un identificador (slug) único para este libro
+const BOOK_SLUG = slugFromTitle(data.title || 'libro');
+
     if (!overlay) return; // si falta el modal, salimos silenciosamente
 
     modalTitle && (modalTitle.textContent = data.title || '');
