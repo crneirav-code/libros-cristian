@@ -557,33 +557,8 @@ const WORKER_URL = 'https://interacciones-libros.modomayorcl.workers.dev';
 function slugFromTitle(title){
   return (title || '')
     .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9]+/g, '_')
     .replace(/^_+|_+$/g, '');
-}
-
-// Enviar eventos al Worker con logs y manejo de errores
-async function sendEventToWorker(payload){
-  try{
-    const r = await fetch(`${WORKER_URL}/event`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    const json = await r.json().catch(()=> ({}));
-    if(!r.ok){
-      console.error('Worker respondió error:', r.status, json);
-      alert(`No pude guardar en GitHub: ${json.error || r.status}`);
-      return null;
-    }
-    console.log('Worker OK:', json);
-    return json; // {ok, book, likes, rating_count, rating_sum, rating_avg}
-  }catch(e){
-    console.error('Fallo al llamar al Worker:', e);
-    alert('No pude conectar con el servidor (Worker). Revisa tu conexión.');
-    return null;
-  }
 }
 
 // Lee stats reales desde el Worker y pinta el modal
@@ -714,18 +689,13 @@ const WORKER_URL = 'https://interacciones-libros.modomayorcl.workers.dev';
 
       // Enviar al Worker
       const delta = state.liked ? +1 : -1;
-     // delta: +1 si quedó liked, -1 si lo quitó
-const delta = state.liked ? +1 : -1;
-
-sendEventToWorker({ type: 'like', book: BOOK_SLUG, delta })
-  .then(res => {
-    if(!res) return; // hubo error
-    // Actualiza con datos reales devueltos por el Worker
-    if (likeCount) likeCount.textContent = String(res.likes ?? state.likes);
-    const likesEl = document.getElementById('realLikes');
-    if (likesEl) likesEl.textContent = `❤️ ${res.likes ?? state.likes} Me gusta`;
-  });
-
+      fetch(`${WORKER_URL}/event`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'like', book: BOOK_SLUG, delta })
+      })
+      .then(() => setTimeout(() => fetchStatsReal(BOOK_SLUG), 800))
+      .catch(()=>{});
     };
   }
 
@@ -741,19 +711,18 @@ sendEventToWorker({ type: 'like', book: BOOK_SLUG, delta })
       paintStars(state.stars);
 
       // Enviar al Worker
-     sendEventToWorker({
-  type: 'rate',
-  book: BOOK_SLUG,
-  newRating: val,
-  oldRating: previous
-}).then(res => {
-  if(!res) return; // error
-  // Si quieres, refleja el promedio real:
-  const avg = res.rating_count ? (res.rating_sum / res.rating_count) : 0;
-  const ratingEl = document.getElementById('realRating');
-  if (ratingEl) ratingEl.textContent = `⭐ Promedio: ${avg.toFixed(1)}`;
-});
-
+      fetch(`${WORKER_URL}/event`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'rate',
+          book: BOOK_SLUG,
+          newRating: val,
+          oldRating: previous
+        })
+      })
+      .then(() => setTimeout(() => fetchStatsReal(BOOK_SLUG), 800))
+      .catch(()=>{});
     };
   });
 
