@@ -753,7 +753,8 @@ fetchStatsReal(); // dispara lectura al abrir el modal
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ type: 'like', book: BOOK_SLUG, delta })
   })
-  .then(() => setTimeout(fetchStatsReal, 800))
+  .then(() => setTimeout(() => fetchStatsReal(BOOK_SLUG), 800))
+
   .catch(()=>{});
 };
 
