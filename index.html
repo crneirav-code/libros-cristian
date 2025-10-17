@@ -412,7 +412,7 @@
       data-img="covers/narrativas-cuanticas.jpg"
       data-url="https://www.amazon.com/dp/B0D9DNNSFK"
       data-sample="https://read.amazon.com/kp/embed?asin=B0D9DNNSFK&preview=newtab&linkCode=kpe"
-      data-meta="Edición Kindle y tapa blanda""
+      data-meta="Edición Kindle y tapa blanda"
       data-desc="Cómo reescribir tu realidad integrando ciencia, psicología y narrativa personal.">
       Ver detalle
     </button>
@@ -549,15 +549,23 @@
       </div>
     </div>
   </div>
-
-  // === Config global (arriba del script) ===
+  
+  <script>
+// === Config global y utilidades ===
 const WORKER_URL = 'https://interacciones-libros.modomayorcl.workers.dev';
+
+function slugFromTitle(title){
+  return (title || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '');
+}
+
 // Lee stats reales desde el Worker y pinta el modal
 async function fetchStatsReal(slug){
   try{
     const r = await fetch(`${WORKER_URL}/stats?book=${encodeURIComponent(slug)}`);
     const s = await r.json();
-
     const likes = s.likes ?? 0;
     const avg   = s.rating_count ? (s.rating_sum / s.rating_count) : 0;
 
@@ -566,25 +574,15 @@ async function fetchStatsReal(slug){
     if(likesEl)  likesEl.textContent  = `❤️ ${likes} Me gusta`;
     if(ratingEl) ratingEl.textContent = `⭐ Promedio: ${avg.toFixed(1)}`;
 
-    // Si tienes contador y pintado de estrellas local:
     if (typeof likeCount !== 'undefined' && likeCount) likeCount.textContent = String(likes);
     if (typeof paintStars === 'function') paintStars(Math.round(avg));
   } catch(e){
     console.warn('No se pudo cargar stats reales', e);
   }
 }
-
-// Slug desde el título (coincide con el JSON)
-function slugFromTitle(title){
-  return (title || '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '_')
-    .replace(/^_+|_+$/g, '');
-}
-
-  
-  <script>
-(function(){
+   
+    
+    (function(){
   const qs = s => document.querySelector(s);
   const qid = id => document.getElementById(id);
 
@@ -646,77 +644,11 @@ function slugFromTitle(title){
     });
   }
 
-  // Convierte el título del libro en un "slug" compatible con el JSON
-function slugFromTitle(title){
-  return (title || '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '_')   // reemplaza espacios y signos por _
-    .replace(/^_+|_+$/g, '');       // elimina _ iniciales o finales
-}
-  // === UTIL: convierte el título en un slug compatible con el JSON (usa _)
-function slugFromTitle(title){
-  return (title || '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '_')
-    .replace(/^_+|_+$/g, '');
-}
-
 // (si no lo tienes aún) URL del Worker
 const WORKER_URL = 'https://interacciones-libros.modomayorcl.workers.dev';
   function openModal(data){
   // 1) slug para este libro
   const BOOK_SLUG = slugFromTitle(data.title || 'libro');
-
-  // 2) función para leer stats reales (defínela ANTES de usarla en handlers)
-  async function fetchStatsReal(){
-    try{
-      const r = await fetch(`${WORKER_URL}/stats?book=${encodeURIComponent(BOOK_SLUG)}`);
-      const s = await r.json();
-      const likes = s.likes ?? 0;
-      const avg   = s.rating_count ? (s.rating_sum / s.rating_count) : 0;
-
-      const likesEl  = document.getElementById('realLikes');
-      const ratingEl = document.getElementById('realRating');
-      if(likesEl)  likesEl.textContent  = `❤️ ${likes} Me gusta`;
-      if(ratingEl) ratingEl.textContent = `⭐ Promedio: ${avg.toFixed(1)}`;
-
-      if (typeof likeCount !== 'undefined' && likeCount) likeCount.textContent = String(likes);
-      if (typeof paintStars === 'function') paintStars(Math.round(avg));
-    }catch(e){ console.warn('No se pudo cargar stats reales', e); }
-  }
-
-    if (!overlay) return; // si falta el modal, salimos silenciosamente
-
-    modalTitle && (modalTitle.textContent = data.title || '');
-    if (modalImg){
-      modalImg.src = data.img || '';
-      modalImg.alt = data.title || '';
-    }
-    modalMeta && (modalMeta.textContent = data.meta || '');
-    modalDesc && (modalDesc.textContent = data.desc || '');
-
-    if (modalAmazon) modalAmazon.href = data.url || '#';
-    if (modalSample) modalSample.href = data.sample || data.url || '#';
-
-// Cargar stats reales desde el Worker
-async function fetchStatsReal(){
-  try{
-    const r = await fetch(`${WORKER_URL}/stats?book=${encodeURIComponent(BOOK_SLUG)}`);
-    const s = await r.json();
-    const likes = s.likes ?? 0;
-    const avg   = s.rating_count ? (s.rating_sum / s.rating_count) : 0;
-
-    const likesEl  = document.getElementById('realLikes');
-    const ratingEl = document.getElementById('realRating');
-    if(likesEl)  likesEl.textContent  = `❤️ ${likes} Me gusta`;
-    if(ratingEl) ratingEl.textContent = `⭐ Promedio: ${avg.toFixed(1)}`;
-
-    // si tienes contador visual y estrellas locales:
-    if (typeof likeCount !== 'undefined' && likeCount) likeCount.textContent = String(likes);
-    if (typeof paintStars === 'function') paintStars(Math.round(avg));
-  } catch(e){ console.warn('No se pudo cargar stats reales', e); }
-}
-fetchStatsReal(); // dispara lectura al abrir el modal
 
     
     // --- ESTADO POR LIBRO ---
