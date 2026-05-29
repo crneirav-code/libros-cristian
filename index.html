@@ -19,11 +19,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-.book-card:has([data-title*="El Tablero Invisible"]) {
-  display: none !important;
-}
-
-    
     /* ====- MODAL DETALLE LIBRO (móvil, botones centrados) ==== */
 .modal-overlay{
   position:fixed; inset:0; background:rgba(0,0,0,.45);
@@ -235,6 +230,55 @@
       color: #4a3b2a;
     }
 
+
+/* === BLOG / ENSAYOS === */
+.blog-preview{
+  background:#fffdf9;
+  border-radius:14px;
+  padding:clamp(24px, 4vw, 40px);
+  box-shadow:0 2px 10px rgba(0,0,0,.05);
+  margin-top:30px;
+}
+.blog-intro{
+  max-width:720px;
+  margin:0 auto 26px;
+  text-align:center;
+  color:#3a2b1e;
+  line-height:1.7;
+}
+.blog-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+}
+.post-card{
+  background:#fff;
+  border:1px solid #eadfce;
+  border-radius:12px;
+  padding:22px;
+  box-shadow:0 2px 8px rgba(0,0,0,.04);
+}
+.post-card time{
+  display:block;
+  color:#8a6b52;
+  font-family:Arial, sans-serif;
+  font-size:.86rem;
+  margin-bottom:8px;
+}
+.post-card h3{
+  color:#5a3b1c;
+  font-size:1.18rem;
+  margin:0 0 10px;
+}
+.post-card p{
+  color:#3e2c1e;
+  margin:0 0 16px;
+}
+.post-link{
+  font-family:Arial, sans-serif;
+  font-weight:600;
+}
+
     /* === RESPONSIVE === */
     @media (max-width: 700px) {
       header {
@@ -434,6 +478,7 @@
     <h1>Cristian Neira V.</h1>
     <nav>
       <a href="#amazon">Libros</a>
+      <a href="#blog">Blog</a>
       <a href="#sobre">Sobre el autor</a>
       <a href="#contacto">Contacto</a>
     </nav>
@@ -534,7 +579,7 @@
 
     <!-- El Tablero Invisible -->
     <div class="book-card">
-      <a class="book-cover" href="https://www.amazon.com/s?k=El+Tablero+Invisible+Cristian+Neira" target="_blank" rel="noopener">
+      <a class="book-cover" href="https://a.co/d/0bmv8Maw" target="_blank" rel="noopener">
         <img src="covers/tablero-invisible.jpg" alt="El Tablero Invisible">
       </a>
       <div class="book-title">El Tablero Invisible</div>
@@ -543,10 +588,10 @@
           class="btn js-detail"
           data-title="El Tablero Invisible"
           data-img="covers/tablero-invisible.jpg"
-          data-url="https://www.cneirav.cl"
-          data-sample="https://www.cneirav.cl"
-          data-meta="Disponible próximamente"
-          data-desc="Manual de supervivencia para navegar el poder oculto y los fractales políticos de las organizaciones.">
+          data-url="https://a.co/d/0bmv8Maw"
+          data-sample="https://a.co/d/0bmv8Maw"
+          data-meta="Disponible en Amazon"
+          data-desc="La política real de la empresa moderna: manipulación, poder y supervivencia. El poder que no aparece en el organigrama.">
           Ver detalle
         </button>
       </div>
@@ -559,6 +604,49 @@
     </a>
   </p>
 </section>
+
+  <!-- BLOG -->
+  <section id="blog">
+    <h2>Blog</h2>
+    <div class="blog-preview">
+      <p class="blog-intro">Reflexiones, ensayos breves y notas de trabajo sobre poder, liderazgo, tecnología, narrativa y los temas que cruzan mis libros.</p>
+      <div class="blog-grid">
+        <article class="post-card">
+          <time datetime="2026-05-29">29 mayo 2026</time>
+          <h3>Manual de Succión Ejecutiva: anatomía de la supervivencia corporativa</h3>
+          <p>Una lectura irónica sobre los rituales, lealtades y pequeños teatros que moldean el ascenso profesional en la empresa real.</p>
+          <a class="post-link" href="blog/manual-de-succion-ejecutiva.html">Leer entrada</a>
+        </article>
+        <article class="post-card">
+          <time datetime="2026-05-29">29 mayo 2026</time>
+          <h3>Cosecha de Emociones: cuando sentir se vuelve energía</h3>
+          <p>Una reflexión sobre la emoción como fuerza narrativa, recurso vital y campo de disputa dentro de la ciencia ficción.</p>
+          <a class="post-link" href="blog/cosecha-de-emociones-la-energia-secreta.html">Leer entrada</a>
+        </article>
+        <article class="post-card">
+          <time datetime="2026-05-29">29 mayo 2026</time>
+          <h3>El Último Líder Humano: liderar cuando la inteligencia se automatiza</h3>
+          <p>Un ensayo breve sobre liderazgo, criterio humano y equipos aumentados en la era de la inteligencia artificial.</p>
+          <a class="post-link" href="blog/el-ultimo-lider-humano.html">Leer entrada</a>
+        </article>
+        <article class="post-card">
+          <time datetime="2026-05-29">29 mayo 2026</time>
+          <h3>Narrativas Cuánticas: reescribir la realidad empieza por el relato</h3>
+          <p>Una reflexión sobre identidad, relato personal y la posibilidad de reinterpretar la experiencia para abrir futuros distintos.</p>
+          <a class="post-link" href="blog/narrativas-cuanticas-reescribiendo-tu-realidad.html">Leer entrada</a>
+        </article>
+        <article class="post-card">
+          <time datetime="2026-05-29">29 mayo 2026</time>
+          <h3>El poder que no aparece en el organigrama</h3>
+          <p>Una primera entrada para abrir la conversación sobre política real, influencia y supervivencia dentro de la empresa moderna.</p>
+          <a class="post-link" href="blog/el-poder-que-no-aparece-en-el-organigrama.html">Leer entrada</a>
+        </article>
+      </div>
+      <p class="center-btn">
+        <a class="btn" href="blog.html">Ver blog completo</a>
+      </p>
+    </div>
+  </section>
 
   <!-- SOBRE EL AUTOR -->
   <section id="sobre">
@@ -583,7 +671,7 @@
 
   <!-- FOOTER -->
   <footer>
-    © 2025 Cristian Neira V. — Todos los derechos reservados.
+    © 2026 Cristian Neira V. — Todos los derechos reservados.
   </footer>
    <!-- MODAL: colócalo ANTES del script y DENTRO del body -->
   <div class="modal-overlay" id="bookModal" aria-hidden="true">
