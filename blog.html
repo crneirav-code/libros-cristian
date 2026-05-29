@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blog de Cristian Neira V.: ensayos y reflexiones sobre poder, liderazgo, tecnología y narrativa.">
+  <title>Blog — Cristian Neira V.</title>
+
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body{ margin:0; font-family:'Georgia', serif; background:#f8f5f1; color:#2c2c2c; line-height:1.6; }
+    a{ color:#7a4c29; text-decoration:none; }
+    a:hover{ color:#b26e41; }
+    header{ position:sticky; top:0; background:rgba(248,245,241,.98); display:flex; justify-content:space-between; align-items:center; padding:14px 40px; border-bottom:1px solid #e0d8cf; z-index:100; flex-wrap:wrap; }
+    header h1{ font-size:1.6em; font-weight:600; letter-spacing:.5px; }
+    nav a{ margin:0 10px; font-weight:500; font-family:Arial, sans-serif; }
+    .social a{ margin-left:12px; font-size:1.3em; color:#7a4c29; }
+    main{ max-width:1000px; margin:0 auto; padding:60px 20px; }
+    .hero{ text-align:center; margin-bottom:34px; }
+    .hero h2{ color:#5a3b1c; font-size:2em; margin:0 0 12px; }
+    .hero p{ max-width:720px; margin:0 auto; color:#3a2b1e; }
+    .blog-admin-note{ background:#fffaf3; border:1px dashed #c9a78d; border-radius:12px; padding:18px 22px; margin:0 auto 28px; color:#5a3b1c; font-family:Arial, sans-serif; }
+    .blog-list{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px; }
+    .post-card{ background:#fffdf9; border:1px solid #eadfce; border-radius:14px; padding:24px; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+    .post-card time{ display:block; color:#8a6b52; font-family:Arial, sans-serif; font-size:.9rem; margin-bottom:8px; }
+    .post-card h3{ color:#5a3b1c; font-size:1.28rem; margin:0 0 10px; }
+    .post-card p{ margin:0 0 18px; color:#3e2c1e; }
+    .tag{ display:inline-block; font-family:Arial, sans-serif; font-size:.78rem; background:#f4ede6; color:#7a4c29; border-radius:999px; padding:4px 10px; margin-bottom:12px; }
+    .btn{ background:#7a4c29; color:#fff; padding:10px 16px; border-radius:6px; display:inline-block; text-decoration:none; font-family:Arial, sans-serif; font-size:.95rem; }
+    .btn:hover{ background:#8f5a34; color:#fff; }
+    footer{ background:#eae4dc; text-align:center; padding:20px; font-size:.9em; color:#4a3b2a; }
+    @media (max-width:700px){ header{ flex-direction:column; text-align:center; gap:8px; } nav{ margin-top:6px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Cristian Neira V.</h1>
+    <nav>
+      <a href="index.html#amazon">Libros</a>
+      <a href="blog.html">Blog</a>
+      <a href="index.html#sobre">Sobre el autor</a>
+      <a href="index.html#contacto">Contacto</a>
+    </nav>
+    <div class="social">
+      <a href="https://www.linkedin.com/in/cristian-neirav/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/cneira_escritor" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.amazon.com/stores/author/B0CVNMLSNZ" target="_blank" rel="noopener"><i class="fab fa-amazon"></i></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Blog</h2>
+      <p>Ensayos breves, ideas en desarrollo y notas de investigación sobre los temas que atraviesan mis libros: poder, liderazgo, tecnología, ficción especulativa y transformación cultural.</p>
+    </section>
+
+    <!-- Para publicar una nueva entrada: crea un archivo dentro de /blog y duplica una tarjeta en esta lista. -->
+    <div class="blog-admin-note">
+      <strong>Nota editorial:</strong> este blog es estático. Para subir contenido nuevo, agrega una página HTML en la carpeta <code>blog/</code> y suma una tarjeta con su enlace en esta lista.
+    </div>
+
+    <section class="blog-list" aria-label="Entradas del blog">
+      <article class="post-card">
+        <span class="tag">Poder organizacional</span>
+        <time datetime="2026-05-29">29 mayo 2026</time>
+        <h3>El poder que no aparece en el organigrama</h3>
+        <p>Una primera entrada para abrir la conversación sobre política real, influencia y supervivencia dentro de la empresa moderna.</p>
+        <a class="btn" href="blog/el-poder-que-no-aparece-en-el-organigrama.html">Leer entrada</a>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Cristian Neira V. — Todos los derechos reservados.
+  </footer>
+</body>
+</html>
