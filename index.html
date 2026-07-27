@@ -1,22 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
-  <!-- Google tag (GA4) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-R5CEBQ8FCX');
-</script>
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Cristian Neira V. — Autor, estratega y filósofo del poder moderno.">
-  <title>Cristian Neira V. — Autor</title>
+
+  <!-- SEO -->
+  <title>Cristian Neira V. — Autor de ensayo y ficción especulativa</title>
+  <meta name="description" content="Sitio oficial de Cristian Neira V., autor chileno. Libros sobre poder, liderazgo, inteligencia artificial y ficción especulativa: El Último Prompt, El Tablero Invisible, Manual de Succión Ejecutiva y más.">
+  <meta name="keywords" content="Cristian Neira, Cristian Neira V, autor chileno, libros, El Último Prompt, El Tablero Invisible, Manual de Succión Ejecutiva, Cosecha de Emociones, El Último Líder Humano, Narrativas Cuánticas, liderazgo, inteligencia artificial, poder">
+  <meta name="author" content="Cristian Neira V.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#7a4c29">
+  <link rel="canonical" href="https://cneirav.cl/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cristian Neira V.">
+  <meta property="og:locale" content="es_CL">
+  <meta property="og:title" content="Cristian Neira V. — Autor de ensayo y ficción especulativa">
+  <meta property="og:description" content="Libros de Cristian Neira V. sobre poder, liderazgo, inteligencia artificial y ficción especulativa.">
+  <meta property="og:url" content="https://cneirav.cl/">
+  <meta property="og:image" content="https://cneirav.cl/cneira1.jpg">
+  <meta property="og:image:alt" content="Retrato de Cristian Neira V.">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cristian Neira V. — Autor de ensayo y ficción especulativa">
+  <meta name="twitter:description" content="Libros de Cristian Neira V. sobre poder, liderazgo, inteligencia artificial y ficción especulativa.">
+  <meta name="twitter:image" content="https://cneirav.cl/cneira1.jpg">
 
   <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Google tag (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R5CEBQ8FCX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-R5CEBQ8FCX');
+  </script>
+
+  <!-- Datos estructurados: Autor + Sitio -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://cneirav.cl/#website",
+        "url": "https://cneirav.cl/",
+        "name": "Cristian Neira V.",
+        "inLanguage": "es",
+        "publisher": { "@id": "https://cneirav.cl/#person" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://cneirav.cl/#person",
+        "name": "Cristian Neira V.",
+        "url": "https://cneirav.cl/",
+        "image": "https://cneirav.cl/cneira1.jpg",
+        "jobTitle": "Autor y estratega",
+        "nationality": "Chilena",
+        "description": "Estratega, investigador y autor chileno. Su obra combina filosofía, psicología, sociología y tecnología para explorar el poder, el liderazgo y la transformación digital.",
+        "sameAs": [
+          "https://www.linkedin.com/in/cristian-neirav/",
+          "https://www.instagram.com/cneira_escritor",
+          "https://www.amazon.com/stores/author/B0CVNMLSNZ"
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Datos estructurados: Libros -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "item": { "@type": "Book", "name": "El Último Prompt", "author": { "@id": "https://cneirav.cl/#person" }, "inLanguage": "es", "image": "https://cneirav.cl/covers/el_ultimo_prompt.jpg", "url": "https://cneirav.cl/blog/el-ultimo-prompt.html" } },
+      { "@type": "ListItem", "position": 2, "item": { "@type": "Book", "name": "El Tablero Invisible", "author": { "@id": "https://cneirav.cl/#person" }, "inLanguage": "es", "image": "https://cneirav.cl/covers/tablero-invisible1.jpg", "url": "https://a.co/d/0bmv8Maw" } },
+      { "@type": "ListItem", "position": 3, "item": { "@type": "Book", "name": "Manual de Succión Ejecutiva", "author": { "@id": "https://cneirav.cl/#person" }, "inLanguage": "es", "image": "https://cneirav.cl/covers/manual-de-succion-ejecutiva.jpg", "url": "https://www.amazon.com/dp/B0FTTBJKBG" } },
+      { "@type": "ListItem", "position": 4, "item": { "@type": "Book", "name": "Cosecha de Emociones: La Energía Secreta", "author": { "@id": "https://cneirav.cl/#person" }, "inLanguage": "es", "image": "https://cneirav.cl/covers/cosecha-de-emociones.jpg", "url": "https://www.amazon.com/dp/B0CVNJLV1F" } },
+      { "@type": "ListItem", "position": 5, "item": { "@type": "Book", "name": "El Último Líder Humano", "author": { "@id": "https://cneirav.cl/#person" }, "inLanguage": "es", "image": "https://cneirav.cl/covers/ultimo-lider-humano.jpg", "url": "https://a.co/d/7PMAvcy" } },
+      { "@type": "ListItem", "position": 6, "item": { "@type": "Book", "name": "Narrativas Cuánticas: Reescribiendo tu Realidad", "author": { "@id": "https://cneirav.cl/#person" }, "inLanguage": "es", "image": "https://cneirav.cl/covers/narrativas-cuanticas.jpg", "url": "https://www.amazon.com/dp/B0D9DNNSFK" } }
+    ]
+  }
+  </script>
 
   <style>
     /* ====- MODAL DETALLE LIBRO (móvil, botones centrados) ==== */
