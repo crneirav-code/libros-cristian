@@ -1,0 +1,7 @@
+# robots.txt — cneirav.cl
+# Permite el rastreo completo del sitio por todos los buscadores.
+User-agent: *
+Allow: /
+
+# Ubicación del sitemap para acelerar la indexación
+Sitemap: https://cneirav.cl/sitemap.xml
