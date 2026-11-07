@@ -249,10 +249,11 @@
       flex-wrap: wrap;
     }
 
-    header h1 {
+    header .site-title {
       font-size: 1.6em;
       font-weight: 600;
       letter-spacing: 0.5px;
+      margin: .67em 0;
     }
 
     nav a {
@@ -276,12 +277,14 @@
       box-shadow: 0 4px 14px rgba(0,0,0,0.1);
     }
 
-    h2 {
+    .page-title, h2 {
       text-align: center;
       font-size: 1.8em;
       margin-bottom: 30px;
       color: #5a3b1c;
     }
+
+    .page-title { margin-top: .83em; }
 
     .bio, .noticias, .contacto {
       background-color: #fffdf9;
@@ -524,9 +527,9 @@
 
   <!-- HEADER -->
   <header>
-    <h1>Cristian Neira V.</h1>
+    <div class="site-title">Cristian Neira V.</div>
     <nav>
-      <a href="index.html">Inicio</a>
+      <a href="/">Inicio</a>
       <a href="#amazon">Libros</a>
       <a href="blog.html">Blog</a>
       <a href="#sobre">Sobre el autor</a>
@@ -541,7 +544,7 @@
 
   <!-- AMAZON -->
 <section id="amazon">
-  <h2>Libros</h2>
+  <h1 class="page-title">Libros</h1>
 
   <div class="book-grid">
     <!-- El Último Prompt -->
